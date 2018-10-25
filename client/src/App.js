@@ -1,15 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import * as actionCreators from './redux/actions';
+
 import './App.css';
+import './reset.css';
 
 class App extends Component {
+
+  renderPage = () => {
+    if(this.props.storeData.pageName === "home") return <Home />
+    else if(this.props.storeData.pageName === "fight") return <Fight />
+    else return <h1>Page not found</h1>
+  } 
+
   render() {
     return (
       <div className="App">
-       hey
+       {this.renderPage()}
       </div>
     );
   }
+  
 }
 
-export default App;
+const mapStateToProps = state => ({storeData: state});
+const mapDispatchToProps = dispatch => (bindActionCreators(actionCreators, dispatch));
+export default connect(mapStateToProps, mapDispatchToProps)(App);
