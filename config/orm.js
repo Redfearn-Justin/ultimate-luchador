@@ -39,9 +39,7 @@ var orm = {
     // EXAMPLE METHOD
     selectTen: (tableName, stat, cb) => {
 
-        console.log("selectTen");
-
-        var queryString = "SELECT * FROM " + tableName + " ORDER BY " + stat +" DESC LIMIT 10;";
+        var queryString = "SELECT * FROM " + tableName + " ORDER BY " + stat + " DESC LIMIT 10;";
 
         connection.query(queryString, function (err, res) {
 

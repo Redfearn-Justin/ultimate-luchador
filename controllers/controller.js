@@ -5,13 +5,6 @@ var models = require('../models/models.js');
 var express = require("express");
 var router = express.Router();
 
-// HTML ROUTES 
-// *************************************************
-
-router.get("/", function (req, res) {
-    res.render("index");
-});
-
 // API ROUTES 
 // *************************************************
 

@@ -10,21 +10,21 @@ import './reset.css';
 class App extends Component {
 
   renderPage = () => {
-    if(this.props.storeData.pageName === "home") return <Home />
-    else if(this.props.storeData.pageName === "fight") return <Fight />
+    if (this.props.storeData.pageName === "home") return <Home />
+    else if (this.props.storeData.pageName === "fight") return <Fight />
     else return <h1>Page not found</h1>
-  } 
+  }
 
   render() {
     return (
       <div className="App">
-       {this.renderPage()}
+        {this.renderPage()}
       </div>
     );
   }
-  
+
 }
 
-const mapStateToProps = state => ({storeData: state});
+const mapStateToProps = state => ({ storeData: state });
 const mapDispatchToProps = dispatch => (bindActionCreators(actionCreators, dispatch));
 export default connect(mapStateToProps, mapDispatchToProps)(App);
