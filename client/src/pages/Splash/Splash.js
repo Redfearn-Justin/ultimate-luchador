@@ -12,8 +12,15 @@ class Splash extends Component {
 
         return (
             <div className="container">
-               <p>hi</p>
-               <button onClick={() => this.props.setPageName("NewAccount")}>click me</button>
+
+                <div className="box">
+                    <p className="title">ULTIMATE<br />LUCHADOR</p>
+                    <img className="zap" alt="zap" src="./images/splash_zap.png" />
+                    <img className="luch" alt="luchador" src="./images/splash_luch.png" />
+                    <div className="button loginButton" onClick={() => this.props.setPageName("Login")}>LOGIN</div>
+                    <div className="button newAccountButton" onClick={() => this.props.setPageName("NewAccount")}>NEW ACCOUNT</div>
+                </div>
+
             </div>
         );
     }
