@@ -7,13 +7,17 @@ import * as actionCreators from './redux/actions';
 import './App.css';
 import './reset.css';
 
+import Splash from "./pages/Splash";
+import NewAccount from "./pages/NewAccount";
+import Login from "./pages/Login";
+
 class App extends Component {
 
   renderPage = () => {
-    // if (this.props.storeData.pageName === "home") return <Home />
-    // else if (this.props.storeData.pageName === "fight") return <Fight />
-    // else return <h1>Page not found</h1>
-    return <h2>hello</h2>
+    if (this.props.storeData.pageName === "Splash") return <Splash />
+    else if (this.props.storeData.pageName === "NewAccount") return <NewAccount />
+    else if (this.props.storeData.pageName === "Login") return <Login />
+    else return <h1>Page not found</h1>
   }
 
   render() {
