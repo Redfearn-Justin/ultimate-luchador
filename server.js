@@ -8,7 +8,7 @@ var bodyParser = require("body-parser");
 
 
 // process.env.PORT required for other parties like Heroku that may want to use their own port
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3001;
 
 
 // Serve static content for the app from the "public" directory in the application directory.

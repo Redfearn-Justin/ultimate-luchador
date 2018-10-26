@@ -10,9 +10,10 @@ import './reset.css';
 class App extends Component {
 
   renderPage = () => {
-    if (this.props.storeData.pageName === "home") return <Home />
-    else if (this.props.storeData.pageName === "fight") return <Fight />
-    else return <h1>Page not found</h1>
+    // if (this.props.storeData.pageName === "home") return <Home />
+    // else if (this.props.storeData.pageName === "fight") return <Fight />
+    // else return <h1>Page not found</h1>
+    return <h2>hello</h2>
   }
 
   render() {
