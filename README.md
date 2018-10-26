@@ -7,7 +7,7 @@
 
 ### To download, update, and run:
 
-1. Copy the repo
+1. clone the repo
 2. cd into the repo in your terminal
 3. run "yarn install"
 4. run "npm i"
