@@ -37,18 +37,15 @@ function objToSql(ob) {
 var orm = {
 
     // EXAMPLE METHOD
-    selectTen: (tableName, stat, cb) => {
-
-        var queryString = "SELECT * FROM " + tableName + " ORDER BY " + stat + " DESC LIMIT 10;";
+    selectOne: (tableName, id, cb) => {
+        var queryString = "SELECT * FROM " + tableName + " WHERE id = " + id;
 
         connection.query(queryString, function (err, res) {
-
             if (err) throw err;
-
             cb(res);
-
         });
     }
+    
 };
 // =============================
 

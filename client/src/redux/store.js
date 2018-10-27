@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
 const defaultStore = {
-    pageName: "home",
+    pageName: "Splash",
     totalWins: 0,
     active_player: {}
 }
@@ -11,11 +11,9 @@ const storeData = (state = defaultStore, action) => {
         case 'SET_PAGE_NAME':
             return {
                 pageName: action.pageName,
-                totalWins: state.totalWins
             }
         case 'INCREMENT_WINS':
             return {
-                pageName: state.pageName,
                 totalWins: state.totalWins + 1
             }
         default:

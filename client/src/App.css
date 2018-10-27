@@ -23,3 +23,26 @@ body {
 .App {
   text-align: center;
 }
+
+.box {
+  display: inline-block;
+  margin-top: 20px;
+  width: 650px;
+  height: 700px;
+  text-align: left;
+  border-radius: 8px;
+  background-color: #FCF1E3;
+  background-image: radial-gradient(closest-side at 50% 50%, #FCF1E3, #EDD9BE);
+  box-shadow: 0px 2px 10px rgba(78, 51, 0, 0.322);
+  overflow: hidden;
+}
+
+@font-face {
+  src: url(./Funhouse.ttf);
+  font-family: test;
+}
+
+.container {
+  font-family: test;
+  text-align: center;
+}
