@@ -25,11 +25,16 @@ body {
 }
 
 .box {
-  display: inline-block;
-  margin-top: 20px;
-  width: 650px;
-  height: 700px;
-  text-align: left;
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  flex: 1;
+  margin-top: 12px;
+  width: 600px;
+  height: 650px;
   border-radius: 8px;
   background-color: #FCF1E3;
   background-image: radial-gradient(closest-side at 50% 50%, #FCF1E3, #EDD9BE);
@@ -43,6 +48,7 @@ body {
 }
 
 .container {
+  position: relative;
   font-family: test;
   text-align: center;
 }

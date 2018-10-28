@@ -11,11 +11,10 @@ class SplashTop extends Component {
     render() {
 
         return (
-            <div className="container">
-                <p className="title">ULTIMATE<br />LUCHADOR</p>
-                <img className="zap" alt="zap" src="./images/splash_zap.png" />
-                <img className="luch" alt="luchador" src="./images/splash_luch.png" />
-            </div>
+                <div className="flex-box">
+                    <p className="title" onClick={() => this.props.setPageName("Splash")}>ULTIMATE<br />LUCHADOR</p>
+                    <img alt="zap" src="./images/splash_combined_big.png" />
+                </div>
         );
     }
 
