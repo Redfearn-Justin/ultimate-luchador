@@ -12,8 +12,25 @@ import "./Login.css";
 class Login extends Component {
 
     state = {
+        // isSignedIn: false,
+        // userProfile: null,
         email: "",
         password: ""
+    }
+
+    firebaseFunction = () => {
+
+        const config = {
+            apiKey: "AIzaSyBtrAreWzaZXnoLfFhdd0tc1WgVMnckeWo",
+            authDomain: "luchador-firebase.firebaseapp.com",
+            databaseURL: "https://luchador-firebase.firebaseio.com",
+            projectId: "luchador-firebase",
+            storageBucket: "luchador-firebase.appspot.com",
+            messagingSenderId: "294018925728"
+        };
+        
+        firebase.initializeApp(config);
+
     }
 
     hanldeInputChange = event => {
@@ -23,6 +40,7 @@ class Login extends Component {
 
         //if the name is equal to "password", aka the password field
         if (name === "password") {
+            
             value = value.substring(0, 15);
         }
         //now set the state of both values to user inputted
@@ -51,44 +69,45 @@ class Login extends Component {
             console.log("Successfully submitted user information");
         }
 
+        //Start of firebase functionality
+        //=============================================
 
-
-        //firebase config
-        //=========================================================
-
-
-        //encrpty keys!!!!!!!!!!!
-
-        const config = {
-            apiKey: "AIzaSyBtrAreWzaZXnoLfFhdd0tc1WgVMnckeWo",
-            authDomain: "luchador-firebase.firebaseapp.com",
-            databaseURL: "https://luchador-firebase.firebaseio.com",
-            projectId: "luchador-firebase",
-            storageBucket: "luchador-firebase.appspot.com",
-            messagingSenderId: "294018925728"
-        };
-        
-        firebase.initializeApp(config);
-
-
-        const database = firebase.database();
-
-        let totalUserInput = {
+        let userProfile = {
     
-            Email: this.state.email,
+            Username: this.state.email,
             Password: this.state.password,
       
         };
+
+        this.firebaseFunction();
+
+        const database = firebase.database();
+
+        //sign-in authorization for Firebase
+        //=======================================================================
       
-        //upload object to firebase
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
 
-        database.ref().push(totalUserInput);
+            // Error Handling
+            let errorCode = error.code;
+            let errorMessage = error.message;
+
+            console.log("An error has occured. Please try again");
+
+            throw(errorCode, errorMessage);
+        });
+        //====================================================================
+      
+        //upload object to firebase /// as of rn, primarily to verify firebase synchronization
+
+        database.ref().push(userProfile);
 
 
-
+        //returning fields to have "blank" values
         this.setState({
-            email:"",
+            email: "",
             password: ""
+
         });
     }
 
@@ -97,17 +116,17 @@ class Login extends Component {
         return (
             <div className="container">
                 <form>
-                    <h3> <u>Enter your Email here</u> </h3>
+                    <h3> <u>Log In!</u> </h3>
 
                     <input
-                    value={this.state.email}
+                    value={this.state.createEmail}
                     name="email"
                     onChange={this.hanldeInputChange}
                     type="email"
-                    placeholder="janedoe@gmail.com"
+                    placeholder="janedoe@hotmail.com"
                     />
                     <input
-                    value={this.state.password}
+                    value={this.state.createPassword}
                     name="password"
                     onChange={this.hanldeInputChange}
                     type="password"
@@ -116,7 +135,6 @@ class Login extends Component {
                     <button onClick={this.hanldeFormSubmit}>
                     Submit
                     </button>
-
                 </form>
             </div>
         );
