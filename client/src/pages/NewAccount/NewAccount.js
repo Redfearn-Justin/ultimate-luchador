@@ -18,7 +18,7 @@ class NewAccount extends Component {
                     <SplashTop />
                     <div className="flex-input">
                         <div className="nav">
-                            <button onClick={() => this.props.setPageName("Splash")}>home</button>
+                            <button onClick={() => this.props.setPageName("Splash")}>back</button>
                             <span className="text-black">new account</span>
                             <button onClick={() => this.props.setPageName("Splash")}>create</button>
                         </div>

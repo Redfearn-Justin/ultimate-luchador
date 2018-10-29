@@ -20,9 +20,9 @@ class Login extends Component {
                     <div className="flex-input">
 
                         <div className="nav">
-                            <button onClick={() => this.props.setPageName("Splash")}>home</button>
+                            <button onClick={() => this.props.setPageName("Splash")}>back</button>
                             <span className="text-black">log in</span>
-                            <button onClick={() => this.props.setPageName("Splash")}>log in</button>
+                            <button onClick={() => this.props.setPageName("Home")}>log in</button>
                         </div>
                         <div>
                             <span className="text-red">username</span>

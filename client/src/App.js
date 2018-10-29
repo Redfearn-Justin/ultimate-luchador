@@ -10,6 +10,7 @@ import './reset.css';
 import Splash from "./pages/Splash";
 import NewAccount from "./pages/NewAccount";
 import Login from "./pages/Login";
+import Home from "./pages/Home";
 
 class App extends Component {
 
@@ -17,6 +18,7 @@ class App extends Component {
     if (this.props.storeData.pageName === "Splash") return <Splash />
     else if (this.props.storeData.pageName === "NewAccount") return <NewAccount />
     else if (this.props.storeData.pageName === "Login") return <Login />
+    else if (this.props.storeData.pageName === "Home") return <Home />
     else return <h1>Page not found</h1>
   }
 
