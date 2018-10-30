@@ -57,7 +57,7 @@
     color: #fff;
     padding: 4px;
     background-color: rgb(253, 48, 55);
-    border: 2px solid rgb(190, 14, 14);
+    border: 3px solid rgb(190, 14, 14);
     border-radius: 4px;
     width: 100%;
     transition: .3s;
@@ -84,6 +84,10 @@
     border-radius: 6px;
 }
 
+.profile-ability {
+    margin: 10px;
+}
+
 .profile-top {
     position: relative;
     display: flex;
@@ -92,6 +96,8 @@
     align-items: stretch;
     flex: 1.5;
     width: 100%;
+    margin: 10px;
+    margin-top: 15px;
 }
 
 .ability-icon,
@@ -104,11 +110,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.profile-top,
-.profile-ability {
-    margin: 10px;
 }
 
 .profile-pic {
@@ -135,8 +136,8 @@
 }
 
 .profile-picture {
-    width: 80px;
-    height: 80px;
+    width: 84px;
+    height: 84px;
     margin: 0 15px;
     border-radius: 50%;
     box-shadow: 0 0 4px rgb(126, 126, 126);
@@ -234,11 +235,7 @@
     transform: scale(1.05);
 }
 
-.fight-button {
-    border: 4px solid rgb(190, 14, 14);
-    background-color: rgb(253, 48, 55);
-}
-
+.fight-button,
 .boss-button {
     border: 4px solid rgb(30, 38, 129);
     background-color: rgb(49, 59, 175);
@@ -247,3 +244,17 @@
 .fight-stats {
     flex: 1;
 }
+
+@media only screen and (max-width: 500px) {
+    .nav-bar span  {
+        font-size: 1.5rem;
+        margin: 0;
+    }
+  }
+
+@media only screen and (max-width: 350px) {
+    .nav-bar span  {
+        font-size: 1.2rem;
+        margin: 0;
+    }
+  }

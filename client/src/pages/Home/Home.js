@@ -27,7 +27,9 @@ class Splash extends Component {
 
                     <div className="nav-bar">
                         <div className="home-button">
-                            {/* More buttons here */}
+                            {/* Buttons here */}
+                            <div>Log Out</div>
+                            <div>Log Out</div>
                         </div>
                         <span>ultimate<br />luchador</span>
                         <div className="home-button">
@@ -43,7 +45,7 @@ class Splash extends Component {
                             </div>
                             <div className="profile-name">
                                 <div>playername</div>
-                                <div>***** experience bar *****</div>
+                                <div>experience bar</div>
                             </div>
                             <div className="profile-exp">
                                 <div>fame</div>
@@ -81,7 +83,7 @@ class Splash extends Component {
 
                     <div className="fight-bar">
                         <div className="fight-buttons">
-                            <div className="fight-button">Fight</div>
+                            <div className="fight-button" onClick={() => this.props.setPageName("ChooseOpponent")}>Fight</div>
                             <div className="boss-button">Boss</div>
                         </div>
                         <div className="fight-stats">
