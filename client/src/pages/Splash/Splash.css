@@ -1,11 +1,13 @@
 .button {
-    width: 350px;
-    height: 50px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    width: 60%;
+    height: 25%;
     cursor: pointer;
-    border-radius: 8px;
-    text-align: center;
     font-size: 1.5rem;
-    line-height: 44px;
     color: #fff;
     transition: .3s;
 }
@@ -15,15 +17,37 @@
 }
 
 .loginButton {
-    margin: 0 auto;
-    margin-top: 520px;
-    border: 4px solid rgb(179, 7, 7);
+    border: 4px solid rgb(190, 14, 14);
     background-color: rgb(253, 48, 55);
 }
 
 .newAccountButton {
-    margin: 0 auto;
-    margin-top: 15px;
     border: 4px solid rgb(30, 38, 129);
     background-color: rgb(49, 59, 175);
+}
+
+.flex-buttons {
+    position: relative;
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 30%;
+}
+
+.flex-buttons div {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    width: 60%;
+    height: 25%;
+    cursor: pointer;
+    border-radius: 80px;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #fff;
+    transition: .3s;
 }

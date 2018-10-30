@@ -6,13 +6,36 @@ import * as actionCreators from '../../redux/actions';
 
 import "./Login.css";
 
+import SplashTop from "../../components/SplashTop"
+
 class Login extends Component {
 
     render() {
 
         return (
             <div className="container">
-               hello!
+
+                <div className="box">
+                    <SplashTop />
+                    <div className="flex-input">
+
+                        <div className="nav">
+                            <button onClick={() => this.props.setPageName("Splash")}>back</button>
+                            <span className="text-black">log in</span>
+                            <button onClick={() => this.props.setPageName("Home")}>log in</button>
+                        </div>
+                        <div>
+                            <span className="text-red">username</span>
+                            <input></input>
+                        </div>
+                        <div>
+                            <span className="text-blue">password</span>
+                            <input></input>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         );
     }

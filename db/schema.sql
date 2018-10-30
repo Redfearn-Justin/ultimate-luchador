@@ -4,6 +4,9 @@ USE luchador_db;
 
 CREATE TABLE players (
     id INTEGER NOT NULL AUTO_INCREMENT,
+    token VARCHAR(200) NOT NULL DEFAULT "0",
+    npc BOOLEAN NOT NULL DEFAULT 0,
+    boss BOOLEAN NOT NULL DEFAULT 0,
     created TIMESTAMP NOT NULL DEFAULT current_timestamp,
     last_login TIMESTAMP NOT NULL DEFAULT current_timestamp,
     
@@ -22,8 +25,8 @@ CREATE TABLE players (
     wins INTEGER (4) NOT NULL DEFAULT 0,
     losses INTEGER (4) NOT NULL DEFAULT 0,
 
-    tickets INTEGER (2) NOT NULL DEFAULT 10,
-    tickets_max INTEGER (2) NOT NULL DEFAULT 10,
+    tickets INTEGER (2) NOT NULL DEFAULT 15,
+    tickets_max INTEGER (2) NOT NULL DEFAULT 15,
 
     refresh INTEGER (2) NOT NULL DEFAULT 0,
 
