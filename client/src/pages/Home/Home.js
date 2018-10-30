@@ -34,7 +34,7 @@ class Splash extends Component {
                         <span>ultimate<br />luchador</span>
                         <div className="home-button">
                             <div>Settings</div>
-                            <div>Log Out</div>
+                            <div onClick={() => this.props.setPageName("Splash")}>Log Out</div>
                         </div>
                     </div>
 

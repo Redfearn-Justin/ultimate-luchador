@@ -16,23 +16,6 @@
     margin-bottom: 8px;
 }
 
-.nav button {
-    font-family: test;
-    font-size: .8rem;
-    position: relative;
-    bottom: 4px;
-    padding: 4px 8px 2px 8px;
-    margin: 0 15px;
-
-    background-color: rgb(253, 48, 55);
-    border: 2px solid rgb(190, 14, 14);
-    border-radius: 5px;
-    color: #fff;
-
-    cursor: pointer;
-    transition: .3s;
-}
-
 .nav button:hover {
     transform: scale(1.1);
 }

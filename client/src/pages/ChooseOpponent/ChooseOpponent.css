@@ -107,7 +107,7 @@
 
 .opponent-button-back,
 .opponent-button-refresh {
-    border-radius: 8px;
+    border-radius: 80px;
     height: 46%;
     margin: 10px;
     cursor: pointer;

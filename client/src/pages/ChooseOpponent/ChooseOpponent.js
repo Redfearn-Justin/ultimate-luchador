@@ -28,7 +28,8 @@ class ChooseOpponent extends Component {
                     <div className="text-bar">choose your opponent</div>
 
                     <div className="opponent-bar">
-                        <div className="opponent">
+
+                        <div className="opponent" onClick={() => this.props.setPageName("Fight")}>
                             <div className="profile-pic opponent-pic">
                                 <div className="profile-picture"></div>
                             </div>
@@ -41,7 +42,8 @@ class ChooseOpponent extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="opponent">
+
+                        <div className="opponent" onClick={() => this.props.setPageName("Fight")}>
                             <div className="profile-pic opponent-pic">
                                 <div className="profile-picture"></div>
                             </div>
@@ -54,7 +56,8 @@ class ChooseOpponent extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="opponent">
+
+                        <div className="opponent" onClick={() => this.props.setPageName("Fight")}>
                             <div className="profile-pic opponent-pic">
                                 <div className="profile-picture"></div>
                             </div>
@@ -67,6 +70,7 @@ class ChooseOpponent extends Component {
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                     <div className="opponent-button-bar">
