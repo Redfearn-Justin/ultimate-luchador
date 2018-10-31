@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
 
 import "./NewAccount.css";
+import * as firebase from "firebase";
 
 class NewAccount extends Component {
 
@@ -84,7 +85,13 @@ class NewAccount extends Component {
       
         };
 
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
+        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .then(function() {
+
+            alert("user has been created :)");
+
+        })
+        .catch(function(error) {
 
             // Error Handling
             let errorCode = error.code;
@@ -108,14 +115,14 @@ class NewAccount extends Component {
         });
     }
 
+    //sign out function works but "GET" posts username/password into URL!!!!
+
     signOut = () => {
 
         this.firebaseFunction();
 
-        firebase.auth().signOut().then(function() {
-            // Sign-out successful.
-        }).catch(function(error) {
-            
+        firebase.auth().signOut().catch(function(error) {
+
             console.log("An error has occured with signing out. Please try again");
             // An error happened.
             throw(error);
