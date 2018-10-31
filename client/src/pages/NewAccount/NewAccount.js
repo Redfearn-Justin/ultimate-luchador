@@ -5,7 +5,10 @@ import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
 
 import "./NewAccount.css";
+
 import * as firebase from "firebase";
+
+import SplashTop from "../../components/SplashTop"
 
 class NewAccount extends Component {
 
@@ -129,39 +132,52 @@ class NewAccount extends Component {
         });
     }
 
+    clickFunctions = (event) => {
+        this.props.setPageName("Splash");
+        this.hanldeFormSubmit();
+    } 
+
     render() {
 
         return (
             <div className="container">
-                <form>
-                    <h3> <u>Create an account, amigo </u> </h3>
 
-                    <input
-                    value={this.state.createEmail}
-                    name="email"
-                    onChange={this.hanldeInputChange}
-                    type="email"
-                    placeholder="janedoe@hotmail.com"
-                    />
-                    <input
-                    value={this.state.createPassword}
-                    name="password"
-                    onChange={this.hanldeInputChange}
-                    type="password"
-                    placeholder="************"
-                    />
-                    <button onClick={this.hanldeFormSubmit}>
-                    Submit
-                    </button>
-                    <button onClick={this.signOut}>
-                    Sign Out?
-                    </button>
-                </form>
+                <div className="box">
+                    <SplashTop />
+                    <div className="flex-input">
+                        <div className="nav">
+                            <button onClick={() => this.props.setPageName("Splash")}>back</button>
+                            <span className="text-black">new account</span>
+                            <button onClick={this.clickFunctions}>create</button>
+                        </div>
+                        <div>
+                            <span className="text-red">email</span>
+                            <input
+                            value={this.state.createEmail}
+                            name="email"
+                            onChange={this.hanldeInputChange}
+                            type="email"
+                            placeholder="janedoe@hotmail.com"
+                            />
+                        </div>
+                        <div>
+                            <span className="text-blue">password</span>
+                            <input
+                            value={this.state.createPassword}
+                            name="password"
+                            onChange={this.hanldeInputChange}
+                            type="password"
+                            placeholder="************"
+                            />
+                        </div>
+                    </div>
+                </div>
+
             </div>
         );
-    }
+    };
 
-}
+};
 
 const mapStateToProps = state => ({ storeData: state });
 const mapDispatchToProps = dispatch => (bindActionCreators(actionCreators, dispatch));

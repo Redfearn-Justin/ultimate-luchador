@@ -1,5 +1,4 @@
 // Require models.js file
-// var models = require('../models/models.js');
 var orm = require('../config/orm.js');
 
 // Require express and build our router instance
@@ -9,13 +8,13 @@ var router = express.Router();
 // API ROUTES 
 // *************************************************
 
-router.post("/api/selectone", function (req, res) {
+router.get("/api/selectone", function (req, res) {
     orm.selectOne(
         "players",
         1,
         function (result) {
-            var resid = result.insertId;
-            idHolder = resid;
+            var resid = result[0].id;
+            console.log(resid);
             res.json({ id: resid });
         }
     );
