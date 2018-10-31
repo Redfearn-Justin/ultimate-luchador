@@ -6,15 +6,17 @@ import * as actionCreators from '../../redux/actions';
 
 import "./NewAccount.css";
 
+//Firebase inclusions
 import * as firebase from "firebase";
+
+//===========================================
 
 import SplashTop from "../../components/SplashTop"
 
 class NewAccount extends Component {
 
     state = {
-        // isSignedIn: false,
-        // userProfile: null,
+        isSignedIn: false,
         email: "",
         password: ""
     }
@@ -22,6 +24,7 @@ class NewAccount extends Component {
     firebaseFunction = () => {
 
         const config = {
+
             apiKey: "AIzaSyBtrAreWzaZXnoLfFhdd0tc1WgVMnckeWo",
             authDomain: "luchador-firebase.firebaseapp.com",
             databaseURL: "https://luchador-firebase.firebaseio.com",
@@ -32,6 +35,40 @@ class NewAccount extends Component {
         
         firebase.initializeApp(config);
 
+    }
+
+    authoListener = () => {
+
+        firebase.auth().onAuthStateChanged(firebaseUser => {
+            if (firebaseUser) {
+                // User is signed in.
+                let displayName = firebaseUser.displayName;
+                let email = firebaseUser.email;
+                let emailVerified = firebaseUser.emailVerified;
+                let photoURL = firebaseUser.photoURL;
+                let isAnonymous = firebaseUser.isAnonymous;
+                let uid = firebaseUser.uid;
+                let providerData = firebaseUser.providerData;
+
+                const userInfo = {
+                    displayName: displayName,
+                    email: email,
+                    emailVerified: emailVerified,
+                    photoURL: photoURL,
+                    isAnonymous: isAnonymous,
+                    uid: uid,
+                    providerData: providerData,
+                };
+
+                console.log("User has signed in ");
+                console.log(userInfo);
+                
+            } else {
+                // User is signed out.
+                // ...
+                console.log("User has signed out");
+            }
+        });
     }
 
     hanldeInputChange = event => {
@@ -70,8 +107,6 @@ class NewAccount extends Component {
             console.log("Successfully submitted user information");
         }
 
-
-
         //firebase config
         //=========================================================
 
@@ -79,16 +114,8 @@ class NewAccount extends Component {
         this.firebaseFunction();
 
 
-        const database = firebase.database();
-
-        let userProfile = {
-    
-            Username: this.state.email,
-            Password: this.state.password,
-      
-        };
-
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+
         .then(function() {
 
             alert("user has been created :)");
@@ -102,13 +129,10 @@ class NewAccount extends Component {
 
             console.log("An error has occured. Please try again");
 
+            alert("A User already exists with this email. Please enter another email");
+
             throw(errorCode, errorMessage);
         });
-      
-        //upload object to firebase /// as of rn, primarily to verify firebase synchronization
-
-        database.ref().push(userProfile);
-
 
         //returning fields to have "blank" values
         this.setState({
@@ -134,7 +158,8 @@ class NewAccount extends Component {
 
     clickFunctions = (event) => {
         this.props.setPageName("Splash");
-        this.hanldeFormSubmit();
+
+        this.hanldeFormSubmit(event);
     } 
 
     render() {

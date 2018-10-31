@@ -3,8 +3,10 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
-
+//Firebase imports
 import * as firebase from "firebase";
+
+//======================================
 
 import "./Login.css";
 
@@ -20,6 +22,7 @@ class Login extends Component {
     firebaseFunction = () => {
 
         const config = {
+
             apiKey: "AIzaSyBtrAreWzaZXnoLfFhdd0tc1WgVMnckeWo",
             authDomain: "luchador-firebase.firebaseapp.com",
             databaseURL: "https://luchador-firebase.firebaseio.com",
@@ -54,14 +57,16 @@ class Login extends Component {
                 uid: uid,
                 providerData: providerData,
               };
-              // ...
+
               console.log("User has signed in ");
+
               console.log(userInfo);
               
             } else {
               // User is signed out.
               // ...
               console.log("User has signed out");
+
             }
         });
     }
@@ -105,16 +110,7 @@ class Login extends Component {
         //Start of firebase functionality
         //=============================================
 
-        let userProfile = {
-    
-            Username: this.state.email,
-            Password: this.state.password,
-      
-        };
-
         this.firebaseFunction();
-
-        // const database = firebase.database();
 
         //sign-in authorization for Firebase
         //=======================================================================
@@ -130,10 +126,6 @@ class Login extends Component {
             throw(errorCode, errorMessage);
         });
         //====================================================================
-      
-        //upload object to firebase /// as of rn, primarily to verify firebase synchronization
-
-        // database.ref().push(userProfile);
 
 
         //returning fields to have "blank" values
@@ -144,8 +136,6 @@ class Login extends Component {
 
         this.authoListener();
     }
-
-    //sign out function works but "GET" posts username/password into URL!!!!
 
     signOut = event => {
 
@@ -166,10 +156,10 @@ class Login extends Component {
         this.authoListener();
     }
 
-    clickFunctions = () => {
+    clickFunctions = (event) => {
 
         this.props.setPageName("Home");
-        this.hanldeFormSubmit();
+        this.hanldeFormSubmit(event);
     } 
 
     render() {
