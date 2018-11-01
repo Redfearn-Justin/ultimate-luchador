@@ -30,8 +30,10 @@ class Login extends Component {
             storageBucket: "luchador-firebase.appspot.com",
             messagingSenderId: "294018925728"
         };
-        
-        firebase.initializeApp(config);
+
+        if (!firebase.apps.length) {
+            firebase.initializeApp(config);
+        }
 
     }
 

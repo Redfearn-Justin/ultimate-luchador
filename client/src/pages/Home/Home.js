@@ -28,12 +28,12 @@ class Splash extends Component {
                     <div className="nav-bar">
                         <div className="home-button">
                             {/* Buttons here */}
-                            <div>Log Out</div>
-                            <div>Log Out</div>
+                            <div>x</div>
+                            <div>x</div>
                         </div>
                         <span>ultimate<br />luchador</span>
                         <div className="home-button">
-                            <div>Settings</div>
+                            <div onClick={() => this.props.setPageName("Credits")}>credits</div>
                             <div onClick={() => this.props.setPageName("Splash")}>Log Out</div>
                         </div>
                     </div>

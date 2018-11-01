@@ -58,7 +58,7 @@ class Fight extends Component {
                                 <div className="fight-speed-up">speed up</div>
                             </div>
                             <div className="fight-speed-bar">
-                                <div className="fight-finish">finish</div>
+                                <div className="fight-finish" onClick={() => this.props.setPageName("FightResults")}>finish</div>
                             </div>
 
                         </div>
