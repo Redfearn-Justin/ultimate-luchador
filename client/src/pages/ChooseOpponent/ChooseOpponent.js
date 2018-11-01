@@ -34,7 +34,7 @@ class ChooseOpponent extends Component {
                                 <div className="profile-picture"></div>
                             </div>
                             <div className="opponent-stats">
-                                <div className="opponent-stats-bar">wada</div>
+                                <div className="opponent-stats-bar">wwwwwwwwwwwwwwww</div>
                                 <div className="opponent-stats-bar">
                                     <div>awd</div>
                                     <div>awd</div>
