@@ -11,6 +11,7 @@ import * as firebase from "firebase";
 import "./Login.css";
 
 import SplashTop from "../../components/SplashTop"
+import { throws } from "assert";
 
 class Login extends Component {
 
@@ -157,9 +158,16 @@ class Login extends Component {
     }
 
     clickFunctions = (event) => {
+        //preventing user from skipping the log in screen without signing up
 
-        this.props.setPageName("Home");
-        this.hanldeFormSubmit(event);
+        if(!this.state.email || !this.state.email) {
+
+            return alert("Please fill out the fields before proceeding");
+
+        } else {
+            this.props.setPageName("Home");
+            this.hanldeFormSubmit(event);
+        }
     } 
 
     render() {

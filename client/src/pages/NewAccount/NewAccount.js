@@ -16,7 +16,6 @@ import SplashTop from "../../components/SplashTop"
 class NewAccount extends Component {
 
     state = {
-        isSignedIn: false,
         email: "",
         password: ""
     }
@@ -157,9 +156,16 @@ class NewAccount extends Component {
     }
 
     clickFunctions = (event) => {
-        this.props.setPageName("Splash");
+        //preventing user from skipping the log in screen without signing up
 
-        this.hanldeFormSubmit(event);
+        if(!this.state.email || !this.state.email) {
+
+            return alert("Please fill out the fields before proceeding");
+
+        } else {
+            this.props.setPageName("Splash");
+            this.hanldeFormSubmit(event);
+        }
     } 
 
     render() {
