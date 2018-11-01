@@ -24,6 +24,9 @@
     padding: 6px 10px 4px 10px;
     margin: 0 15px;
 
+    text-decoration: none;
+    outline: none;
+
     background-color: rgb(253, 48, 55);
     border: 2px solid rgb(190, 14, 14);
     border-radius: 50px;

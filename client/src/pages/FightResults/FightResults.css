@@ -1,0 +1,157 @@
+.results-text-bar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 15%;
+    font-size: 4.5rem;
+}
+
+.results-victory-text {
+    color: rgb(0, 194, 42);
+    text-shadow: 4px 4px 0px rgb(0, 124, 27),
+    -1px -1px 0px rgb(0, 124, 27),
+    1px -1px 0px rgb(0, 124, 27),
+    -1px 1px 0px rgb(0, 124, 27),
+    1px 1px 0px rgb(0, 124, 27);
+}
+
+.results-defeat-text {
+    color: rgb(253, 48, 55);
+    text-shadow: 4px 4px 0px rgb(110, 0, 0),
+    -1px -1px 0px rgb(110, 0, 0),
+    1px -1px 0px rgb(110, 0, 0),
+    -1px 1px 0px rgb(110, 0, 0),
+    1px 1px 0px rgb(110, 0, 0);
+}
+
+.results-info-bar {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 56%;
+    background-color: #fff;
+    border-radius: 6px;
+}
+
+
+/* Player bars */
+
+.results-player-bar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 3;
+    height: 100%;
+}
+
+.results-vs-bar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: .8;
+
+    font-size: 2rem;
+    color: rgb(253, 48, 55);
+    text-shadow: 4px 4px 0px rgb(110, 0, 0),
+    -1px -1px 0px rgb(110, 0, 0),
+    1px -1px 0px rgb(110, 0, 0),
+    -1px 1px 0px rgb(110, 0, 0),
+    1px 1px 0px rgb(110, 0, 0);
+}
+
+.results-player-pic {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 5;
+    width: 100%;
+}
+
+.results-player-stats {
+    flex: 1;
+    width: 100%;
+}
+
+.results-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgb(0, 194, 42);
+    background-color: #fff;
+}
+
+/* Stats bar */
+
+.results-stats-bar {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 18%;
+}
+
+.results-stats-stats {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+}
+
+.results-player-stats {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.mb {
+    margin-bottom: 10px;
+}
+
+.results-stats-home {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 100%;
+}
+
+.results-stats-single-stat {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+
+    font-size: 2rem;
+}
+
+.results-stats-home div {
+    border: 4px solid rgb(30, 38, 129);
+    background-color: rgb(49, 59, 175);
+    width: 80%;
+    height: 50%;
+}
