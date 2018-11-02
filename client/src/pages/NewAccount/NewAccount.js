@@ -21,11 +21,11 @@ class NewAccount extends Component {
             displayName: "",
             email: "",
             password: "",
-            user: null
+            user: []
         }
 
         //will be needing 'setState' inside of function, hence the "bind"
-        this.logIn = this.logIn.bind(this);
+        this.createAccount = this.createAccount.bind(this);
     }
 
 
@@ -44,6 +44,7 @@ class NewAccount extends Component {
         this.setState({
             [name]: value
         });
+
     }
 
     createAccount = () => {
@@ -60,16 +61,34 @@ class NewAccount extends Component {
 
         //actually sign in through firebase
 
+
         auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then((result) => {
 
                 const newUser = result.user
 
-                this.setState({ 
-                    user: newUser
-                });
+                this.setState({ user: newUser});
 
-                this.currentUser(this.state.user);
+                const currentAccount = auth.currentUser;
+
+
+                let email = currentAccount.email;
+                let uid = user.uid;
+                // let tokenResult = user.getIdToken();
+
+                //Object to put user token and display name into firebase DB
+                const newUserInfo = {
+                    email: email,
+                    uid: uid,
+                }
+
+                console.log(userInfo);
+
+                //pushing user token and display name to firebase database
+
+                database.ref().push(newUserInfo);
+
+                // this.currentUser(this.state.user);
 
                 //since successful creation, proceeding to next phase
                 //=================================================
@@ -94,51 +113,55 @@ class NewAccount extends Component {
         
     }
 
-    currentUser = (user) => {
+    //this grabs all of the information from the current user
+    //===================================================================
 
-        console.log("in Current User function");
+    // currentUser = (user) => {
 
-        if(user) {
+    //     console.log("in Current User function");
 
-            const user = auth.currentUser;
+    //     if(user) {
 
-            let displayName = user.displayName;
-            let email = user.email;
-            let emailVerified = user.emailVerified;
-            let photoURL = user.photoURL;
-            let isAnonymous = user.isAnonymous;
-            let uid = user.uid;
-            let providerData = user.providerData;
-            let tokenResult = user.getIdTokenResult();
+    //         const user = auth.currentUser;
 
-            //directly below object just for developer usage
-            const userInfo = {
-                displayName: displayName,
-                email: email,
-                emailVerified: emailVerified,
-                photoURL: photoURL,
-                isAnonymous: isAnonymous,
-                uid: uid,
-                providerData: providerData,
-                resultToken: tokenResult
-            };
+    //         let displayName = user.displayName;
+    //         let email = user.email;
+    //         let emailVerified = user.emailVerified;
+    //         let photoURL = user.photoURL;
+    //         let isAnonymous = user.isAnonymous;
+    //         let uid = user.uid;
+    //         let providerData = user.providerData;
+    //         // let tokenResult = user.getIdToken();
 
-            //Object to put user token and display name into firebase DB
-            const newUserInfo = {
-                displayName: displayName,
-                email: email,
-                resultToken: tokenResult
-            }
+    //         //directly below object just for developer usage
+    //         const userInfo = {
+    //             displayName: displayName,
+    //             email: email,
+    //             emailVerified: emailVerified,
+    //             photoURL: photoURL,
+    //             isAnonymous: isAnonymous,
+    //             uid: uid,
+    //             providerData: providerData
+    //         };
 
-            console.log(userInfo);
+    //         //Object to put user token and display name into firebase DB
+    //         const newUserInfo = {
+    //             displayName: displayName,
+    //             email: email,
+    //             uid: uid,
+    //         }
 
-            //pushing user token and display name to firebase database
+    //         console.log(userInfo);
 
-            database.ref().push(newUserInfo);
+    //         //pushing user token and display name to firebase database
+
+    //         database.ref().push(newUserInfo);
             
-        }
+    //     } else {
+    //         //no user created; error most likely occured
+    //     }
 
-    }
+    // }
 
     render() {
 
@@ -159,7 +182,7 @@ class NewAccount extends Component {
                             value={this.state.displayName}
                             name="displayName"
                             onChange={this.hanldeInputChange}
-                            type="text"
+                            type="displayName"
                             placeholder="Nacho Libre"
                             />
                         </div>
