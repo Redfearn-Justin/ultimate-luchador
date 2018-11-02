@@ -15,7 +15,9 @@ import { throws } from "assert";
 class Login extends Component {
 
     constructor(props) {
+
         super(props);
+
         this.state = {
             email: "",
             password: "",
@@ -24,7 +26,7 @@ class Login extends Component {
             user: null
         }
 
-        //will be needing set state inside of function, hence the "bind"
+        //will be needing 'setState' inside of function, hence the "bind"
         this.logIn = this.logIn.bind(this);
     }
 
@@ -61,7 +63,7 @@ class Login extends Component {
 
         } else {
 
-            console.log("Successfully submitted user information");
+            console.log("Successfully passed through first phase of log in");
         }
 
         //actually sign in through firebase
@@ -78,6 +80,8 @@ class Login extends Component {
 
                 this.currentUser(this.state.user);
 
+                console.log(this.state.isSignedIn);
+
                 //since successful log in, proceeding to next phase
                 //=================================================
 
@@ -89,7 +93,7 @@ class Login extends Component {
                 // Error Handling
                 //==================================
                 //INCLUDE SPECIFIC CODE PROCEDURES
-                
+
                 let errorCode = error.code;
                 let errorMessage = error.message;
 
@@ -116,7 +120,9 @@ class Login extends Component {
             let isAnonymous = user.isAnonymous;
             let uid = user.uid;
             let providerData = user.providerData;
-
+            let tokenPath = user.getIdTokenResult();
+            
+            //directly below object just for developer usage
             const userInfo = {
                 displayName: displayName,
                 email: email,
@@ -125,7 +131,7 @@ class Login extends Component {
                 isAnonymous: isAnonymous,
                 uid: uid,
                 providerData: providerData,
-                userToken: user.getIdTokenResult()
+                token: tokenPath
             };
 
             console.log(`${userInfo.email} is currently signed in`);
