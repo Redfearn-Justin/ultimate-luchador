@@ -34,45 +34,44 @@ class Login extends Component {
 
         if (!firebase.apps.length) {
             firebase.initializeApp(config);
-        }
-
-    }
+        };
+    };
 
     authoListener = () => {
 
         firebase.auth().onAuthStateChanged(firebaseUser => {
             if (firebaseUser) {
-              // User is signed in.
-              let displayName = firebaseUser.displayName;
-              let email = firebaseUser.email;
-              let emailVerified = firebaseUser.emailVerified;
-              let photoURL = firebaseUser.photoURL;
-              let isAnonymous = firebaseUser.isAnonymous;
-              let uid = firebaseUser.uid;
-              let providerData = firebaseUser.providerData;
+                // User is signed in.
+                let displayName = firebaseUser.displayName;
+                let email = firebaseUser.email;
+                let emailVerified = firebaseUser.emailVerified;
+                let photoURL = firebaseUser.photoURL;
+                let isAnonymous = firebaseUser.isAnonymous;
+                let uid = firebaseUser.uid;
+                let providerData = firebaseUser.providerData;
 
-              const userInfo = {
-                displayName: displayName,
-                email: email,
-                emailVerified: emailVerified,
-                photoURL: photoURL,
-                isAnonymous: isAnonymous,
-                uid: uid,
-                providerData: providerData,
-              };
+                const userInfo = {
+                    displayName: displayName,
+                    email: email,
+                    emailVerified: emailVerified,
+                    photoURL: photoURL,
+                    isAnonymous: isAnonymous,
+                    uid: uid,
+                    providerData: providerData,
+                };
 
-              console.log("User has signed in ");
+                console.log("User has signed in ");
 
-              console.log(userInfo);
-              
+                console.log(userInfo);
+
             } else {
-              // User is signed out.
-              // ...
-              console.log("User has signed out");
+                // User is signed out.
+                // ...
+                console.log("User has signed out");
 
             }
         });
-    }
+    };
 
     hanldeInputChange = event => {
         //Apprehending value from input
@@ -81,25 +80,25 @@ class Login extends Component {
 
         //if the name is equal to "password", aka the password field
         if (name === "password") {
-            
+
             value = value.substring(0, 15);
         }
         //now set the state of both values to user inputted
         this.setState({
             [name]: value
         });
-    }
+    };
 
     hanldeFormSubmit = event => {
-        
+
         event.preventDefault();
 
         //if user did not input information
-        if(!this.state.email || !this.state.password) {
-        
+        if (!this.state.email || !this.state.password) {
+
             alert("Please fill out the Email and/or Password fields")
 
-        } else if(this.state.password.length < 6) {
+        } else if (this.state.password.length < 6) {
 
             //consider adding functionality for checking for "encrypted characters"
 
@@ -117,8 +116,8 @@ class Login extends Component {
 
         //sign-in authorization for Firebase
         //=======================================================================
-      
-        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
+
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function (error) {
 
             // Error Handling
             let errorCode = error.code;
@@ -126,7 +125,7 @@ class Login extends Component {
 
             console.log("An error has occured. Please try again");
 
-            throw(errorCode, errorMessage);
+            throw (errorCode, errorMessage);
         });
         //====================================================================
 
@@ -148,7 +147,7 @@ class Login extends Component {
 
             console.log("An error has occured with signing out. Please try again");
             // An error happened.
-            throw(error);
+            throw (error);
         });
 
         this.setState({
@@ -157,12 +156,12 @@ class Login extends Component {
         });
 
         this.authoListener();
-    }
+    };
 
     clickFunctions = (event) => {
         //preventing user from skipping the log in screen without signing up
 
-        if(!this.state.email || !this.state.email) {
+        if (!this.state.email || !this.state.email) {
 
             return alert("Please fill out the fields before proceeding");
 
@@ -170,7 +169,7 @@ class Login extends Component {
             this.props.setPageName("Home");
             this.hanldeFormSubmit(event);
         }
-    } 
+    };
 
     render() {
 
@@ -189,32 +188,34 @@ class Login extends Component {
                         <div>
                             <span className="text-red">email</span>
                             <input
-                            value={this.state.createEmail}
-                            name="email"
-                            onChange={this.hanldeInputChange}
-                            type="email"
-                            placeholder="janedoe@hotmail.com"
+                                value={this.state.createEmail}
+                                name="email"
+                                onChange={this.hanldeInputChange}
+                                type="email"
+                                placeholder="janedoe@hotmail.com"
                             />
                         </div>
                         <div>
                             <span className="text-blue">password</span>
                             <input
-                            value={this.state.createPassword}
-                            name="password"
-                            onChange={this.hanldeInputChange}
-                            type="password"
-                            placeholder="************"
+                                value={this.state.createPassword}
+                                name="password"
+                                onChange={this.hanldeInputChange}
+                                type="password"
+                                placeholder="************"
                             />
                         </div>
 
                     </div>
                 </div>
 
+                
+
             </div>
         );
-    }
+    };
 
-}
+};
 
 const mapStateToProps = state => ({ storeData: state });
 const mapDispatchToProps = dispatch => (bindActionCreators(actionCreators, dispatch));
