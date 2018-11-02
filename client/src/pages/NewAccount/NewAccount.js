@@ -120,7 +120,6 @@ class NewAccount extends Component {
                 isAnonymous: isAnonymous,
                 uid: uid,
                 providerData: providerData,
-                userToken: user.getIdTokenResult(),
                 resultToken: tokenResult
             };
 
