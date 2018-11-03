@@ -63,39 +63,71 @@ class Login extends Component {
         //actually sign in through firebase
 
         auth.signInWithEmailAndPassword(this.state.email, this.state.password)
-            .then((result) => {
+        .then((result) => {
 
-                const newUser = result.user
+            //getting the result.user object
+            const newUser = result.user
 
-                this.setState({ 
-                    isSignedIn: true,
-                    user: newUser
-                });
+            this.setState({ 
+                isSignedIn: true,
+                user: newUser
+            });
 
-                // this.currentUser(this.state.user);
+            //getting email and uid for registered user
+            //===========================================
+            const currentAccount = auth.currentUser;
 
-                //verifying the state of "IsSignedIn"// should be true, as the user should be signed in
-                console.log(this.state.isSignedIn);
+            let email = currentAccount.email;
 
-                //since successful log in, proceeding to next phase
-                //=================================================
-                setTimeout( () => this.props.setPageName("Home"), 1000);
+            let uid = currentAccount.uid;
 
-            })
-            .catch(error => {
 
-                // Error Handling
-                //==================================
-                //INCLUDE SPECIFIC CODE PROCEDURES
+           //verifying uid and email are successfully passed through 
+            console.log(`${uid} - is the id for the following email account: ${email}`);
+            //..
+                //Enter SQL DB CODE HERE
+            //..
+            //==============================================
 
-                let errorCode = error.code;
-                let errorMessage = error.message;
+            //verifying the state of "IsSignedIn"// should be true, as the user should be signed in
+            console.log(`This should be true, as user is signed in: ${this.state.isSignedIn}`);
+
+            //since successful creation, proceeding to next phase
+            //=========================================================
+            setTimeout( () => this.props.setPageName("Home"), 1000);
+
+        })
+        .catch(error => {
+
+            let errorCode = error.code;
+            let errorMessage = error.message;
+
+            if(errorCode === "auth/user-disabled") {
+
+                alert("The user associated with those credentials has been disabled. Please create a new account.");
+
+                throw(errorCode, errorMessage);
+
+            } else if(errorCode === "auth/user-not-found") {
+
+                alert("There was no user found with those credentials. Please try to log in again, or create another account");
+                
+                throw(errorCode, errorMessage);
+
+            } else if(errorCode === "auth/wrong-password") {
+
+                alert("Incorrect password associated with the email account. Please try again.");
+
+                throw(errorCode, errorMessage);
+
+            } else {
 
                 console.log("An error has occured. Please try again");
 
                 throw(errorCode, errorMessage);
+            };
 
-            });
+        });
         
     }
 

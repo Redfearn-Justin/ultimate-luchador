@@ -61,53 +61,69 @@ class NewAccount extends Component {
 
         //actually sign in through firebase
         auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then((result) => {
+        .then((result) => {
 
-                //getting the result.user object
-                const newUser = result.user
+            //getting the result.user object
+            const newUser = result.user
 
-                this.setState({ user: newUser});
+            this.setState({ user: newUser});
 
-                //getting the current user according to firebase //verification purposes
-                const currentAccount = auth.currentUser;
+            //getting the current user according to firebase //verification purposes
+            const currentAccount = auth.currentUser;
 
 
-                let email = currentAccount.email;
-                let uid = currentAccount.uid;
+            let email = currentAccount.email;
+            let uid = currentAccount.uid;
 
-                //Object to put user token and display name into firebase DB
-                const newUserInfo = {
-                    email: email,
-                    uid: uid,
-                }
+            //Object to put user token and display name into firebase DB
+            const newUserInfo = {
+                displayName: this.state.displayName,
+                email: email,
+                uid: uid,
+            }
 
-                //pushing user token and display name to firebase database
-                database.ref().push(newUserInfo);
+            //pushing user token and display name to firebase database
+            database.ref().push(newUserInfo);
 
-                //since successful creation, proceeding to next phase
-                //=========================================================
-                setTimeout( () => this.props.setPageName("Splash"), 1000);
+            //since successful creation, proceeding to next phase
+            //=========================================================
+            setTimeout( () => this.props.setPageName("Splash"), 1000);
 
-            })
-            .catch(error => {
+        })
+        .catch(error => {
 
-                // Error Handling
-                //==================================
-                //INCLUDE SPECIFIC CODE PROCEDURES
+            // Error Handling
+            //==================================
 
-                let errorCode = error.code;
-                let errorMessage = error.message;
+            let errorCode = error.code;
+            let errorMessage = error.message;
+
+            if(errorCode === "auth/weak-password") {
+
+                alert("Please pick a stronger password.");
+
+                throw(errorCode, errorMessage);
+
+            } else if(errorCode === "auth/email-already-in-use") {
+
+                alert("This email is already associated with an account. Please choose another email.");
+                
+                throw(errorCode, errorMessage);
+
+            } else if(errorCode === "auth/invalid-email") {
+
+                alert("Invalid email. Please try again");
+
+                throw(errorCode, errorMessage);
+
+            } else {
 
                 console.log("An error has occured. Please try again");
 
                 throw(errorCode, errorMessage);
+            };
 
-            });
-
-            if(this.state.user) {
-                //user has been created
-
-            }
+        });
         
     }
 
