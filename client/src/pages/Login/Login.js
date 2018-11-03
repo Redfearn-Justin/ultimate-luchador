@@ -1,79 +1,38 @@
+//Imports
+//=================================================
 import React, { Component } from "react";
-
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
-//Firebase imports
-import * as firebase from "firebase";
-
-//======================================
-
+import firebase, { auth } from "../../firebase";
 import "./Login.css";
-
 import SplashTop from "../../components/SplashTop"
 import { throws } from "assert";
 
+//Class
+//===============================================
+
 class Login extends Component {
 
-    state = {
-        email: "",
-        password: ""
+    constructor(props) {
+
+        super(props);
+
+        this.state = {
+            email: "",
+            password: "",
+            userName: "",
+            isSignedIn: false,
+            user: null
+        }
+
+        //will be needing 'setState' inside of function, hence the "bind"
+        this.logIn = this.logIn.bind(this);
     }
 
-    firebaseFunction = () => {
-
-        const config = {
-
-            apiKey: "AIzaSyBtrAreWzaZXnoLfFhdd0tc1WgVMnckeWo",
-            authDomain: "luchador-firebase.firebaseapp.com",
-            databaseURL: "https://luchador-firebase.firebaseio.com",
-            projectId: "luchador-firebase",
-            storageBucket: "luchador-firebase.appspot.com",
-            messagingSenderId: "294018925728"
-        };
-
-        if (!firebase.apps.length) {
-            firebase.initializeApp(config);
-        };
-    };
-
-    authoListener = () => {
-
-        firebase.auth().onAuthStateChanged(firebaseUser => {
-            if (firebaseUser) {
-                // User is signed in.
-                let displayName = firebaseUser.displayName;
-                let email = firebaseUser.email;
-                let emailVerified = firebaseUser.emailVerified;
-                let photoURL = firebaseUser.photoURL;
-                let isAnonymous = firebaseUser.isAnonymous;
-                let uid = firebaseUser.uid;
-                let providerData = firebaseUser.providerData;
-
-                const userInfo = {
-                    displayName: displayName,
-                    email: email,
-                    emailVerified: emailVerified,
-                    photoURL: photoURL,
-                    isAnonymous: isAnonymous,
-                    uid: uid,
-                    providerData: providerData,
-                };
-
-                console.log("User has signed in ");
-
-                console.log(userInfo);
-
-            } else {
-                // User is signed out.
-                // ...
-                console.log("User has signed out");
-
-            }
-        });
-    };
 
     hanldeInputChange = event => {
+
         //Apprehending value from input
         let value = event.target.value;
         const name = event.target.name;
@@ -89,87 +48,56 @@ class Login extends Component {
         });
     };
 
-    hanldeFormSubmit = event => {
-
-        event.preventDefault();
+    logIn = () => {
 
         //if user did not input information
-        if (!this.state.email || !this.state.password) {
+        if(!this.state.email || !this.state.password) {
 
-            alert("Please fill out the Email and/or Password fields")
-
-        } else if (this.state.password.length < 6) {
-
-            //consider adding functionality for checking for "encrypted characters"
-
-            alert("Choose a more secure password");
+            alert("Please fill out the Email and/or Password fields");
 
         } else {
 
-            console.log("Successfully submitted user information");
+            console.log("Successfully passed through first phase of log in");
         }
 
-        //Start of firebase functionality
-        //=============================================
+        //actually sign in through firebase
 
-        this.firebaseFunction();
+        auth.signInWithEmailAndPassword(this.state.email, this.state.password)
+            .then((result) => {
 
-        //sign-in authorization for Firebase
-        //=======================================================================
+                const newUser = result.user
 
-        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function (error) {
+                this.setState({ 
+                    isSignedIn: true,
+                    user: newUser
+                });
 
-            // Error Handling
-            let errorCode = error.code;
-            let errorMessage = error.message;
+                // this.currentUser(this.state.user);
 
-            console.log("An error has occured. Please try again");
+                //verifying the state of "IsSignedIn"// should be true, as the user should be signed in
+                console.log(this.state.isSignedIn);
 
-            throw (errorCode, errorMessage);
-        });
-        //====================================================================
+                //since successful log in, proceeding to next phase
+                //=================================================
+                setTimeout( () => this.props.setPageName("Home"), 1000);
 
+            })
+            .catch(error => {
 
-        //returning fields to have "blank" values
-        this.setState({
-            email: "",
-            password: ""
-        });
+                // Error Handling
+                //==================================
+                //INCLUDE SPECIFIC CODE PROCEDURES
 
-        this.authoListener();
+                let errorCode = error.code;
+                let errorMessage = error.message;
+
+                console.log("An error has occured. Please try again");
+
+                throw(errorCode, errorMessage);
+
+            });
+        
     }
-
-    signOut = event => {
-
-        event.preventDefault();
-
-        firebase.auth().signOut().catch(error => {
-
-            console.log("An error has occured with signing out. Please try again");
-            // An error happened.
-            throw (error);
-        });
-
-        this.setState({
-            email: "",
-            password: ""
-        });
-
-        this.authoListener();
-    };
-
-    clickFunctions = (event) => {
-        //preventing user from skipping the log in screen without signing up
-
-        if (!this.state.email || !this.state.email) {
-
-            return alert("Please fill out the fields before proceeding");
-
-        } else {
-            this.props.setPageName("Home");
-            this.hanldeFormSubmit(event);
-        }
-    };
 
     render() {
 
@@ -183,26 +111,26 @@ class Login extends Component {
                         <div className="nav">
                             <button onClick={() => this.props.setPageName("Splash")}>back</button>
                             <span className="text-black">log in</span>
-                            <button onClick={this.clickFunctions}>log in</button>
+                            <button onClick={this.logIn}>log in</button>
                         </div>
                         <div>
                             <span className="text-red">email</span>
                             <input
-                                value={this.state.createEmail}
-                                name="email"
-                                onChange={this.hanldeInputChange}
-                                type="email"
-                                placeholder="janedoe@hotmail.com"
+                            value={this.state.email}
+                            name="email"
+                            onChange={this.hanldeInputChange}
+                            type="email"
+                            placeholder="janedoe@hotmail.com"
                             />
                         </div>
                         <div>
                             <span className="text-blue">password</span>
                             <input
-                                value={this.state.createPassword}
-                                name="password"
-                                onChange={this.hanldeInputChange}
-                                type="password"
-                                placeholder="************"
+                            value={this.state.password}
+                            name="password"
+                            onChange={this.hanldeInputChange}
+                            type="password"
+                            placeholder="************"
                             />
                         </div>
 

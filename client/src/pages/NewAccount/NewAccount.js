@@ -1,78 +1,36 @@
+//Imports
+//=====================================================
 import React, { Component } from "react";
-
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
-
 import "./NewAccount.css";
-
-//Firebase inclusions
-import * as firebase from "firebase";
-
-//===========================================
-
+import firebase, { auth, database } from "../../firebase";
 import SplashTop from "../../components/SplashTop"
+
+//class
+//==================================================
 
 class NewAccount extends Component {
 
-    state = {
-        email: "",
-        password: ""
-    }
+    constructor(props) {
 
-    firebaseFunction = () => {
+        super(props);
 
-        const config = {
-
-            apiKey: "AIzaSyBtrAreWzaZXnoLfFhdd0tc1WgVMnckeWo",
-            authDomain: "luchador-firebase.firebaseapp.com",
-            databaseURL: "https://luchador-firebase.firebaseio.com",
-            projectId: "luchador-firebase",
-            storageBucket: "luchador-firebase.appspot.com",
-            messagingSenderId: "294018925728"
-        };
-        
-        if (!firebase.apps.length) {
-            firebase.initializeApp(config);
+        this.state = {
+            displayName: "",
+            email: "",
+            password: "",
+            user: null
         }
 
+        //will be needing 'setState' inside of function, hence the "bind"
+        this.createAccount = this.createAccount.bind(this);
     }
 
-    authoListener = () => {
-
-        firebase.auth().onAuthStateChanged(firebaseUser => {
-            if (firebaseUser) {
-                // User is signed in.
-                let displayName = firebaseUser.displayName;
-                let email = firebaseUser.email;
-                let emailVerified = firebaseUser.emailVerified;
-                let photoURL = firebaseUser.photoURL;
-                let isAnonymous = firebaseUser.isAnonymous;
-                let uid = firebaseUser.uid;
-                let providerData = firebaseUser.providerData;
-
-                const userInfo = {
-                    displayName: displayName,
-                    email: email,
-                    emailVerified: emailVerified,
-                    photoURL: photoURL,
-                    isAnonymous: isAnonymous,
-                    uid: uid,
-                    providerData: providerData,
-                };
-
-                console.log("User has signed in ");
-                console.log(userInfo);
-                
-            } else {
-                // User is signed out.
-                // ...
-                console.log("User has signed out");
-            }
-        });
-    }
 
     hanldeInputChange = event => {
+
         //Apprehending value from input
         let value = event.target.value;
         const name = event.target.name;
@@ -86,89 +44,72 @@ class NewAccount extends Component {
         this.setState({
             [name]: value
         });
+
     }
 
-    hanldeFormSubmit = event => {
-        
-        event.preventDefault();
+    createAccount = () => {
 
         //if user did not input information
-        if(!this.state.email || !this.state.password) {
+        if(!this.state.email || !this.state.password || !this.state.displayName) {
+
+            alert("Please completely fill out the fields before proceeding");
+
+        } else {
+
+            console.log("Successfully passed through first phase of creating account");
+        }
+
+        //actually sign in through firebase
+        auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
+            .then((result) => {
+
+                //getting the result.user object
+                const newUser = result.user
+
+                this.setState({ user: newUser});
+
+                //getting the current user according to firebase //verification purposes
+                const currentAccount = auth.currentUser;
+
+
+                let email = currentAccount.email;
+                let uid = currentAccount.uid;
+
+                //Object to put user token and display name into firebase DB
+                const newUserInfo = {
+                    email: email,
+                    uid: uid,
+                }
+
+                //pushing user token and display name to firebase database
+                database.ref().push(newUserInfo);
+
+                //since successful creation, proceeding to next phase
+                //=========================================================
+                setTimeout( () => this.props.setPageName("Splash"), 1000);
+
+            })
+            .catch(error => {
+
+                // Error Handling
+                //==================================
+                //INCLUDE SPECIFIC CODE PROCEDURES
+
+                let errorCode = error.code;
+                let errorMessage = error.message;
+
+                console.log("An error has occured. Please try again");
+
+                throw(errorCode, errorMessage);
+
+            });
+
+            if(this.state.user) {
+                //user has been created
+
+            }
         
-            alert("Please fill out the Email and/or Password fields")
-
-        } else if(this.state.password.length < 6) {
-
-            //consider adding functionality for checking for "encrypted characters"
-
-            alert("Choose a more secure password");
-
-        } else {
-
-            console.log("Successfully submitted user information");
-        }
-
-        //firebase config
-        //=========================================================
-
-
-        this.firebaseFunction();
-
-
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-
-        .then(function() {
-
-            alert("user has been created :)");
-
-        })
-        .catch(function(error) {
-
-            // Error Handling
-            let errorCode = error.code;
-            let errorMessage = error.message;
-
-            console.log("An error has occured. Please try again");
-
-            alert("A User already exists with this email. Please enter another email");
-
-            throw(errorCode, errorMessage);
-        });
-
-        //returning fields to have "blank" values
-        this.setState({
-            email: "",
-            password: ""
-
-        });
     }
-
-    //sign out function works but "GET" posts username/password into URL!!!!
-
-    signOut = () => {
-
-        this.firebaseFunction();
-
-        firebase.auth().signOut().catch(function(error) {
-
-            console.log("An error has occured with signing out. Please try again");
-            // An error happened.
-            throw(error);
-        });
-    }
-
-    clickFunctions = (event) => {
-        //preventing user from skipping the log in screen without signing up
-
-        if(!this.state.email || !this.state.email) {
-
-            return alert("Please fill out the fields before proceeding");
-
-        } else {
-            this.props.setPageName("Splash");
-            this.hanldeFormSubmit(event);
-        }
-    } 
 
     render() {
 
@@ -181,12 +122,22 @@ class NewAccount extends Component {
                         <div className="nav">
                             <button onClick={() => this.props.setPageName("Splash")}>back</button>
                             <span className="text-black">new account</span>
-                            <button onClick={this.clickFunctions}>create</button>
+                            <button onClick={this.createAccount}>create</button>
+                        </div>
+                        <div>
+                            <span className="text-red">Fighter Name</span>
+                            <input
+                            value={this.state.displayName}
+                            name="displayName"
+                            onChange={this.hanldeInputChange}
+                            type="displayName"
+                            placeholder="Nacho Libre"
+                            />
                         </div>
                         <div>
                             <span className="text-red">email</span>
                             <input
-                            value={this.state.createEmail}
+                            value={this.state.email}
                             name="email"
                             onChange={this.hanldeInputChange}
                             type="email"
@@ -196,7 +147,7 @@ class NewAccount extends Component {
                         <div>
                             <span className="text-blue">password</span>
                             <input
-                            value={this.state.createPassword}
+                            value={this.state.password}
                             name="password"
                             onChange={this.hanldeInputChange}
                             type="password"
