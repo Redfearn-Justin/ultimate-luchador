@@ -53,13 +53,7 @@ class Login extends Component {
         //if user did not input information
         if(!this.state.email || !this.state.password) {
 
-            alert("Please fill out the Email and/or Password fields")
-
-        } else if(this.state.password.length <= 6) {
-
-            //consider adding functionality for checking for "encrypted characters"
-
-            alert("Choose a more secure password");
+            alert("Please fill out the Email and/or Password fields");
 
         } else {
 
@@ -78,13 +72,13 @@ class Login extends Component {
                     user: newUser
                 });
 
-                this.currentUser(this.state.user);
+                // this.currentUser(this.state.user);
 
+                //verifying the state of "IsSignedIn"// should be true, as the user should be signed in
                 console.log(this.state.isSignedIn);
 
                 //since successful log in, proceeding to next phase
                 //=================================================
-
                 setTimeout( () => this.props.setPageName("Home"), 1000);
 
             })
@@ -103,45 +97,6 @@ class Login extends Component {
 
             });
         
-    }
-
-    currentUser = (user) => {
-
-        console.log("in Current User function");
-
-        if(user) {
-
-            const user = auth.currentUser;
-
-            let displayName = user.displayName;
-            let email = user.email;
-            let emailVerified = user.emailVerified;
-            let photoURL = user.photoURL;
-            let isAnonymous = user.isAnonymous;
-            let uid = user.uid;
-            let providerData = user.providerData;
-            let tokenPath = user.getIdTokenResult();
-            
-            //directly below object just for developer usage
-            const userInfo = {
-                displayName: displayName,
-                email: email,
-                emailVerified: emailVerified,
-                photoURL: photoURL,
-                isAnonymous: isAnonymous,
-                uid: uid,
-                providerData: providerData,
-                token: tokenPath
-            };
-
-            console.log(`${userInfo.email} is currently signed in`);
-
-            console.log(userInfo);
-            
-        } else {
-            //no one is signed in
-        }
-
     }
 
     render() {
