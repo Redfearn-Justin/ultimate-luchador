@@ -1,16 +1,50 @@
+//Imports
+//===========================================
 import React, { Component } from "react";
-
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
-
 import axios from "axios";
-
 import "./Splash.css";
-
 import SplashTop from "../../components/SplashTop"
+import firebase, {auth} from "../../firebase";
 
+
+//Class
+//==========================================
 class Splash extends Component {
+
+    // constructor(props) {
+
+    //     super(props);
+
+    //     this.state = {
+
+    //         user: null
+    //     }
+    // }
+
+    // componentDidMount = () => {
+
+
+
+    //     auth.onAuthStateChanged(function(user) {
+    //         if (user) {
+
+    //             const user = auth
+    //             //user is signed in
+
+    //             console.log(`${user} is currently signed in; moving to home page`);
+
+    //             setTimeout( () => this.props.setPageName("Home"), 1000);
+
+    //         } else {
+    //             //No user is signed in
+    //             //Do nothing
+    //             console.log("No user is signed in");
+    //         }
+    //     });
+    // }
 
     // componentDidMount = () => {
     //     axios.get('/api/selectone')

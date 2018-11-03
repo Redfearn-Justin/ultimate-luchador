@@ -92,7 +92,7 @@ class Login extends Component {
             //verifying the state of "IsSignedIn"// should be true, as the user should be signed in
             console.log(`This should be true, as user is signed in: ${this.state.isSignedIn}`);
 
-            //since successful creation, proceeding to next phase
+            //since successful login, proceeding to next phase
             //=========================================================
             setTimeout( () => this.props.setPageName("Home"), 1000);
 
