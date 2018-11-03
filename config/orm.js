@@ -44,6 +44,15 @@ var orm = {
             if (err) throw err;
             cb(res);
         });
+    },
+
+    selectLuchador: (tableName, uid, cb) => {
+        var queryString = "SELECT * FROM " + tableName + " WHERE token = " + uid;
+        console.log(queryString);
+        connection.query(queryString, function (err, res) {
+            if (err) throw err;
+            cb(res);
+        });
     }
     
 };

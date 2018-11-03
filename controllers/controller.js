@@ -20,5 +20,18 @@ router.get("/api/selectone", function (req, res) {
     );
 });
 
+router.get("/api/selectLuchador/:uid", function (req, res) {
+    console.log("here we are->",req.params);
+    orm.selectLuchador(
+        "players",
+        req.params.uid,
+        function (result) {
+            var resid = result[0].id;
+            console.log(resid);
+            res.json({ id: resid });
+        }
+    );
+});
+
 // EXPORT OUR ROUTER
 module.exports = router;
