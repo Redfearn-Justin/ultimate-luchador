@@ -15,6 +15,7 @@ import ChooseOpponent from "./pages/ChooseOpponent";
 import Fight from "./pages/Fight";
 import FightResults from "./pages/FightResults";
 import LevelUp from "./pages/LevelUp";
+import NewAbility from "./pages/NewAbility";
 import Credits from "./pages/Credits";
 
 class App extends Component {
@@ -28,6 +29,7 @@ class App extends Component {
     else if (this.props.storeData.pageName === "Fight") return <Fight />
     else if (this.props.storeData.pageName === "FightResults") return <FightResults />
     else if (this.props.storeData.pageName === "LevelUp") return <LevelUp />
+    else if (this.props.storeData.pageName === "NewAbility") return <NewAbility />
     else if (this.props.storeData.pageName === "Credits") return <Credits />
     else return <h1>Page not found</h1>
   }
