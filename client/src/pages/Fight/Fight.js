@@ -11,7 +11,10 @@ import "./Fight.css";
 class Fight extends Component {
 
     state = {
-        this: "that"
+        inactivePlayer: "that",
+        activeHP: 0,
+        activeRaffle: [],
+        inactiveRaffle: []
     };
 
     // componentDidMount = () => {
@@ -23,6 +26,25 @@ class Fight extends Component {
     //             console.log(error);
     //         });
     // };
+
+    fightLogic = () => {
+        // 1) put inactive player's info in this file's state (name, image, hp, level, fame, ability info)
+        //      > also the active player's HP 
+        // 2) build 'raffle' arrays for both player's ability speed (5, 5, 5, 5, 5, 3, 3, 3, 1)
+        // 3) active player fights, then inactive, back and forth til one dies
+        //      > picks an attack
+        //      > rolls for damage/crit/miss
+        //      > picks text for attack
+        //      > reduces opp HP and checks if theyve won
+        //      > if so, go to victory screen - if not, next turn
+    };
+
+    fightEnd = (outcome) => {
+        // * outcome will be passed in, either 'victory' or 'defeat'
+        // 1) calculate stat change
+        // 2) sql query to change stats
+        // 3) send with info to next page
+    }
 
     render() {
         return (
