@@ -39,14 +39,14 @@ class Login extends Component {
 
         //if the name is equal to "password", aka the password field
         if (name === "password") {
-            
+
             value = value.substring(0, 15);
         }
         //now set the state of both values to user inputted
         this.setState({
             [name]: value
         });
-    }
+    };
 
     logIn = () => {
 
@@ -137,11 +137,13 @@ class Login extends Component {
                     </div>
                 </div>
 
+                
+
             </div>
         );
-    }
+    };
 
-}
+};
 
 const mapStateToProps = state => ({ storeData: state });
 const mapDispatchToProps = dispatch => (bindActionCreators(actionCreators, dispatch));
