@@ -26,9 +26,7 @@ router.get("/api/selectLuchador/:uid", function (req, res) {
         "players",
         req.params.uid,
         function (result) {
-            var resid = result[0].id;
-            console.log(resid);
-            res.json({ id: resid });
+            res.json(result[0]);
         }
     );
 });

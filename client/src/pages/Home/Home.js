@@ -10,16 +10,6 @@ import "./Home.css";
 
 class Splash extends Component {
 
-    // componentDidMount = () => {
-    //     axios.get('/api/selectone')
-    //         .then(function (response) {
-    //             console.log(response);
-    //         })
-    //         .catch(function (error) {
-    //             console.log(error);
-    //         });
-    // };
-
     render() {
         return (
             <div className="container">
@@ -29,7 +19,7 @@ class Splash extends Component {
                         <div className="home-button">
                             {/* Buttons here */}
                             <div onClick={() => this.props.setPageName("NewAbility")}>new ability</div>
-                            <div>x</div>
+                            <div onClick={() => this.props.setPageName("Profile")}>profile</div>
                         </div>
                         <span>ultimate<br />luchador</span>
                         <div className="home-button">

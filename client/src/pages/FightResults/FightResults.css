@@ -1,11 +1,23 @@
+.results-text-bar,
+.results-info-bar,
+.results-player-bar,
+.results-vs-bar,
+.results-player-pic,
+.results-stats-bar,
+.results-stats-stats,
+.results-player-stats,
+.results-stats-home, 
+.results-stats-single-stat {
+position: relative;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
 .results-text-bar {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 90%;
-    height: 15%;
+    height: 12%;
     font-size: 4.5rem;
 }
 
@@ -28,13 +40,9 @@
 }
 
 .results-info-bar {
-    position: relative;
-    display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
     width: 90%;
-    height: 56%;
+    height: 60%;
     background-color: #fff;
     border-radius: 6px;
 }
@@ -43,21 +51,11 @@
 /* Player bars */
 
 .results-player-bar {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex: 3;
+    flex: 4;
     height: 100%;
 }
 
 .results-vs-bar {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     flex: .8;
 
     font-size: 2rem;
@@ -70,12 +68,7 @@
 }
 
 .results-player-pic {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex: 5;
+    flex: 4;
     width: 100%;
 }
 
@@ -88,65 +81,40 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    box-shadow: 0 0 20px rgb(0, 194, 42);
+    box-shadow: 0 0 20px rgba(0, 194, 42, 0.52);
     background-color: #fff;
 }
 
 /* Stats bar */
 
 .results-stats-bar {
-    position: relative;
-    display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
     width: 90%;
-    height: 18%;
+    height: 15%;
 }
 
 .results-stats-stats {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 60%;
     height: 100%;
 }
 
 .results-player-stats {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     font-size: 1.5rem;
 }
 
 .mb {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .results-stats-home {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 40%;
     height: 100%;
 }
 
 .results-stats-single-stat {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     flex: 1;
     width: 100%;
-
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 
 .results-stats-home div {
@@ -154,4 +122,22 @@
     background-color: rgb(49, 59, 175);
     width: 80%;
     height: 50%;
+}
+
+@media only screen and (max-width: 470px) {
+    .results-pic {
+        width: 125px;
+        height: 125px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .results-victory-text {
+        font-size: 3.5rem;
+    }
+
+    .results-pic {
+        width: 100px;
+        height: 100px;
+    }
 }
