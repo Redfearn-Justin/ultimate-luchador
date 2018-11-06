@@ -31,5 +31,16 @@ router.get("/api/selectLuchador/:uid", function (req, res) {
     );
 });
 
+router.post("/api/uploadprofilepic", function(req, res) {
+    var image_data;
+    var accountID;
+    orm.uploadProfilePic(image_data, accountID, function(result) {
+            var resid = result[0].name;
+            console.log(name);
+        }
+    );
+    res.sendStatus(200); //ok
+});
+
 // EXPORT OUR ROUTER
 module.exports = router;

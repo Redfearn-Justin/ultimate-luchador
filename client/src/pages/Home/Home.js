@@ -3,12 +3,36 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
+import ImageUploader from 'react-images-upload';
 
 import axios from "axios";
 
 import "./Home.css";
 
 class Splash extends Component {
+
+    // componentDidMount = () => {
+    //     axios.get('/api/selectone')
+    //         .then(function (response) {
+    //             console.log(response);
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //         });
+    // };
+
+    constructor(props) {
+        super(props);
+        this.state = { pictures: [] };
+        this.onDrop = this.onDrop.bind(this);
+    }
+
+    onDrop(picture) {
+        console.log(picture);
+        this.setState({
+            pictures: this.state.pictures.concat(picture),
+        });
+    }
 
     render() {
         return (
@@ -31,7 +55,15 @@ class Splash extends Component {
                     <div className="profile-bar">
                         <div className="profile-top">
                             <div className="profile-pic">
-                                <div className="profile-picture"></div>
+                                <div className="profile-picture">
+                                    <ImageUploader
+                                        withIcon={false}
+                                        // buttonText='Choose images'
+                                        onChange={this.onDrop}
+                                        imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                                        maxFileSize={5242880}
+                                    />
+                                </div>
                             </div>
                             <div className="profile-name">
                                 <div>playername</div>
