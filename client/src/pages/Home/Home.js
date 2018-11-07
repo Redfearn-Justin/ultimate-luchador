@@ -40,73 +40,93 @@ class Splash extends Component {
                 <div className="box home-box">
 
                     <div className="nav-bar">
-                        <div className="home-button">
-                            {/* Buttons here */}
+                        {/* <div className="home-button">
                             <div onClick={() => this.props.setPageName("NewAbility")}>new ability</div>
                             <div onClick={() => this.props.setPageName("Profile")}>profile</div>
-                        </div>
-                        <span>ultimate<br />luchador</span>
-                        <div className="home-button">
+                        </div> */}
+                        <span>ultimate luchador</span>
+                        {/* <div className="home-button">
                             <div onClick={() => this.props.setPageName("Credits")}>credits</div>
                             <div onClick={() => this.props.setPageName("Splash")}>Log Out</div>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="profile-bar">
-                        <div className="profile-top">
-                            <div className="profile-pic">
-                                <div className="profile-picture">
-                                    <ImageUploader
-                                        withIcon={false}
-                                        // buttonText='Choose images'
-                                        onChange={this.onDrop}
-                                        imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                                        maxFileSize={5242880}
-                                    />
+
+                        <div className="profile-info-bar">
+                            <div className="profile-left-icon">
+
+                                {/* IMAGE UPLODARE */}
+                                <ImageUploader
+                                    withIcon={false}
+                                    // buttonText='Choose images'
+                                    onChange={this.onDrop}
+                                    imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                                    maxFileSize={5242880}
+                                />
+
+                            </div>
+                            <div className="profile-col">
+                                <div className="profile-player-info">hi</div>
+                                <div className="profile-player-info">
+                                    <div className="player-stat">hi</div>
+                                    <div className="player-stat">hi</div>
+                                    <div className="player-stat">hi</div>
                                 </div>
                             </div>
-                            <div className="profile-name">
-                                <div>playername</div>
-                                <div>experience bar</div>
-                            </div>
-                            <div className="profile-exp">
-                                <div>fame</div>
-                                <div>lvl 12</div>
+                        </div>
+
+
+                        <div className="profile-ability-bar">
+                            <div className="profile-left-icon">
+                                <div className="newab-new-pic-bar w100">
+                                    <div className="newab-new-pic home-ability-pic">XXX</div>
+                                </div></div>
+                            <div className="opponent-stats">
+                                <div className="opponent-stats-bar"><span>tower dive, bitch</span></div>
+                                <div className="opponent-stats-bar">
+                                    <div>awd</div>
+                                    <div>awd</div>
+                                    <div>awd</div>
+                                </div>
                             </div>
                         </div>
-                        <div className="profile-ability">
-                            <div className="ability-icon">
-                                <div><span>hey</span></div>
-                            </div>
-                            <div className="ability-text">
-                                <div>ability name</div>
-                                <div>lvl 12</div>
-                            </div>
-                        </div>
-                        <div className="profile-ability">
-                            <div className="ability-icon">
-                                <div><span>hey</span></div>
-                            </div>
-                            <div className="ability-text">
-                                <div>ability name</div>
-                                <div>lvl 12</div>
+                        <div className="profile-ability-bar">
+                            <div className="profile-left-icon">
+                                <div className="newab-new-pic-bar w100">
+                                    <div className="newab-new-pic home-ability-pic">XXX</div>
+                                </div></div>
+                            <div className="opponent-stats">
+                                <div className="opponent-stats-bar"><span>wwwwwwwwwwwwwwwww</span></div>
+                                <div className="opponent-stats-bar">
+                                    <div>awd</div>
+                                    <div>awd</div>
+                                    <div>awd</div>
+                                </div>
                             </div>
                         </div>
-                        <div className="profile-ability">
-                            <div className="ability-icon">
-                                <div><span>hey</span></div>
-                            </div>
-                            <div className="ability-text">
-                                <div>ability name</div>
-                                <div>lvl 12</div>
+                        <div className="profile-ability-bar">
+                            <div className="profile-left-icon">
+                                <div className="newab-new-pic-bar w100">
+                                    <div className="newab-new-pic home-ability-pic">XXX</div>
+                                </div></div>
+                            <div className="opponent-stats">
+                                <div className="opponent-stats-bar"><span>wwwwwwwwwwwwwwwww</span></div>
+                                <div className="opponent-stats-bar">
+                                    <div>awd</div>
+                                    <div>awd</div>
+                                    <div>awd</div>
+                                </div>
                             </div>
                         </div>
+
                     </div>
 
                     <div className="fight-bar">
                         <div className="fight-buttons">
                             <div className="fight-button" onClick={() => this.props.setPageName("ChooseOpponent")}>Fight</div>
                             <div className="boss-button">Boss</div>
+                            <div className="boss-button boss-red" onClick={() => this.props.setPageName("Profile")}>Profile</div>
                         </div>
                         <div className="fight-stats">
                             <div>tickets</div>

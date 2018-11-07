@@ -1,19 +1,10 @@
 .ability-icon,
 .ability-text,
-.profile-top div,
-.profile-name,
-.profile-exp,
 .nav-bar,
 .nav-bar span,
 .home-button,
 .home-button div,
 .profile-bar,
-.profile-top,
-.profile-ability,
-.ability-icon div,
-.profile-name div,
-.profile-exp div,
-.ability-text div,
 .fight-bar,
 .fight-buttons,
 .fight-stats,
@@ -34,12 +25,12 @@
 .nav-bar {
     flex-direction: row;
     width: 90%;
-    height: 15%;
+    height: 10%;
 }
 
 .nav-bar span {
     flex: 2;
-    font-size: 2.2rem;
+    font-size: 3rem;
     margin: 0px 10px;
 
     color: rgb(253, 48, 55);
@@ -76,73 +67,70 @@
 
 .profile-bar {
     width: 90%;
-    height: 50%;
+    height: 53%;
     background-color: #fff;
     border-radius: 6px;
 }
 
-.profile-ability {
-    margin: 10px;
-}
-
-.profile-top {
-    flex-direction: row;
-    flex: 1.5;
-    width: 100%;
-    margin: 10px;
-    margin-top: 15px;
-}
-
-.profile-pic {
-    flex: none;
-}
-
-.profile-name {
-    flex: 7;
-}
-
-.profile-exp {
-    flex: 3;
-}
-
-.profile-ability {
-    flex-direction: row;
-    flex: 1;
-    width: 100%;
-}
-
-.profile-picture {
+.profile-info-bar {
     position: relative;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    box-shadow: 0 0 4px rgb(126, 126, 126);
-    background-color: #fff;
-}
-
-.ability-icon div {
-    flex: none;
-}
-
-.ability-icon span {
-    width: 84px;
-    margin: 0 15px;
-    background-color: pink;
-    
-    padding: 14px;
-    border-radius: 4px;
-}
-
-.ability-text {
-    flex: 2;
-}
-
-.profile-name div,
-.profile-exp div,
-.ability-text div {
-    flex: 1;
+    display: flex;
     flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 37;
     width: 100%;
+}
+
+.profile-ability-bar {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 21;
+    width: 100%;
+}
+
+.profile-left-icon {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.profile-col {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    height: 100%;
+}
+
+.profile-player-info {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+}
+
+.player-stat {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex:1;
+    height: 100%;
 }
 
 /* Fight bar CSS */
@@ -150,7 +138,7 @@
 .fight-bar {
     flex-direction: row;
     width: 90%;
-    height: 20%;
+    height: 25%;
 }
 
 .fight-buttons,
@@ -190,20 +178,46 @@
     background-color: rgb(49, 59, 175);
 }
 
+.boss-red {
+    background-color: rgb(253, 48, 55);
+    border: 4px solid rgb(190, 14, 14);
+}
+
 .fight-stats {
     flex: 1;
 }
 
+.home-ability-pic {
+    height: 70%;
+    background-color: pink;
+    border-radius: 4px;
+    width: 100%;
+    margin: 0;
+}
+
+.profile-picture {
+    width: 80px;
+    height: 80px;
+    margin: 0 15px;
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgb(126, 126, 126);
+    background-color: #fff;
+}
+
+.w100 {
+    width: 100%;
+}
+
 @media only screen and (max-width: 500px) {
     .nav-bar span  {
-        font-size: 1.5rem;
+        font-size: 2.4rem;
         margin: 0;
     }
   }
 
 @media only screen and (max-width: 350px) {
     .nav-bar span  {
-        font-size: 1.2rem;
+        font-size: 1.7rem;
         margin: 0;
     }
   }
