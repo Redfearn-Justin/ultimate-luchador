@@ -81,6 +81,26 @@ class Login extends Component {
                 let email = currentAccount.email;
 
                 let uid = 11;
+
+                //Last Log in time (being converted from GMT to local time)
+                let lastLogIn = currentAccount.metadata.lastSignInTime;
+                let setToLocal = new Date(lastLogIn);
+                let convertedTime = setToLocal.toLocaleString();
+
+                //current time
+                let currentTime = new Date().toLocaleString();
+                //=========================================
+
+                const userInfo = {
+                    email: email,
+                    uid: uid,
+                    LastLogIn: convertedTime,
+                    currentTime: currentTime
+                };
+
+
+                console.log(userInfo);
+    
                 // let uid = currentAccount.uid; <- UNCOMMENT, JUST USED FOR TEST
 
                 //verifying uid and email are successfully passed through 
@@ -137,9 +157,8 @@ class Login extends Component {
                 //     });
 
                 console.log(`This should be true, as user is signed in: ${this.state.isSignedIn}`);
-                this.props.loginToken("Home", uid);
 
-                //==============================================
+                this.props.loginToken("Home", uid);
 
             })
             .catch(error => {
@@ -151,25 +170,25 @@ class Login extends Component {
 
                     alert("The user associated with those credentials has been disabled. Please create a new account.");
 
-                    throw (errorCode, errorMessage);
+                    console.log(errorCode, errorMessage);
 
                 } else if (errorCode === "auth/user-not-found") {
 
                     alert("There was no user found with those credentials. Please try to log in again, or create another account");
 
-                    throw (errorCode, errorMessage);
+                    console.log(errorCode, errorMessage);
 
                 } else if (errorCode === "auth/wrong-password") {
 
                     alert("Incorrect password associated with the email account. Please try again.");
 
-                    throw (errorCode, errorMessage);
+                    console.log(errorCode, errorMessage);
 
                 } else {
 
-                    console.log("An error has occured. Please try again");
+                    alert("An error has occured. Please try again");
 
-                    throw (errorCode, errorMessage);
+                    console.log(errorCode, errorMessage);
                 };
 
             });

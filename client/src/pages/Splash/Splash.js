@@ -33,17 +33,34 @@ class Splash extends Component {
 
             if (firebaseUser) {
                 
-              // User is signed in.
+              // User is signed in, therfore...
+
               let email = firebaseUser.email;
               let uid = firebaseUser.uid;
+
+              //Time stamps
+
+              //Last Log in time (being converted from GMT to local time)
+              let lastLogIn = firebaseUser.metadata.lastSignInTime;
+              let setToLocal = new Date(lastLogIn);
+              let convertedTime = setToLocal.toLocaleString();
+
+              //current time
+              let currentTime = new Date().toLocaleString();
+              //=========================================
 
               const userInfo = {
                 email: email,
                 uid: uid,
+                LastLogIn: convertedTime,
+                currentTime: currentTime,
+                // creationTime: creationTime, // <- don't know if need
               };
 
               console.log(`${email} is currently signed in`);
               console.log(userInfo);
+
+              return;
 
               //SQL/API section (WORK IN PROGRESS)
               //=========================================================

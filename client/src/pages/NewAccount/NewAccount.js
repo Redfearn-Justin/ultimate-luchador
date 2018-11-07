@@ -77,7 +77,6 @@ class NewAccount extends Component {
 
                 //Object to put user token and display name into firebase DB
                 const newUserInfo = {
-                    displayName: this.state.displayName,
                     email: email,
                     uid: uid,
                 }

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
-import ImageUploader from 'react-images-upload';
+// import ImageUploader from 'react-images-upload';
 
 import axios from "axios";
 
@@ -57,13 +57,13 @@ class Splash extends Component {
                             <div className="profile-left-icon">
 
                                 {/* IMAGE UPLODARE */}
-                                <ImageUploader
+                                {/* <ImageUploader
                                     withIcon={false}
                                     // buttonText='Choose images'
                                     onChange={this.onDrop}
                                     imgExtension={['.jpg', '.gif', '.png', '.gif']}
                                     maxFileSize={5242880}
-                                />
+                                /> */}
 
                             </div>
                             <div className="profile-col">
