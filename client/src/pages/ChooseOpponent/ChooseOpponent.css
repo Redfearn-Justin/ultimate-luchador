@@ -1,18 +1,25 @@
-.opponent-box {
-    justify-content: space-evenly;
-    align-items: center;
-}
-
 .text-bar,
 .opponent-bar,
 .opponent-button-bar,
 .opponent-button-back,
 .opponent-button-refresh,
-.opponent-button-bar  {
+.opponent-button-bar,
+.opponent,
+.opponent-pic,
+.opponent-stats,
+.opponent-stats-bar,
+.opponent-stats-bar div,
+.opponent-button-refresh div,
+.opponent-button-back div {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+
+.opponent-box {
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -29,21 +36,12 @@
 }
 
 .opponent-bar {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 90%;
     height: 60%;
 }
 
 .opponent {
-    position: relative;
-    display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
     width: 90%;
     height: 28%;
     margin: 8px 0;
@@ -60,41 +58,22 @@
 }
 
 .opponent-pic {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     flex: 1;
     height: 100%;
 }
 
 .opponent-stats {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     flex: 3;
     height: 100%;
 }
 
 .opponent-stats-bar {
-    position: relative;
-    display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     flex: 1;
 }
 
 .opponent-stats-bar div {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     height: 100%;
     flex: 1;
 }
@@ -136,15 +115,43 @@
 .opponent-button-refresh div,
 .opponent-button-back div {
     height: 100%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 1.5rem;
+}
+
+.opponent-stats-bar span {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.profile-picture-choose {
+    left: 8px;
 }
 
 @media only screen and (max-width: 470px) {
     .profile-picture {
         margin: 0 5px;
     }
+
+    .opponent-stats-bar {
+        font-size: .8rem;
+    }
+
+    .profile-picture-choose {
+        width: 65px;
+        height: 65px;
+    }
   }
+
+  
+@media only screen and (max-width: 370px) {
+    .opponent-button-refresh div,
+    .opponent-button-back div {
+        font-size: 1.2rem;
+    }
+    
+    .profile-picture-choose {
+        width: 55px;
+        height: 55px;
+    }
+}

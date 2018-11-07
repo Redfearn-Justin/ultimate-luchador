@@ -80,31 +80,66 @@ class Login extends Component {
 
                 let email = currentAccount.email;
 
-                let uid = 1;
+                let uid = 11;
                 // let uid = currentAccount.uid; <- UNCOMMENT, JUST USED FOR TEST
-
 
                 //verifying uid and email are successfully passed through 
                 console.log(`${uid} - is the id for the following email account: ${email}`);
-                //..
 
-                axios.get('/api/selectLuchador/'+uid)
-                    .then(function (response) {
-                        console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
 
-                //..
-                //==============================================
+                // axios.get('/api/selectLuchador/' + uid)
+                //     .then(function (response) {
+                //         // var thisReturnsValue = JSON.stringify(response.data.hp);
+                //         // const id = JSON.stringify(response.data.id);
+                //         // const token = JSON.stringify(response.data.token);
+                //         // const last_login = JSON.stringify(response.data.last_login);
+                //         // const char_name = JSON.stringify(response.data.char_name);
+                //         // const profile_pic = JSON.stringify(response.data.profile_pic);
+                //         // const exp = JSON.stringify(response.data.exp);
+                //         // const lvl = JSON.stringify(response.data.lvl);
+                //         // const new_ability = JSON.stringify(response.data.new_ability);
+                //         // const fame = JSON.stringify(response.data.fame);
+                //         // const hp = JSON.stringify(response.data.hp);
+                //         // const fights = JSON.stringify(response.data.fights);
+                //         // const wins = JSON.stringify(response.data.wins);
+                //         // const losses = JSON.stringify(response.data.losses);
+                //         // const tickets = JSON.stringify(response.data.tickets);
+                //         // const tickets_max = JSON.stringify(response.data.tickets_max);
+                //         // const refresh = JSON.stringify(response.data.refresh);
+                //         // const ab1_name = JSON.stringify(response.data.ab1_name);
+                //         // const ab1_dlow = JSON.stringify(response.data.ab1_dlow);
+                //         // const ab1_dhigh = JSON.stringify(response.data.ab1_dhigh);
+                //         // const ab1_speed = JSON.stringify(response.data.ab1_speed);
+                //         // const ab1_crit = JSON.stringify(response.data.ab1_crit);
+                //         // const ab1_fail = JSON.stringify(response.data.ab1_fail);
+                //         // const ab1_color = JSON.stringify(response.data.ab1_color);
+                //         // const ab1_icon = JSON.stringify(response.data.ab1_icon);
+                //         // const ab2_name = JSON.stringify(response.data.ab2_name);
+                //         // const ab2_dlow = JSON.stringify(response.data.ab2_dlow);
+                //         // const ab2_dhigh = JSON.stringify(response.data.ab2_dhigh);
+                //         // const ab2_speed = JSON.stringify(response.data.ab2_speed);
+                //         // const ab2_crit = JSON.stringify(response.data.ab2_crit);
+                //         // const ab2_fail = JSON.stringify(response.data.ab2_fail);
+                //         // const ab2_color = JSON.stringify(response.data.ab2_color);
+                //         // const ab2_icon = JSON.stringify(response.data.ab2_icon);
+                //         // const ab3_name = JSON.stringify(response.data.ab3_name);
+                //         // const ab3_dlow = JSON.stringify(response.data.ab3_dlow);
+                //         // const ab3_dhigh = JSON.stringify(response.data.ab3_dhigh);
+                //         // const ab3_speed = JSON.stringify(response.data.ab3_speed);
+                //         // const ab3_crit = JSON.stringify(response.data.ab3_crit);
+                //         // const ab3_fail = JSON.stringify(response.data.ab3_fail);
+                //         // const ab3_color = JSON.stringify(response.data.ab3_color);
+                //         // const ab3_icon = JSON.stringify(response.data.ab3_icon);
+                //         // this.props.getAllData(id, token, last_login, char_name, profile_pic, exp, lvl, new_ability, fame, hp, fights, wins, losses, tickets, tickets_max, refresh,  ab1_name, ab1_dlow, ab1_dhigh, ab1_speed, ab1_crit, ab1_fail, ab1_color, ab1_icon, ab2_name, ab2_dlow, ab2_dhigh, ab2_speed, ab2_crit, ab2_fail, ab2_color, ab2_icon, ab3_name, ab3_dlow, ab3_dhigh, ab3_speed, ab3_crit, ab3_fail, ab3_color, ab3_icon);
+                //     })
+                //     .catch(function (error) {
+                //         console.log(error);
+                //     });
 
-                //verifying the state of "IsSignedIn"// should be true, as the user should be signed in
                 console.log(`This should be true, as user is signed in: ${this.state.isSignedIn}`);
+                this.props.loginToken("Home", uid);
 
-                //since successful login, proceeding to next phase
-                //=========================================================
-                setTimeout(() => this.props.setPageName("Home"), 1000);
+                //==============================================
 
             })
             .catch(error => {
@@ -155,25 +190,35 @@ class Login extends Component {
                             <span className="text-black">log in</span>
                             <button onClick={this.logIn}>log in</button>
                         </div>
-                        <div>
-                            <span className="text-red">email</span>
-                            <input
-                                value={this.state.email}
-                                name="email"
-                                onChange={this.hanldeInputChange}
-                                type="email"
-                                placeholder="janedoe@hotmail.com"
-                            />
+
+                        <div className="input-bar">
+                            <div className="input-span">
+                                <span className="text-red">email</span>
+                            </div>
+                            <div className="input-input">
+                                <input
+                                    value={this.state.email}
+                                    name="email"
+                                    onChange={this.hanldeInputChange}
+                                    type="email"
+                                    placeholder="janedoe@hotmail.com"
+                                />
+                            </div>
                         </div>
-                        <div>
-                            <span className="text-blue">password</span>
-                            <input
-                                value={this.state.password}
-                                name="password"
-                                onChange={this.hanldeInputChange}
-                                type="password"
-                                placeholder="************"
-                            />
+
+                        <div className="input-bar">
+                            <div className="input-span">
+                                <span className="text-blue">password</span>
+                            </div>
+                            <div className="input-input">
+                                <input
+                                    value={this.state.password}
+                                    name="password"
+                                    onChange={this.hanldeInputChange}
+                                    type="password"
+                                    placeholder="************"
+                                />
+                            </div>
                         </div>
 
                     </div>

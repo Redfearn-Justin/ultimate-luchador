@@ -37,7 +37,7 @@ class NewAccount extends Component {
 
         //if the name is equal to "password", aka the password field
         if (name === "password") {
-            
+
             value = value.substring(0, 15);
         }
         //now set the state of both values to user inputted
@@ -50,7 +50,7 @@ class NewAccount extends Component {
     createAccount = () => {
 
         //if user did not input information
-        if(!this.state.email || !this.state.password || !this.state.displayName) {
+        if (!this.state.email || !this.state.password || !this.state.displayName) {
 
             alert("Please completely fill out the fields before proceeding");
 
@@ -61,70 +61,68 @@ class NewAccount extends Component {
 
         //actually sign in through firebase
         auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then((result) => {
+            .then((result) => {
 
-            //getting the result.user object
-            const newUser = result.user
+                //getting the result.user object
+                const newUser = result.user
 
-            this.setState({ user: newUser});
+                this.setState({ user: newUser });
 
-            //getting the current user according to firebase //verification purposes
-            const currentAccount = auth.currentUser;
+                //getting the current user according to firebase //verification purposes
+                const currentAccount = auth.currentUser;
 
 
-            let email = currentAccount.email;
-            let uid = currentAccount.uid;
+                let email = currentAccount.email;
+                let uid = currentAccount.uid;
 
-            //Object to put user token and display name into firebase DB
-            const newUserInfo = {
-                displayName: this.state.displayName,
-                email: email,
-                uid: uid,
-            }
+                //Object to put user token and display name into firebase DB
+                const newUserInfo = {
+                    displayName: this.state.displayName,
+                    email: email,
+                    uid: uid,
+                }
 
-            //pushing user token and display name to firebase database
-            database.ref().push(newUserInfo);
+                //pushing user token and display name to firebase database
+                database.ref().push(newUserInfo);
 
-            //since successful creation, proceeding to next phase
-            //=========================================================
-            setTimeout( () => this.props.setPageName("Splash"), 1000);
+                //since successful creation, proceeding to next phase
+                //=========================================================
+                setTimeout(() => this.props.setPageName("Splash"), 1000);
 
-        })
-        .catch(error => {
+            })
+            .catch(error => {
 
-            // Error Handling
-            //==================================
+                // Error Handling
+                //==================================
 
-            let errorCode = error.code;
-            let errorMessage = error.message;
+                let errorCode = error.code;
+                let errorMessage = error.message;
 
-            if(errorCode === "auth/weak-password") {
+                if (errorCode === "auth/weak-password") {
 
-                alert("Please pick a stronger password.");
+                    alert("Please pick a stronger password.");
 
-                console.log(errorCode, errorMessage);
+                    console.log(errorCode, errorMessage);
 
-            } else if(errorCode === "auth/email-already-in-use") {
+                } else if (errorCode === "auth/email-already-in-use") {
 
-                alert("This email is already associated with an account. Please choose another email.");
+                    alert("This email is already associated with an account. Please choose another email.");
                 
-                console.log(errorCode, errorMessage);
+                    console.log(errorCode, errorMessage);
 
-            } else if(errorCode === "auth/invalid-email") {
+                } else if (errorCode === "auth/invalid-email") {
 
-                alert("Invalid email. Please try again");
+                    console.log(errorCode, errorMessage);
 
-                console.log(errorCode, errorMessage);
+                } else {
 
-            } else {
+                    alert("An error occured. Please try again");
 
-                console.log("An error has occured. Please try again");
+                    console.log(errorCode, errorMessage);
 
-                console.log(errorCode, errorMessage);
-            };
+                }
+            });
 
-        });
-        
     }
 
     render() {
@@ -140,35 +138,47 @@ class NewAccount extends Component {
                             <span className="text-black">new account</span>
                             <button onClick={this.createAccount}>create</button>
                         </div>
-                        <div>
-                            <span className="text-red">Fighter Name</span>
-                            <input
-                            value={this.state.displayName}
-                            name="displayName"
-                            onChange={this.hanldeInputChange}
-                            type="displayName"
-                            placeholder="Nacho Libre"
-                            />
+                        <div className="input-bar">
+                            <div className="input-span">
+                                <span className="text-red">Fighter Name</span>
+                            </div>
+                            <div className="input-input">
+                                <input
+                                    value={this.state.displayName}
+                                    name="displayName"
+                                    onChange={this.hanldeInputChange}
+                                    type="displayName"
+                                    placeholder="Nacho Libre"
+                                />
+                            </div>
                         </div>
-                        <div>
-                            <span className="text-red">email</span>
-                            <input
-                            value={this.state.email}
-                            name="email"
-                            onChange={this.hanldeInputChange}
-                            type="email"
-                            placeholder="janedoe@hotmail.com"
-                            />
+                        <div className="input-bar">
+                            <div className="input-span">
+                                <span className="text-red">email</span>
+                            </div>
+                            <div className="input-input">
+                                <input
+                                    value={this.state.email}
+                                    name="email"
+                                    onChange={this.hanldeInputChange}
+                                    type="email"
+                                    placeholder="janedoe@hotmail.com"
+                                />
+                            </div>
                         </div>
-                        <div>
-                            <span className="text-blue">password</span>
-                            <input
-                            value={this.state.password}
-                            name="password"
-                            onChange={this.hanldeInputChange}
-                            type="password"
-                            placeholder="************"
-                            />
+                        <div className="input-bar">
+                            <div className="input-span">
+                                <span className="text-blue">password</span>
+                            </div>
+                            <div className="input-input">
+                                <input
+                                    value={this.state.password}
+                                    name="password"
+                                    onChange={this.hanldeInputChange}
+                                    type="password"
+                                    placeholder="************"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

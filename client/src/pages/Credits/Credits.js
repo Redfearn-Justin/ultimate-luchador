@@ -4,8 +4,6 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
 
-import axios from "axios";
-
 import "./Credits.css";
 
 class Credits extends Component {
@@ -28,9 +26,10 @@ class Credits extends Component {
                     <div className="results-text-bar results-defeat-text credits-text">credits</div>
 
                     <div className="credits-members-bar">
-                        <div className="credits-member">member</div>
-                        <div className="credits-member">member</div>
-                        <div className="credits-member">member</div>
+                        <div className="credits-member">Gavin Baxter</div>
+                        <div className="credits-member">Justin Redfearn</div>
+                        <div className="credits-member">Matt Bower</div>
+                        <div className="credits-member">Kyle Janssen</div>
                     </div>
 
                     <div className="credits-tech-bar"></div>

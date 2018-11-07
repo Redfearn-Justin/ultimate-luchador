@@ -26,11 +26,20 @@ router.get("/api/selectLuchador/:uid", function (req, res) {
         "players",
         req.params.uid,
         function (result) {
-            var resid = result[0].id;
-            console.log(resid);
-            res.json({ id: resid });
+            res.json(result[0]);
         }
     );
+});
+
+router.post("/api/uploadprofilepic", function(req, res) {
+    var image_data;
+    var accountID;
+    orm.uploadProfilePic(image_data, accountID, function(result) {
+            var resid = result[0].name;
+            console.log(name);
+        }
+    );
+    res.sendStatus(200); //ok
 });
 
 // EXPORT OUR ROUTER

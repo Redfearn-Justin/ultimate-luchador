@@ -4,8 +4,6 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
 
-import axios from "axios";
-
 import "./Fight.css";
 
 class Fight extends Component {
@@ -54,7 +52,7 @@ class Fight extends Component {
                     <div className="player-bar">
 
                         <div className="profile-pic opponent-pic">
-                            <div className="profile-picture"></div>
+                            <div className="profile-picture profile-picture-choose"></div>
                         </div>
                         <div className="opponent-stats">
                             <div className="opponent-stats-bar">wada</div>
@@ -90,7 +88,7 @@ class Fight extends Component {
                     <div className="player-bar">
 
                         <div className="profile-pic opponent-pic">
-                            <div className="profile-picture"></div>
+                            <div className="profile-picture profile-picture-choose"></div>
                         </div>
                         <div className="opponent-stats">
                             <div className="opponent-stats-bar">wada</div>
