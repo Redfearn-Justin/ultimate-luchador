@@ -43,7 +43,7 @@ class Splash extends Component {
                         <div className="home-button">
                             {/* Buttons here */}
                             <div onClick={() => this.props.setPageName("NewAbility")}>new ability</div>
-                            <div>x</div>
+                            <div onClick={() => this.props.setPageName("Profile")}>profile</div>
                         </div>
                         <span>ultimate<br />luchador</span>
                         <div className="home-button">

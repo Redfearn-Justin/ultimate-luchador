@@ -4,8 +4,6 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
 
-import axios from "axios";
-
 import "./NewAbility.css";
 
 class NewAbility extends Component {

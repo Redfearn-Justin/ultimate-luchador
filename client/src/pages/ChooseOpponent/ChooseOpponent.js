@@ -4,21 +4,9 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
 
-import axios from "axios";
-
 import "./ChooseOpponent.css";
 
 class ChooseOpponent extends Component {
-
-    // componentDidMount = () => {
-    //     axios.get('/api/selectone')
-    //         .then(function (response) {
-    //             console.log(response);
-    //         })
-    //         .catch(function (error) {
-    //             console.log(error);
-    //         });
-    // };
 
     render() {
         return (
@@ -31,10 +19,10 @@ class ChooseOpponent extends Component {
 
                         <div className="opponent" onClick={() => this.props.setPageName("Fight")}>
                             <div className="profile-pic opponent-pic">
-                                <div className="profile-picture"></div>
+                                <div className="profile-picture profile-picture-choose"></div>
                             </div>
                             <div className="opponent-stats">
-                                <div className="opponent-stats-bar">wwwwwwwwwwwwwwww</div>
+                                <div className="opponent-stats-bar"><span>wwwwwwwwwwwwwwwww</span></div>
                                 <div className="opponent-stats-bar">
                                     <div>awd</div>
                                     <div>awd</div>
@@ -45,7 +33,7 @@ class ChooseOpponent extends Component {
 
                         <div className="opponent" onClick={() => this.props.setPageName("Fight")}>
                             <div className="profile-pic opponent-pic">
-                                <div className="profile-picture"></div>
+                                <div className="profile-picture profile-picture-choose"></div>
                             </div>
                             <div className="opponent-stats">
                                 <div className="opponent-stats-bar">wad</div>
@@ -59,7 +47,7 @@ class ChooseOpponent extends Component {
 
                         <div className="opponent" onClick={() => this.props.setPageName("Fight")}>
                             <div className="profile-pic opponent-pic">
-                                <div className="profile-picture"></div>
+                                <div className="profile-picture profile-picture-choose"></div>
                             </div>
                             <div className="opponent-stats">
                                 <div className="opponent-stats-bar">wad</div>

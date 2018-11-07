@@ -1,70 +1,9 @@
-.credits-text {
-    height: 15%;
-}
-
-.credits-members-bar {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    height: 24%;
-    font-size: 4.5rem;
-}
-
-.credits-member {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    font-size: 1.5rem;
-}
-
-.credits-tech-bar {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    height: 36%;
-    background-color: #fff;
-    border-radius: 6px;
-}
-
-.credits-back-bar {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    height: 15%;
-}
-
-.credits-back {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    flex: 1;
-}
-
-.credits-github {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    flex: 1;
-}
-
+.credits-members-bar,
+.credits-member,
+.credits-tech-bar,
+.credits-back-bar,
+.credits-back,
+.credits-github,
 .credits-back div,
 .credits-github div {
     position: relative;
@@ -72,9 +11,56 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
 
+.credits-text {
+    height: 12%;
+}
+
+.credits-members-bar {
+    width: 90%;
+    height: 25%;
+    font-size: 4.5rem;
+}
+
+.credits-member {
+    flex: 1;
+    font-size: 1.5rem;
+}
+
+.credits-tech-bar {
+    width: 90%;
+    height: 42%;
+    background-color: #fff;
+    border-radius: 6px;
+}
+
+.credits-back-bar {
+    flex-direction: row;
+    width: 90%;
+    height: 12%;
+}
+
+.credits-back {
+    height: 100%;
+    flex: 1;
+}
+
+.credits-github {
+    height: 100%;
+    flex: 1;
+}
+
+.credits-back div,
+.credits-github div {
     border: 4px solid rgb(30, 38, 129);
     background-color: rgb(49, 59, 175);
     width: 90%;
     height: 50%;
 }
+
+@media only screen and (max-width: 360px) {
+    .credits-text {
+      font-size: 3.5rem;
+    }
+  }
