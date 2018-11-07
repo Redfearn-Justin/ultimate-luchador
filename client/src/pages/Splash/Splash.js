@@ -14,37 +14,63 @@ import firebase, {auth} from "../../firebase";
 //==========================================
 class Splash extends Component {
 
-    // constructor(props) {
+    constructor(props) {
 
-    //     super(props);
+        super(props);
 
-    //     this.state = {
+        this.state = {
 
-    //         user: null
-    //     }
-    // }
+            user: null
+        }
+        //binding 'this' to the componentDidMount method
+        this.componentDidMount.bind(this);
+    }
 
-    // componentDidMount = () => {
+    componentDidMount = () => {
+
+        auth.onAuthStateChanged(firebaseUser => {
 
 
+            if (firebaseUser) {
+                
+              // User is signed in.
+              let email = firebaseUser.email;
+              let uid = firebaseUser.uid;
 
-    //     auth.onAuthStateChanged(function(user) {
-    //         if (user) {
+              const userInfo = {
+                email: email,
+                uid: uid,
+              };
 
-    //             const user = auth
-    //             //user is signed in
+              console.log(`${email} is currently signed in`);
+              console.log(userInfo);
 
-    //             console.log(`${user} is currently signed in; moving to home page`);
+              //SQL/API section (WORK IN PROGRESS)
+              //=========================================================
 
-    //             setTimeout( () => this.props.setPageName("Home"), 1000);
+              axios.get("/api/selectone")
+              .then( (result) => {
 
-    //         } else {
-    //             //No user is signed in
-    //             //Do nothing
-    //             console.log("No user is signed in");
-    //         }
-    //     });
-    // }
+                  console.log(`This is the result: ${result}`);
+
+              })
+              .catch((error) => {
+
+                  console.log(`This is the error: ${error}`);
+                  
+              });
+
+              //Immediately go to next page, since user is signed in
+              //=========================================================
+              setTimeout( () => this.props.setPageName("Home"), 1000);
+              
+            } else {
+              // User is signed out.
+              // ...
+              console.log("No user is signed in");
+            }
+        });
+    }
 
     // componentDidMount = () => {
     //     axios.get('/api/selectone')

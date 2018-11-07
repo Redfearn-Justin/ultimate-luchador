@@ -102,25 +102,25 @@ class NewAccount extends Component {
 
                 alert("Please pick a stronger password.");
 
-                throw(errorCode, errorMessage);
+                console.log(errorCode, errorMessage);
 
             } else if(errorCode === "auth/email-already-in-use") {
 
                 alert("This email is already associated with an account. Please choose another email.");
                 
-                throw(errorCode, errorMessage);
+                console.log(errorCode, errorMessage);
 
             } else if(errorCode === "auth/invalid-email") {
 
                 alert("Invalid email. Please try again");
 
-                throw(errorCode, errorMessage);
+                console.log(errorCode, errorMessage);
 
             } else {
 
                 console.log("An error has occured. Please try again");
 
-                throw(errorCode, errorMessage);
+                console.log(errorCode, errorMessage);
             };
 
         });
