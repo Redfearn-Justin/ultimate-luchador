@@ -36,7 +36,7 @@ CREATE TABLE players (
     ab1_crit DECIMAL(3,2) NOT NULL DEFAULT 0.10,
     ab1_fail DECIMAL(3,2) NOT NULL DEFAULT 0.05,
     ab1_color VARCHAR(7) NOT NULL DEFAULT "#29ABE2",
-    ab1_icon VARCHAR(50) NOT NULL DEFAULT "UPDATE",
+    ab1_icon VARCHAR(50) NOT NULL DEFAULT "./images/icon1.svg",
 
     ab2_name VARCHAR(30) NOT NULL DEFAULT "Body Slam",
     ab2_dlow INTEGER(3) NOT NULL DEFAULT 8,
@@ -45,7 +45,7 @@ CREATE TABLE players (
     ab2_crit DECIMAL(3,2) NOT NULL DEFAULT 0.15,
     ab2_fail DECIMAL(3,2) NOT NULL DEFAULT 0.07,
     ab2_color VARCHAR(7) NOT NULL DEFAULT "#C61A1A",
-    ab2_icon VARCHAR(50) NOT NULL DEFAULT "UPDATE",
+    ab2_icon VARCHAR(50) NOT NULL DEFAULT "./images/icon2.svg",
 
     ab3_name VARCHAR(30) NOT NULL DEFAULT "Replace Me!",
     ab3_dlow INTEGER(3) NOT NULL DEFAULT 0,
@@ -54,7 +54,7 @@ CREATE TABLE players (
     ab3_crit DECIMAL(3,2) NOT NULL DEFAULT 0.00,
     ab3_fail DECIMAL(3,2) NOT NULL DEFAULT 0.00,
     ab3_color VARCHAR(7) NOT NULL DEFAULT "#000000",
-    ab3_icon VARCHAR(50) NOT NULL DEFAULT "UPDATE",
+    ab3_icon VARCHAR(50) NOT NULL DEFAULT "./images/icon3.svg",
 
     PRIMARY KEY (id)
 );
