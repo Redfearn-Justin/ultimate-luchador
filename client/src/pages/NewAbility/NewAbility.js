@@ -51,16 +51,16 @@ class NewAbility extends Component {
                             {/* Old ability 1 */}
                             <div className="newab-old-ability" onClick={() => this.props.setPageName("Home")}>
                                 <div className="newab-new-pic-bar">
-                                    <div className="newab-new-pic">XXX</div>
+                                    <div className="newab-new-pic" style={{backgroundColor: this.props.storeData.ab1_color}}>X</div>
                                 </div>
                                 <div className="newab-new-stats-bar">
                                     <div className="newab-new-stats-text">
-                                        <span>hello</span>
+                                        <span>{this.props.storeData.ab1_name}</span>
                                     </div>
                                     <div className="newab-new-stats-stats-bar">
-                                        <div className="newab-new-stats-dmg">10-12 /</div>
-                                        <div className="newab-new-stats-speed">4 S</div>
-                                        <div className="newab-new-stats-crit">11% C</div>
+                                        <div className="newab-new-stats-dmg">{this.props.storeData.ab1_dlow}-{this.props.storeData.ab1_dhigh}</div>
+                                        <div className="newab-new-stats-speed">{this.props.storeData.ab1_speed}/5</div>
+                                        <div className="newab-new-stats-crit">{this.props.storeData.ab1_crit * 100}%</div>
                                     </div>
                                 </div>
                             </div>
@@ -68,16 +68,16 @@ class NewAbility extends Component {
                             {/* Old ability 2 */}
                             <div className="newab-old-ability" onClick={() => this.props.setPageName("Home")}>
                                 <div className="newab-new-pic-bar">
-                                    <div className="newab-new-pic">XXX</div>
+                                    <div className="newab-new-pic" style={{backgroundColor: this.props.storeData.ab2_color}}>X</div>
                                 </div>
                                 <div className="newab-new-stats-bar">
                                     <div className="newab-new-stats-text">
-                                        <span>hello</span>
+                                        <span>{this.props.storeData.ab2_name}</span>
                                     </div>
                                     <div className="newab-new-stats-stats-bar">
-                                        <div className="newab-new-stats-dmg">10-12 /</div>
-                                        <div className="newab-new-stats-speed">4 S</div>
-                                        <div className="newab-new-stats-crit">11% C</div>
+                                        <div className="newab-new-stats-dmg">{this.props.storeData.ab2_dlow}-{this.props.storeData.ab2_dhigh}</div>
+                                        <div className="newab-new-stats-speed">{this.props.storeData.ab2_speed}/5</div>
+                                        <div className="newab-new-stats-crit">{this.props.storeData.ab2_crit * 100}%</div>
                                     </div>
                                 </div>
                             </div>
@@ -85,16 +85,16 @@ class NewAbility extends Component {
                             {/* Old ability 3 */}
                             <div className="newab-old-ability" onClick={() => this.props.setPageName("Home")}>
                                 <div className="newab-new-pic-bar">
-                                    <div className="newab-new-pic">XXX</div>
+                                    <div className="newab-new-pic" style={{backgroundColor: this.props.storeData.ab3_color}}>X</div>
                                 </div>
                                 <div className="newab-new-stats-bar">
                                     <div className="newab-new-stats-text">
-                                        <span>hello</span>
+                                        <span>{this.props.storeData.ab3_name}</span>
                                     </div>
                                     <div className="newab-new-stats-stats-bar">
-                                        <div className="newab-new-stats-dmg">10-12 /</div>
-                                        <div className="newab-new-stats-speed">4 S</div>
-                                        <div className="newab-new-stats-crit">11% C</div>
+                                        <div className="newab-new-stats-dmg">{this.props.storeData.ab3_dlow}-{this.props.storeData.ab3_dhigh}</div>
+                                        <div className="newab-new-stats-speed">{this.props.storeData.ab3_speed}/5</div>
+                                        <div className="newab-new-stats-crit">{this.props.storeData.ab3_crit * 100}%</div>
                                     </div>
                                 </div>
                             </div>

@@ -1,5 +1,5 @@
-INSERT INTO players (char_name)
-VALUES ("Test");
+INSERT INTO players (char_name, token)
+VALUES ("Valuez", 100);
 
 SELECT * FROM players WHERE fame BETWEEN 201 and 215;
 
