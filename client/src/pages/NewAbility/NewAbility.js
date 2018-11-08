@@ -9,18 +9,101 @@ import "./NewAbility.css";
 class NewAbility extends Component {
 
     state = {
-        newName: "x",
+        newName: "",
         newDlow: 1,
         newDhigh: 2,
         newSpeed: 3,
         newCrit: 0.4,
+        newFail: 0.4,
         newColor: "#",
         newIcon: "X"
     }
-    
+
+    randomColor = () => {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    };
+
+    getRandomInteger = (min, max) => {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min;
+    };
+
+    randomIcon = () => {
+        var randNumer = Math.floor(Math.random() * 20) + 1;
+        var path = "./images/icon" + randNumer + ".svg";
+        return path;
+    }
+
     componentDidMount = () => {
-       // create new ability
-       // log it to state
+        // create new ability
+        // log it to state
+        var rollSpeed = Math.floor(Math.random() * 100) + 1;
+        var dlow;
+        var dhigh;
+        var speed;
+        var crit;
+        var fail;
+        var color;
+        var icon;
+
+        if (rollSpeed >= 1 && rollSpeed <= 45) {
+            dlow = this.getRandomInteger(4,8);
+            dhigh = this.getRandomInteger(9,15);
+            speed = 5;
+            crit = (this.getRandomInteger(8,12)) / 100;
+            fail = (this.getRandomInteger(3,8)) / 100;
+            color = this.randomColor();
+            icon = this.randomIcon();
+        } else if (rollSpeed >= 46 && rollSpeed <= 70) {
+            dlow = this.getRandomInteger(5,10);
+            dhigh = this.getRandomInteger(11,17);
+            speed = 4;
+            crit = (this.getRandomInteger(10,14)) / 100;
+            fail = (this.getRandomInteger(4,9)) / 100;
+            color = this.randomColor();
+            icon = this.randomIcon();
+        } else if (rollSpeed >= 71 && rollSpeed <= 85) {
+            dlow = this.getRandomInteger(6,12);
+            dhigh = this.getRandomInteger(13,18);
+            speed = 3;
+            crit = (this.getRandomInteger(11,15)) / 100;
+            fail = (this.getRandomInteger(5,9)) / 100;
+            color = this.randomColor();
+            icon = this.randomIcon();
+        } else if (rollSpeed >= 86 && rollSpeed <= 95) {
+            dlow = this.getRandomInteger(8,15);
+            dhigh = this.getRandomInteger(16,21);
+            speed = 2;
+            crit = (this.getRandomInteger(12,16)) / 100;
+            fail = (this.getRandomInteger(6,9)) / 100;
+            color = this.randomColor();
+            icon = this.randomIcon();
+        } else if (rollSpeed >= 96 && rollSpeed <= 100) {
+            dlow = this.getRandomInteger(10,20);
+            dhigh = this.getRandomInteger(21,30);
+            speed = 1;
+            crit = (this.getRandomInteger(13,19)) / 100;
+            fail = (this.getRandomInteger(6,10)) / 100;
+            color = this.randomColor();
+            icon = this.randomIcon();
+        };
+
+        this.setState({
+            newDlow: dlow,
+            newDhigh: dhigh,
+            newSpeed: speed,
+            newCrit: crit,
+            newFail: fail,
+            newColor: color,
+            newIcon: icon
+        });
+
     };
 
     render() {
@@ -34,16 +117,16 @@ class NewAbility extends Component {
                     {/* New ability bar */}
                     <div className="newab-new-ability-bar">
                         <div className="newab-new-pic-bar">
-                            <div className="newab-new-pic">XXX</div>
+                            <div className="newab-new-pic" style={{ backgroundColor: this.state.newColor }}><img alt="icon" src={this.state.newIcon} /></div>
                         </div>
                         <div className="newab-new-stats-bar">
                             <div className="newab-new-stats-text">
-                                <input></input>
+                                <input style={{ color: this.state.newColor }}></input>
                             </div>
                             <div className="newab-new-stats-stats-bar">
-                                <div className="newab-new-stats-dmg">10-12<img alt="icon" src="./images/icon_sword.svg" /></div>
-                                <div className="newab-new-stats-speed">4<img alt="icon" src="./images/icon_speed.svg" /></div>
-                                <div className="newab-new-stats-crit">11%<img alt="icon" src="./images/icon_crit.svg" /></div>
+                                <div className="newab-new-stats-dmg">{this.state.newDlow}-{this.state.newDhigh}<img alt="icon" src="./images/icon_sword.svg" /></div>
+                                <div className="newab-new-stats-speed">{this.state.newSpeed}/5<img alt="icon" src="./images/icon_speed.svg" /></div>
+                                <div className="newab-new-stats-crit">{this.state.newCrit * 100}%<img alt="icon" src="./images/icon_crit.svg" /></div>
                             </div>
                         </div>
                     </div>
@@ -56,13 +139,13 @@ class NewAbility extends Component {
                             {/* Old ability 1 */}
                             <div className="newab-old-ability" onClick={() => this.props.setPageName("Home")}>
                                 <div className="newab-new-pic-bar">
-                                    <div className="newab-new-pic" style={{backgroundColor: this.props.storeData.ab1_color}}>
+                                    <div className="newab-new-pic" style={{ backgroundColor: this.props.storeData.ab1_color }}>
                                         <img className="ability-icon-size" alt="zap" src={this.props.storeData.ab1_icon} />
                                     </div>
                                 </div>
                                 <div className="newab-new-stats-bar">
                                     <div className="newab-new-stats-text">
-                                        <span>{this.props.storeData.ab1_name}</span>
+                                        <span style={{ color: this.props.storeData.ab1_color }}>{this.props.storeData.ab1_name}</span>
                                     </div>
                                     <div className="newab-new-stats-stats-bar">
                                         <div className="newab-new-stats-dmg">{this.props.storeData.ab1_dlow}-{this.props.storeData.ab1_dhigh}<img alt="icon" src="./images/icon_sword.svg" /></div>
@@ -75,13 +158,13 @@ class NewAbility extends Component {
                             {/* Old ability 2 */}
                             <div className="newab-old-ability" onClick={() => this.props.setPageName("Home")}>
                                 <div className="newab-new-pic-bar">
-                                    <div className="newab-new-pic" style={{backgroundColor: this.props.storeData.ab2_color}}>
+                                    <div className="newab-new-pic" style={{ backgroundColor: this.props.storeData.ab2_color }}>
                                         <img className="ability-icon-size" alt="zap" src={this.props.storeData.ab2_icon} />
                                     </div>
                                 </div>
                                 <div className="newab-new-stats-bar">
                                     <div className="newab-new-stats-text">
-                                        <span>{this.props.storeData.ab2_name}</span>
+                                        <span style={{ color: this.props.storeData.ab2_color }}>{this.props.storeData.ab2_name}</span>
                                     </div>
                                     <div className="newab-new-stats-stats-bar">
                                         <div className="newab-new-stats-dmg">{this.props.storeData.ab2_dlow}-{this.props.storeData.ab2_dhigh}<img alt="icon" src="./images/icon_sword.svg" /></div>
@@ -94,13 +177,13 @@ class NewAbility extends Component {
                             {/* Old ability 3 */}
                             <div className="newab-old-ability" onClick={() => this.props.setPageName("Home")}>
                                 <div className="newab-new-pic-bar">
-                                    <div className="newab-new-pic" style={{backgroundColor: this.props.storeData.ab3_color}}>
+                                    <div className="newab-new-pic" style={{ backgroundColor: this.props.storeData.ab3_color }}>
                                         <img className="ability-icon-size" alt="zap" src={this.props.storeData.ab3_icon} />
                                     </div>
                                 </div>
                                 <div className="newab-new-stats-bar">
                                     <div className="newab-new-stats-text">
-                                        <span>{this.props.storeData.ab3_name}</span>
+                                        <span style={{ color: this.props.storeData.ab3_color }}>{this.props.storeData.ab3_name}</span>
                                     </div>
                                     <div className="newab-new-stats-stats-bar">
                                         <div className="newab-new-stats-dmg">{this.props.storeData.ab3_dlow}-{this.props.storeData.ab3_dhigh}<img alt="icon" src="./images/icon_sword.svg" /></div>
