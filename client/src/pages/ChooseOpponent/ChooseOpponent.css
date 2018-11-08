@@ -70,12 +70,16 @@
 .opponent-stats-bar {
     flex-direction: row;
     width: 100%;
-    flex: 1;
+    height: 45%;
 }
 
 .opponent-stats-bar div {
     height: 100%;
     flex: 1;
+}
+
+.opponent-stats-bar img {
+    height: 15px;
 }
 
 .opponent-button-bar {

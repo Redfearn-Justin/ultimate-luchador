@@ -80,7 +80,7 @@ class Login extends Component {
 
                 let email = currentAccount.email;
 
-                let uid = 11;
+                let uid = 100;
                 // let uid = currentAccount.uid; <- UNCOMMENT, JUST USED FOR TEST
 
                 //verifying uid and email are successfully passed through 
@@ -90,57 +90,48 @@ class Login extends Component {
                 // AXIOS ========================================
                 axios.get('/api/selectLuchador/' + uid)
                     .then(response => {
-                        console.log(this);
-                        //return;
-                        // var thisReturnsValue = JSON.stringify(response.data.hp);
-                        console.log(response.data);
                         const id = response.data.id;
-                        console.log("id is" + id);
-                        // const token = JSON.stringify(response.data.token);
-                        // const last_login = JSON.stringify(response.data.last_login);
+                        const token = response.data.token;
+                        const last_login = response.data.last_login;
                         const char_name = response.data.char_name;
-                        // const profile_pic = JSON.stringify(response.data.profile_pic);
-                        // const exp = JSON.stringify(response.data.exp);
-                        // const lvl = JSON.stringify(response.data.lvl);
-                        // const new_ability = JSON.stringify(response.data.new_ability);
-                        // const fame = JSON.stringify(response.data.fame);
-                        // const hp = JSON.stringify(response.data.hp);
-                        // const fights = JSON.stringify(response.data.fights);
-                        // const wins = JSON.stringify(response.data.wins);
-                        // const losses = JSON.stringify(response.data.losses);
-                        // const tickets = JSON.stringify(response.data.tickets);
-                        // const tickets_max = JSON.stringify(response.data.tickets_max);
-                        // const refresh = JSON.stringify(response.data.refresh);
-                        // const ab1_name = JSON.stringify(response.data.ab1_name);
-                        // const ab1_dlow = JSON.stringify(response.data.ab1_dlow);
-                        // const ab1_dhigh = JSON.stringify(response.data.ab1_dhigh);
-                        // const ab1_speed = JSON.stringify(response.data.ab1_speed);
-                        // const ab1_crit = JSON.stringify(response.data.ab1_crit);
-                        // const ab1_fail = JSON.stringify(response.data.ab1_fail);
-                        // const ab1_color = JSON.stringify(response.data.ab1_color);
-                        // const ab1_icon = JSON.stringify(response.data.ab1_icon);
-                        // const ab2_name = JSON.stringify(response.data.ab2_name);
-                        // const ab2_dlow = JSON.stringify(response.data.ab2_dlow);
-                        // const ab2_dhigh = JSON.stringify(response.data.ab2_dhigh);
-                        // const ab2_speed = JSON.stringify(response.data.ab2_speed);
-                        // const ab2_crit = JSON.stringify(response.data.ab2_crit);
-                        // const ab2_fail = JSON.stringify(response.data.ab2_fail);
-                        // const ab2_color = JSON.stringify(response.data.ab2_color);
-                        // const ab2_icon = JSON.stringify(response.data.ab2_icon);
-                        // const ab3_name = JSON.stringify(response.data.ab3_name);
-                        // const ab3_dlow = JSON.stringify(response.data.ab3_dlow);
-                        // const ab3_dhigh = JSON.stringify(response.data.ab3_dhigh);
-                        // const ab3_speed = JSON.stringify(response.data.ab3_speed);
-                        // const ab3_crit = JSON.stringify(response.data.ab3_crit);
-                        // const ab3_fail = JSON.stringify(response.data.ab3_fail);
-                        // const ab3_color = JSON.stringify(response.data.ab3_color);
-                        // const ab3_icon = JSON.stringify(response.data.ab3_icon);
-                        // this.props.incrementWins();
-                        // this.props.loginToken("Home", uid);
-                        // console.log(this);
-                        // this.props.getAllData(id, char_name); //, token, last_login, char_name, profile_pic, exp, lvl, new_ability, fame, hp, fights, wins, losses, tickets, tickets_max, refresh,  ab1_name, ab1_dlow, ab1_dhigh, ab1_speed, ab1_crit, ab1_fail, ab1_color, ab1_icon, ab2_name, ab2_dlow, ab2_dhigh, ab2_speed, ab2_crit, ab2_fail, ab2_color, ab2_icon, ab3_name, ab3_dlow, ab3_dhigh, ab3_speed, ab3_crit, ab3_fail, ab3_color, ab3_icon);
-                        this.props.setPageName("Home", uid, char_name);
-                   
+                        const profile_pic = response.data.profile_pic;
+                        const exp = response.data.exp;
+                        const lvl = response.data.lvl;
+                        const new_ability = response.data.new_ability;
+                        const fame = response.data.fame;
+                        const hp = response.data.hp;
+                        const fights = response.data.fights;
+                        const wins = response.data.wins;
+                        const losses = response.data.losses;
+                        const tickets = response.data.tickets;
+                        const tickets_max = response.data.tickets_max;
+                        const refresh = response.data.refresh;
+                        const ab1_name = response.data.ab1_name;
+                        const ab1_dlow = response.data.ab1_dlow;
+                        const ab1_dhigh = response.data.ab1_dhigh;
+                        const ab1_speed = response.data.ab1_speed;
+                        const ab1_crit = response.data.ab1_crit;
+                        const ab1_fail = response.data.ab1_fail;
+                        const ab1_color = response.data.ab1_color;
+                        const ab1_icon = response.data.ab1_icon;
+                        const ab2_name = response.data.ab2_name;
+                        const ab2_dlow = response.data.ab2_dlow;
+                        const ab2_dhigh = response.data.ab2_dhigh;
+                        const ab2_speed = response.data.ab2_speed;
+                        const ab2_crit = response.data.ab2_crit;
+                        const ab2_fail = response.data.ab2_fail;
+                        const ab2_color = response.data.ab2_color;
+                        const ab2_icon = response.data.ab2_icon;
+                        const ab3_name = response.data.ab3_name;
+                        const ab3_dlow = response.data.ab3_dlow;
+                        const ab3_dhigh = response.data.ab3_dhigh;
+                        const ab3_speed = response.data.ab3_speed;
+                        const ab3_crit = response.data.ab3_crit;
+                        const ab3_fail = response.data.ab3_fail;
+                        const ab3_color = response.data.ab3_color;
+                        const ab3_icon = response.data.ab3_icon;
+                      
+                        this.props.loginData("Home", id, token, last_login, char_name, profile_pic, exp, lvl, new_ability, fame, hp, fights, wins, losses, tickets, tickets_max, refresh, ab1_name, ab1_dlow, ab1_dhigh, ab1_speed, ab1_crit, ab1_fail, ab1_color, ab1_icon, ab2_name, ab2_dlow, ab2_dhigh, ab2_speed, ab2_crit, ab2_fail, ab2_color, ab2_icon, ab3_name, ab3_dlow, ab3_dhigh, ab3_speed, ab3_crit, ab3_fail, ab3_color, ab3_icon);
                     })
                     .catch(error => {
                         console.log(error);

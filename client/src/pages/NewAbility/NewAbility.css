@@ -71,17 +71,25 @@
     width: 100%;
 }
 
+.newab-new-stats-stats-bar img {
+    height: 15px;
+}
+
 .newab-new-stats-stats-bar div {
     flex: 1;
     height: 100%;
 }
 
 .newab-new-pic {
-    width: 90%;
+    width: 80%;
     height: 70%;
     margin-left: 14px;
     background-color: pink;
     border-radius: 4px;
+}
+
+.ability-icon-size {
+    height: 30px;
 }
 
 /* Old ability bar */
