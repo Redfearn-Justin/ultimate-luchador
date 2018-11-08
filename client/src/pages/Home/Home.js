@@ -11,20 +11,6 @@ import "./Home.css";
 
 class Splash extends Component {
 
-    // SENT TO PROFILE PAGE
-    // constructor(props) {
-    //     super(props);
-    //     this.state = { pictures: [] };
-    //     this.onDrop = this.onDrop.bind(this);
-    // }
-
-    // onDrop(picture) {
-    //     console.log(picture);
-    //     this.setState({
-    //         pictures: this.state.pictures.concat(picture),
-    //     });
-    // }
-
     render() {
         return (
             <div className="container">
@@ -36,33 +22,28 @@ class Splash extends Component {
 
                     <div className="profile-bar">
 
+                        {/* PROFILE PICTURE */}
                         <div className="profile-info-bar">
                             <div className="profile-left-icon flex-fix">
-                                <div className="profile-picture"></div>
-                                
-                                {/* SENT TO PROFILE PAGE
-                                
-                                    <ImageUploader
-                                    withIcon={false}
-                                    // buttonText='Choose images'
-                                    onChange={this.onDrop}
-                                    imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                                    maxFileSize={5242880}
-                                /> */}
-
+                                <div className="profile-picture" style={{ backgroundImage: "url(" + this.props.storeData.profile_pic + ")", backgroundSize: "cover" }}></div>
                             </div>
                             <div className="profile-col">
-                                <div className="profile-player-info">{this.props.storeData.char_name}</div>
+                                <div className="profile-player-info player-name"><span style={{ marginTop: "10px" }}>{this.props.storeData.char_name}</span></div>
                                 <div className="profile-player-info">
-                                    <div className="player-stat">{this.props.storeData.lvl}</div>
-                                    <div className="player-stat">{this.props.storeData.fame}</div>
+
+                                    <div className="player-level-bar">
+                                        <div className="player-exp"></div>
+                                        <div className="player-exp-stats">123/456 x</div>
+                                        <div className="player-exp-lvl">12</div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
 
                         <div className="break-line"></div>
 
-
+                        {/* ABILITIES START */}
                         <div className="profile-ability-bar">
                             <div className="profile-left-icon">
                                 <div className="newab-new-pic-bar w100">

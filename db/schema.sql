@@ -11,7 +11,7 @@ CREATE TABLE players (
     last_login TIMESTAMP NOT NULL DEFAULT current_timestamp,
     
     char_name VARCHAR(30) NOT NULL,
-    profile_pic VARCHAR (200) DEFAULT "put path to a local image here (default image)",
+    profile_pic VARCHAR (200) DEFAULT "./images/default.jpg",
 
     exp INTEGER(5) NOT NULL DEFAULT 0,
     lvl INTEGER(2) NOT NULL DEFAULT 1,
@@ -57,11 +57,4 @@ CREATE TABLE players (
     ab3_icon VARCHAR(50) NOT NULL DEFAULT "./images/icon3.svg",
 
     PRIMARY KEY (id)
-);
-
-CREATE TABLE levels (
-    lvl INTEGER NOT NULL AUTO_INCREMENT,
-    exp_needed INTEGER NOT NULL,
-
-    PRIMARY KEY (lvl)
 );
