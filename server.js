@@ -35,7 +35,7 @@ var config = {
 firebase.initializeApp(config);
 
 // Get a reference to the storage service, which is used to create references in your storage bucket
-var storage = firebase.storage();
+// var storage = firebase.storage();
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`

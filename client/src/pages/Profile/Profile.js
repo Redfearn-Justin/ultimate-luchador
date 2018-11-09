@@ -11,7 +11,7 @@ import "./Profile.css";
 class Profile extends Component {
 
     state = {
-        files: []
+        src: ""
     }
 
     onDrop(files) {
@@ -26,6 +26,19 @@ class Profile extends Component {
         });
     }
 
+    handleFile = (event: SyntheticEvent<HTMLImageElement>) => {
+        event.preventDefault();
+        if (event.target.files[0]) {
+            var reader = new FileReader();
+            reader.readAsDataURL(event.currentTarget.files[0]);
+            reader.onloadend = evt => {
+                this.setState({
+                    src: evt.target.result,
+                });
+            };
+        }
+    }
+
     render() {
         return (
             <div className="container">
@@ -35,7 +48,8 @@ class Profile extends Component {
 
                     <div className="profile-main-bar">
                         <div className="profile-uploader">
-                            <div className="dropzone">
+
+                            {/* <div className="dropzone">
                                 <Dropzone
                                     onDrop={this.onDrop.bind(this)}
                                     onFileDialogCancel={this.onCancel.bind(this)}
@@ -47,10 +61,16 @@ class Profile extends Component {
                                     }
                                 </ul>
                                 </Dropzone>
-                            </div>
+                            </div> */}
                         </div>
                         <div className="profile-uploader">
-                            <div className="profile-picture"></div>
+                            <div className="profile-picture">
+                                <img src={this.state.src}></img>
+                                <input onInput={this.handleFile}
+                                    type="file"
+                                    accept="image/*"
+                                />
+                            </div>
                         </div>
                     </div>
 
