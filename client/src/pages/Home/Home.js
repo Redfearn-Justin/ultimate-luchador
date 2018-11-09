@@ -11,6 +11,14 @@ import "./Home.css";
 
 class Splash extends Component {
 
+    widthBar = () => {
+        var a = 170;
+        var b = 200;
+        var sol = Math.floor((a/b)*100);
+        console.log("this is sol " + sol);
+        return sol;
+    }
+
     render() {
         return (
             <div className="container">
@@ -32,7 +40,7 @@ class Splash extends Component {
                                 <div className="profile-player-info">
 
                                     <div className="player-level-bar">
-                                        <div className="player-exp"></div>
+                                        <div className="player-exp" style={{ width: this.widthBar() + "%"}}></div>
                                         <div className="player-exp-stats">123/456 x</div>
                                         <div className="player-exp-lvl">12</div>
                                     </div>
