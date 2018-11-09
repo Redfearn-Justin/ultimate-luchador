@@ -41,5 +41,15 @@ router.get("/api/selectOpponents/:dlow/:dhigh", function (req, res) {
     );
 });
 
+router.get("/api/selectSingleOpponent/:id", function (req, res) {
+    orm.selectSingleOpponent(
+        "players",
+        req.params.id,
+        function (result) {
+            res.json(result);
+        }
+    );
+});
+
 // EXPORT OUR ROUTER
 module.exports = router;

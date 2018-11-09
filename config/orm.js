@@ -39,7 +39,6 @@ var orm = {
     // EXAMPLE METHOD
     selectOne: (tableName, id, cb) => {
         var queryString = "SELECT * FROM " + tableName + " WHERE id = " + id;
-
         connection.query(queryString, function (err, res) {
             if (err) throw err;
             cb(res);
@@ -48,7 +47,6 @@ var orm = {
 
     selectLuchador: (tableName, uid, cb) => {
         var queryString = "SELECT * FROM " + tableName + " WHERE token = " + uid;
-        console.log(queryString);
         connection.query(queryString, function (err, res) {
             if (err) throw err;
             cb(res);
@@ -56,8 +54,15 @@ var orm = {
     },
 
     selectOpponents: (tableName, dlow, dhigh, cb) => {
-        var queryString = "SELECT char_name, lvl, fame, wins, losses, profile_pic FROM " + tableName + " WHERE fame BETWEEN " + dlow + " and " +dhigh;
-        console.log(queryString);
+        var queryString = "SELECT char_name, id, lvl, fame, wins, losses, profile_pic FROM " + tableName + " WHERE fame BETWEEN " + dlow + " and " +dhigh;
+        connection.query(queryString, function (err, res) {
+            if (err) throw err;
+            cb(res);
+        });
+    },
+
+    selectSingleOpponent: (tableName, id, cb) => {
+        var queryString = "SELECT * FROM " + tableName + " WHERE id = " + id;
         connection.query(queryString, function (err, res) {
             if (err) throw err;
             cb(res);
