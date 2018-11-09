@@ -24,14 +24,14 @@
 
 .newab-no-ability-bar {
     width: 90%;
-    height: 14%;
+    height: 10%;
 }
 
 .newab-no-ability-bar div {
     border: 4px solid rgb(30, 38, 129);
     background-color: rgb(49, 59, 175);
     width: 90%;
-    height: 60%;
+    height: 90%;
 }
 
 /* New ability */
@@ -59,10 +59,15 @@
     width: 100%;
 }
 
+.newab-new-stats-text span {
+    font-size: 1.2rem;
+}
+
 .newab-new-stats-text input {
     width: 88%;
     margin-top: 15px;
     padding: 3px;
+    font-family: test;
 }
 
 .newab-new-stats-stats-bar {
@@ -71,24 +76,36 @@
     width: 100%;
 }
 
+.newab-new-stats-stats-bar img {
+    height: 15px;
+}
+
 .newab-new-stats-stats-bar div {
     flex: 1;
     height: 100%;
 }
 
 .newab-new-pic {
-    width: 90%;
+    width: 80%;
     height: 70%;
     margin-left: 14px;
     background-color: pink;
     border-radius: 4px;
 }
 
+.newab-new-pic img {
+    height: 40px;
+}
+
+.ability-icon-size {
+    height: 30px;
+}
+
 /* Old ability bar */
 
 .newab-old-ability-bar {
     width: 90%;
-    height: 50%;
+    height: 53%;
 }
 
 .newab-old-ability-text {
@@ -108,7 +125,7 @@
     flex: 1;
     background-color: #fff;
     border-radius: 6px;
-    margin: 2px;
+    margin: 3px;
     cursor: pointer;
     transition: .3s;
 }
@@ -116,7 +133,9 @@
 .newab-old-ability:hover {
     transform: scale(1.05);
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
+    background-color: rgb(255, 230, 230);
 }
+
 
 @media only screen and (max-width: 530px) {
     .newab-text {

@@ -53,8 +53,17 @@ var orm = {
             if (err) throw err;
             cb(res);
         });
+    },
+
+    selectOpponents: (tableName, dlow, dhigh, cb) => {
+        var queryString = "SELECT char_name, lvl, fame, wins, losses, profile_pic FROM " + tableName + " WHERE fame BETWEEN " + dlow + " and " +dhigh;
+        console.log(queryString);
+        connection.query(queryString, function (err, res) {
+            if (err) throw err;
+            cb(res);
+        });
     }
-    
+
 };
 // =============================
 

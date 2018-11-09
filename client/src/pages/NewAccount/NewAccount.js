@@ -48,13 +48,30 @@ class NewAccount extends Component {
     }
 
     createAccount = () => {
+        var regexDisplayName = RegExp('^[A-Za-z0-9]+$');
 
         //if user did not input information
         if (!this.state.email || !this.state.password || !this.state.displayName) {
 
             alert("Please completely fill out the fields before proceeding");
+            return;
 
-        } else {
+        } 
+        else if (this.state.displayName.length < 7 || this.state.displayName.length > 18) {
+            alert("Username must be in between 7-16 characters!");
+            return;
+
+        }
+        else if (this.state.password.length < 7 || this.state.password.length > 20) {
+            alert("Password must be between 7-20 characters!");
+            return; 
+        }
+
+        else if (regexDisplayName.test(this.state.displayName) == false) {
+            alert("No spaces or special characters!");
+            return; 
+        }
+        else {
 
             console.log("Successfully passed through first phase of creating account");
         }
@@ -70,13 +87,12 @@ class NewAccount extends Component {
 
                 //getting the current user according to firebase //verification purposes
                 const currentAccount = auth.currentUser;
-
-
                 let email = currentAccount.email;
                 let uid = currentAccount.uid;
 
                 //Object to put user token and display name into firebase DB
                 const newUserInfo = {
+                    displayName: this.state.displayName.toLowerCase(),
                     email: email,
                     uid: uid,
                 }
@@ -117,7 +133,12 @@ class NewAccount extends Component {
 
                     alert("An error occured. Please try again");
 
+<<<<<<< HEAD
                     console.log(errorCode, errorMessage);
+=======
+                    throw (errorCode, errorMessage);
+                }
+>>>>>>> master
 
                 }
             });

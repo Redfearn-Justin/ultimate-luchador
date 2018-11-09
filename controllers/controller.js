@@ -41,5 +41,16 @@ router.post("/api/uploadprofilepic", function(req, res) {
     res.sendStatus(200); //ok
 });
 
+router.get("/api/selectOpponents/:dlow/:dhigh", function (req, res) {
+    orm.selectOpponents(
+        "players",
+        req.params.dlow,
+        req.params.dhigh,
+        function (result) {
+            res.json(result);
+        }
+    );
+});
+
 // EXPORT OUR ROUTER
 module.exports = router;

@@ -91,11 +91,11 @@ class Fight extends Component {
                             <div className="profile-picture profile-picture-choose"></div>
                         </div>
                         <div className="opponent-stats">
-                            <div className="opponent-stats-bar">wada</div>
+                            <div className="opponent-stats-bar">{this.props.storeData.char_name}</div>
                             <div className="opponent-stats-bar">
-                                <div>awd</div>
-                                <div>awd</div>
-                                <div>awd</div>
+                                <div>{this.props.storeData.hp} hp</div>
+                                <div>{this.props.storeData.lvl} lvl</div>
+                                <div>{this.props.storeData.fame} fame</div>
                             </div>
                         </div>
 
