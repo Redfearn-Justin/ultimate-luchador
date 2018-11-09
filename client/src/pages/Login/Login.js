@@ -136,12 +136,6 @@ class Login extends Component {
                     .catch(error => {
                         console.log(error);
                     });
-                // AXIOS ========================================          
-
-               // console.log(`This should be true, as user is signed in: ${this.state.isSignedIn}`);
-                //this.props.setPageName("Home");
-
-                //==============================================
 
             })
             .catch(error => {

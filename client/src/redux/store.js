@@ -2,6 +2,7 @@ import { createStore } from 'redux';
 
 const defaultStore = {
     pageName: "Splash",
+    inactiveId: "x",
     id: "x",
     token: "x",
     last_login: "x",
@@ -49,6 +50,11 @@ const storeData = (state = defaultStore, action) => {
         case 'SET_PAGE_NAME':
             return Object.assign({}, state, {
                 pageName: action.pageName,
+            })
+        case 'CHOOSE_OPPONENT':
+            return Object.assign({}, state, {
+                pageName: action.pageName,
+                inactiveId: action.id
             })
         case 'LOGIN_DATA':
             return Object.assign({}, state, {
