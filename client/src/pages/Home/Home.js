@@ -83,7 +83,7 @@ class Splash extends Component {
                                     <div className="newab-new-pic home-ability-pic">XXX</div>
                                 </div></div>
                             <div className="opponent-stats">
-                                <div className="opponent-stats-bar"><span>tower dive, bitch</span></div>
+                                <div className="opponent-stats-bar"><span>{this.props.storeData.char_name}</span></div>
                                 <div className="opponent-stats-bar">
                                     <div>awd</div>
                                     <div>awd</div>

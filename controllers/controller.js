@@ -21,7 +21,6 @@ router.get("/api/selectone", function (req, res) {
 });
 
 router.get("/api/selectLuchador/:uid", function (req, res) {
-    console.log("here we are->",req.params);
     orm.selectLuchador(
         "players",
         req.params.uid,
