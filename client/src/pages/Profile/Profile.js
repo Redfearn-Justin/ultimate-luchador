@@ -4,21 +4,25 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
 import ImageUploader from 'react-images-upload';
-
+import Dropzone from 'react-dropzone'
 import "./Profile.css";
+
 
 class Profile extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = { pictures: [] };
-        this.onDrop = this.onDrop.bind(this);
+    state = {
+        files: []
     }
 
-    onDrop(picture) {
-        console.log(picture);
+    onDrop(files) {
         this.setState({
-            pictures: this.state.pictures.concat(picture),
+            files
+        });
+    }
+
+    onCancel() {
+        this.setState({
+            files: []
         });
     }
 
@@ -31,13 +35,19 @@ class Profile extends Component {
 
                     <div className="profile-main-bar">
                         <div className="profile-uploader">
-                            <ImageUploader
-                                withIcon={false}
-                                // buttonText='Choose images'
-                                onChange={this.onDrop}
-                                imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                                maxFileSize={5242880}
-                            />
+                            <div className="dropzone">
+                                <Dropzone
+                                    onDrop={this.onDrop.bind(this)}
+                                    onFileDialogCancel={this.onCancel.bind(this)}
+                                >
+                                    <p>Drop a file.</p>
+                                    <ul>
+                                    {
+                                        this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
+                                    }
+                                </ul>
+                                </Dropzone>
+                            </div>
                         </div>
                         <div className="profile-uploader">
                             <div className="profile-picture"></div>
@@ -70,8 +80,8 @@ class Profile extends Component {
             </div>
         );
     };
+}
 
-};
 
 const mapStateToProps = state => ({ storeData: state });
 const mapDispatchToProps = dispatch => (bindActionCreators(actionCreators, dispatch));
