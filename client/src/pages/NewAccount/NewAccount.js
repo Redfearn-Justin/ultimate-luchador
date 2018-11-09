@@ -133,12 +133,7 @@ class NewAccount extends Component {
 
                     alert("An error occured. Please try again");
 
-<<<<<<< HEAD
                     console.log(errorCode, errorMessage);
-=======
-                    throw (errorCode, errorMessage);
-                }
->>>>>>> master
 
                 }
             });
