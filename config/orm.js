@@ -67,7 +67,15 @@ var orm = {
             if (err) throw err;
             cb(res);
         });
-    }
+    },
+
+    // uploadprofilepic: (tableName) => {
+    //     var queryString = "";
+    //     connection.query(queryString, function (err, res) {
+    //         if (err) throw err;
+    //         cb(res);
+    //     });
+    // }
 
 };
 // =============================
