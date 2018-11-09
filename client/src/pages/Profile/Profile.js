@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
-import ImageUploader from 'react-images-upload';
+// import ImageUploader from 'react-images-upload';
 
 import "./Profile.css";
 
@@ -31,13 +31,13 @@ class Profile extends Component {
 
                     <div className="profile-main-bar">
                         <div className="profile-uploader">
-                            <ImageUploader
+                            {/* <ImageUploader
                                 withIcon={false}
                                 // buttonText='Choose images'
                                 onChange={this.onDrop}
                                 imgExtension={['.jpg', '.gif', '.png', '.gif']}
                                 maxFileSize={5242880}
-                            />
+                            /> */}
                         </div>
                         <div className="profile-uploader">
                             <div className="profile-picture"></div>
