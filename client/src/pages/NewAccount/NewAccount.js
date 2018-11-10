@@ -7,6 +7,7 @@ import * as actionCreators from '../../redux/actions';
 import "./NewAccount.css";
 import firebase, { auth, database } from "../../firebase";
 import SplashTop from "../../components/SplashTop"
+import axios from "axios";
 
 //class
 //==================================================
@@ -48,6 +49,7 @@ class NewAccount extends Component {
     }
 
     createAccount = () => {
+
         var regexDisplayName = RegExp('^[A-Za-z0-9]+$');
 
         //if user did not input information
@@ -85,10 +87,12 @@ class NewAccount extends Component {
 
                 this.setState({ user: newUser });
 
-                //getting the current user according to firebase //verification purposes
+                //getting the current user according to firebase
                 const currentAccount = auth.currentUser;
                 let email = currentAccount.email;
                 let uid = currentAccount.uid;
+                let displayName = this.state.displayName.toLowerCase();
+                let currentTime = new Date().toLocaleString();
 
                 //Object to put user token and display name into firebase DB
                 const newUserInfo = {
@@ -100,9 +104,25 @@ class NewAccount extends Component {
                 //pushing user token and display name to firebase database
                 database.ref().push(newUserInfo);
 
+                 //API Call
+                //=======================================================
+                axios.post('/api/createAccount', {
+                    id: uid,
+                    created: currentTime,
+                    last_login: currentTime,
+                    char_name: displayName
+                })
+                .then(response => {
+                    console.log(response);
+                    this.props.setPageName("Splash");
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+
                 //since successful creation, proceeding to next phase
                 //=========================================================
-                setTimeout(() => this.props.setPageName("Splash"), 1000);
+                // setTimeout(() => this.props.setPageName("Splash"), 1000);
 
             })
             .catch(error => {

@@ -1,2 +1,2 @@
-INSERT INTO players (char_name, token)
-VALUES ("testchar", 100);
+INSERT INTO players (char_name, token, fame)
+VALUES ("testcharacter", 100, 30);

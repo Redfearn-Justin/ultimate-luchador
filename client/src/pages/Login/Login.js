@@ -87,6 +87,24 @@ class Login extends Component {
                 console.log(`${uid} - is the id for the following email account: ${email}`);
 
 
+
+                //Last Log in time (being converted from GMT to local time)
+                let lastLogIn = currentAccount.metadata.lastSignInTime;
+                let setToLocal = new Date(lastLogIn);
+                let convertedTime = setToLocal.toLocaleString();
+                //current time
+                let currentTime = new Date().toLocaleString();
+                //=========================================
+                const userInfo = {
+                    email: email,
+                    uid: uid,
+                    LastLogIn: convertedTime,
+                    currentTime: currentTime
+                };
+                console.log("Last log in time info: ", userInfo);
+
+
+
                 // AXIOS ========================================
                 axios.get('/api/selectLuchador/' + uid)
                     .then(response => {
@@ -130,7 +148,7 @@ class Login extends Component {
                         const ab3_fail = response.data.ab3_fail;
                         const ab3_color = response.data.ab3_color;
                         const ab3_icon = response.data.ab3_icon;
-                      
+
                         this.props.loginData("Home", id, token, last_login, char_name, profile_pic, exp, lvl, new_ability, fame, hp, fights, wins, losses, tickets, tickets_max, refresh, ab1_name, ab1_dlow, ab1_dhigh, ab1_speed, ab1_crit, ab1_fail, ab1_color, ab1_icon, ab2_name, ab2_dlow, ab2_dhigh, ab2_speed, ab2_crit, ab2_fail, ab2_color, ab2_icon, ab3_name, ab3_dlow, ab3_dhigh, ab3_speed, ab3_crit, ab3_fail, ab3_color, ab3_icon);
                     })
                     .catch(error => {
