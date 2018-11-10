@@ -63,6 +63,20 @@ class Splash extends Component {
               //SQL/API section (WORK IN PROGRESS)
               //=========================================================
 
+              axios.put('api/updateLuchador/' + uid, {last_login: currentTime})
+              .then(response => {
+                  console.log(response);
+                  const id = response.data.id;
+                  const token = response.data.token;
+                  const last_login = response.data.last_login;
+                  this.props.loginData("Home", id, token, last_login);
+              })
+              .catch(err => {
+                  console.log(err);
+              });
+              
+              return;
+
               axios.get('/api/selectLuchador/' + uid)
               .then(response => {
                   const id = response.data.id;

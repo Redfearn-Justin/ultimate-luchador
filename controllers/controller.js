@@ -62,5 +62,16 @@ router.get("/api/selectSingleOpponent/:id", function (req, res) {
     );
 });
 
+//Last log in time update
+router.put("/api/updateTime/:uid", function (req, res) {
+    orm.updateOne(
+        "players",
+        req.params.uid,
+        function (result) {
+            res.json(result[0]);
+        }
+    );
+});
+
 // EXPORT OUR ROUTER
 module.exports = router;

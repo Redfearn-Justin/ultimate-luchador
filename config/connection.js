@@ -9,8 +9,8 @@ if (process.env.JAWSDB_URL) {
     host: "localhost",
     port: 3306,
     user: "root",
-    // password: "password", // <--- FOR JUSTIN DB ONLY
-    password: "root", // <--- UNCOMMENT 
+    password: "password", // <--- FOR JUSTIN DB ONLY
+    // password: "root", // <--- UNCOMMENT 
     database: "luchador_db"
     //edit user & password once we push to Heroku !!
   });

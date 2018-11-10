@@ -36,7 +36,16 @@ function objToSql(ob) {
 // =============================
 var orm = {
 
-    // EXAMPLE METHOD
+    //last login time update test method
+    //=================================
+    updateOne: (tableName, id, cb) => {
+        var queryString = "UPDATE last_login " + tableName + " WHERE id = " + id;
+        connection.query(queryString, function (err, res) {
+            if (err) throw err;
+            cb(res);
+        });
+    },
+
     selectOne: (tableName, id, cb) => {
         var queryString = "SELECT * FROM " + tableName + " WHERE id = " + id;
         connection.query(queryString, function (err, res) {
