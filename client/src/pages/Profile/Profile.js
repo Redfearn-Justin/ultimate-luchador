@@ -32,6 +32,10 @@ class Profile extends Component {
             var reader = new FileReader();
             reader.readAsDataURL(event.currentTarget.files[0]);
             reader.onloadend = evt => {
+                localStorage.setItem('imgFile', evt.target.result);
+                // upload to database to appropriate user
+
+                // -----------------------
                 this.setState({
                     src: evt.target.result,
                 });
@@ -40,6 +44,7 @@ class Profile extends Component {
     }
 
     render() {
+        console.log(this.state);
         return (
             <div className="container">
                 <div className="box fight-box">
@@ -48,20 +53,6 @@ class Profile extends Component {
 
                     <div className="profile-main-bar">
                         <div className="profile-uploader">
-
-                            {/* <div className="dropzone">
-                                <Dropzone
-                                    onDrop={this.onDrop.bind(this)}
-                                    onFileDialogCancel={this.onCancel.bind(this)}
-                                >
-                                    <p>Drop a file.</p>
-                                    <ul>
-                                    {
-                                        this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
-                                    }
-                                </ul>
-                                </Dropzone>
-                            </div> */}
                         </div>
                         <div className="profile-uploader">
                             <div className="profile-picture">
