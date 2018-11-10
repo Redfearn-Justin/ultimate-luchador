@@ -22,6 +22,9 @@ align-items: center;
 }
 
 .results-victory-text {
+    width: 90%;
+    height: 12%;
+    font-size: 4.5rem;
     color: rgb(0, 194, 42);
     text-shadow: 4px 4px 0px rgb(0, 124, 27),
     -1px -1px 0px rgb(0, 124, 27),
@@ -31,6 +34,9 @@ align-items: center;
 }
 
 .results-defeat-text {
+    width: 90%;
+    height: 12%;
+    font-size: 4.5rem;
     color: rgb(253, 48, 55);
     text-shadow: 4px 4px 0px rgb(110, 0, 0),
     -1px -1px 0px rgb(110, 0, 0),
@@ -81,7 +87,6 @@ align-items: center;
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    box-shadow: 0 0 20px rgba(0, 194, 42, 0.52);
     background-color: #fff;
 }
 
