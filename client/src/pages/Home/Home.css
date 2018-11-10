@@ -277,7 +277,9 @@
 }
 
 .ability-span {
-    font-size: 1.2rem;
+    position: relative;
+    top: 2px;
+    font-size: 1.25rem;
 }
 
 .fight-stats-text div {
@@ -294,6 +296,11 @@
 
 .fight-stats-text div:hover {
     transform: scale(1.05);
+}
+
+.stat-icons img {
+    position: relative;
+    top: 2px;
 }
 
 @media only screen and (max-width: 500px) {

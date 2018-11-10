@@ -69,6 +69,22 @@ var orm = {
         });
     },
 
+    updateExpFame: (tableName, fame, exp, id, cb) => {
+        var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
+        connection.query(queryString, {fame: fame, exp: exp}, function (err, res) {
+            if (err) throw err;
+            cb(res);
+        });
+    },
+
+    levelUp: (tableName, lvl, hp, exp, tickets_max, id, cb) => {
+        var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
+        connection.query(queryString, {lvl: lvl, hp: hp, exp: exp, tickets: tickets_max, tickets_max: tickets_max}, function (err, res) {
+            if (err) throw err;
+            cb(res);
+        });
+    },
+
     // uploadprofilepic: (tableName) => {
     //     var queryString = "";
     //     connection.query(queryString, function (err, res) {

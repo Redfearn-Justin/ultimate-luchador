@@ -16,6 +16,8 @@ class Fight extends Component {
         profile_pic: "",
         lvl: 0,
         fame: 0,
+        wins: 0,
+        losses: 0,
         inact_hp_base: 0,
         inact_hp: 0,
         act_hp: 0,
@@ -42,7 +44,9 @@ class Fight extends Component {
         ab3_color: "",
         act_attacks: [],
         inact_attacks: [],
-        outcome: ""
+        outcome: "",
+        textCss: "",
+        div: ""
     };
 
     componentDidMount = () => {
@@ -59,6 +63,8 @@ class Fight extends Component {
                     profile_pic: dataArray.profile_pic,
                     lvl: dataArray.lvl,
                     fame: dataArray.fame,
+                    wins: dataArray.wins,
+                    losses: dataArray.losses,
                     inact_hp_base: dataArray.hp,
                     inact_hp: dataArray.hp,
                     act_hp: this.props.storeData.hp,
@@ -99,7 +105,6 @@ class Fight extends Component {
     };
 
     setupRaffle = () => {
-        console.log("setup raffle firing");
         var iaHolder = [];
         var aaHolder = [];
 
@@ -127,11 +132,25 @@ class Fight extends Component {
             inact_attacks: iaHolder
         });
 
-        this.activeAttack();
+        this.chooseAttack();
     }
 
-    activeAttack = () => {
-        var randAttack = this.state.act_attacks[Math.floor(Math.random() * this.state.act_attacks.length)];
+    chooseAttack = () => {
+        const flip =  Math.floor(Math.random() * 2) + 1
+
+        if (flip == 1) {
+            console.log("active")
+            this.activeAttack();
+        } else if (flip == 2) {
+            console.log("iunactive")
+            this.inactiveAttack();
+        } else {
+            alert("shit is bugged yo")
+        }
+    }
+
+    inactiveAttack = () => {
+        var randAttack = this.state.inact_attacks[Math.floor(Math.random() * this.state.inact_attacks.length)];
 
         var diceRoll = Math.floor(Math.random() * 100) + 1;
 
@@ -150,7 +169,7 @@ class Fight extends Component {
                 atkDamage += Math.floor(atkDamage * 0.25);
                 atkCrit = 1;
             } else if (diceRoll <= this.state.ab1_fail * 100) {
-                atkDamage -= Math.floor(atkDamage * 0.4);
+                atkDamage -= Math.floor(atkDamage * 0.25);
                 atkFail = 1;
             }
 
@@ -163,7 +182,7 @@ class Fight extends Component {
                 atkDamage += Math.floor(atkDamage * 0.25);
                 atkCrit = 1;
             } else if (diceRoll <= this.state.ab2_fail * 100) {
-                atkDamage -= Math.floor(atkDamage * 0.4);
+                atkDamage -= Math.floor(atkDamage * 0.25);
                 atkFail = 1;
             }
 
@@ -176,28 +195,28 @@ class Fight extends Component {
                 atkDamage += Math.floor(atkDamage * 0.25);
                 atkCrit = 1;
             } else if (diceRoll <= this.state.ab3_fail * 100) {
-                atkDamage -= Math.floor(atkDamage * 0.4);
+                atkDamage -= Math.floor(atkDamage * 0.25);
                 atkFail = 1;
             }
         }
 
-        var newDamage = this.state.inact_hp - atkDamage;
-        console.log("I did " + atkDamage + ". They now have " + newDamage + ". c" + atkCrit + ". f" +atkFail)
+        var newDamage = this.state.act_hp - atkDamage;
+        console.log("They did " + atkDamage + " with attack "+randAttack+". I now have " + newDamage + ". c" + atkCrit + ". f" +atkFail)
 
         this.setState({
-            inact_hp: newDamage
+            act_hp: newDamage
         })
 
-        if (this.state.inact_hp <= 0) {
-            this.fightEnd("victory");
+        if (this.state.act_hp <= 0) {
+            this.fightEnd("defeat", "results-defeat-text");
         } else {
-            this.inactiveAttack();
+            this.activeAttack();
         }
 
     }
 
-    inactiveAttack = () => {
-        var randAttack = this.state.inact_attacks[Math.floor(Math.random() * this.state.inact_attacks.length)];
+    activeAttack = () => {
+        var randAttack = this.state.act_attacks[Math.floor(Math.random() * this.state.act_attacks.length)];
 
         var diceRoll = Math.floor(Math.random() * 100) + 1;
 
@@ -216,7 +235,7 @@ class Fight extends Component {
                 atkDamage += Math.floor(atkDamage * 0.25);
                 atkCrit = 1;
             } else if (diceRoll <= this.props.storeData.ab1_fail * 100) {
-                atkDamage -= Math.floor(atkDamage * 0.4);
+                atkDamage -= Math.floor(atkDamage * 0.25);
                 atkFail = 1;
             }
 
@@ -229,7 +248,7 @@ class Fight extends Component {
                 atkDamage += Math.floor(atkDamage * 0.25);
                 atkCrit = 1;
             } else if (diceRoll <= this.props.storeData.ab2_fail * 100) {
-                atkDamage -= Math.floor(atkDamage * 0.4);
+                atkDamage -= Math.floor(atkDamage * 0.25);
                 atkFail = 1;
             }
 
@@ -242,30 +261,31 @@ class Fight extends Component {
                 atkDamage += Math.floor(atkDamage * 0.25);
                 atkCrit = 1;
             } else if (diceRoll <= this.props.storeData.ab3_fail * 100) {
-                atkDamage -= Math.floor(atkDamage * 0.4);
+                atkDamage -= Math.floor(atkDamage * 0.25);
                 atkFail = 1;
             }
         }
 
-        var newDamage = this.state.act_hp - atkDamage;
-        console.log("they did " + atkDamage + ". I now have " + newDamage + ". c" + atkCrit + ". f" +atkFail)
+        var newDamage = this.state.inact_hp - atkDamage;
+        console.log("I did " + atkDamage + ". They now have " + newDamage + ". c" + atkCrit + ". f" +atkFail)
 
         this.setState({
-            act_hp: newDamage
+            inact_hp: newDamage
         })
 
-        if (this.state.act_hp <= 0) {
-            this.fightEnd("defeat");
+        if (this.state.inact_hp <= 0) {
+            this.fightEnd("victory", "results-victory-text");
         } else {
-            this.activeAttack();
+            this.inactiveAttack();
         }
 
     }
 
-    fightEnd = (outcome) => {
-        console.log("Outcome: "+outcome)
+    fightEnd = (outcome, textCss) => {
+        console.log("Outcome: "+outcome);
         this.setState({
-            outcome: outcome
+            outcome: outcome,
+            textCss: textCss
         })
     }
 
@@ -310,7 +330,7 @@ class Fight extends Component {
                                 <div className="fight-speed-up">speed up</div>
                             </div>
                             <div className="fight-speed-bar">
-                                <div className="fight-finish" onClick={() => this.props.setPageName("FightResults")}>finish</div>
+                                <div className="fight-finish" onClick={() => this.props.fightResults("FightResults", this.state.outcome, this.state.textCss, this.state.id)}>finish</div>
                             </div>
 
                         </div>

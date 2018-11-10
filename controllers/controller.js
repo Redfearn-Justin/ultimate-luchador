@@ -51,5 +51,31 @@ router.get("/api/selectSingleOpponent/:id", function (req, res) {
     );
 });
 
+router.put("/api/updateExpFame", function (req, res) {
+    orm.updateExpFame(
+        "players",
+        req.body.fame,
+        req.body.exp,
+        req.body.id,
+        function (result) {
+            res.json(result);
+        }
+    );
+});
+
+router.put("/api/levelUp", function (req, res) {
+    orm.levelUp(
+        "players",
+        req.body.lvl,
+        req.body.hp,
+        req.body.exp,
+        req.body.tickets_max,
+        req.body.id,
+        function (result) {
+            res.json(result);
+        }
+    );
+});
+
 // EXPORT OUR ROUTER
 module.exports = router;

@@ -3,6 +3,8 @@ import { createStore } from 'redux';
 const defaultStore = {
     pageName: "Splash",
     inactiveId: "x",
+    outcome: "x",
+    textCss: "x",
     id: "x",
     token: "x",
     last_login: "x",
@@ -51,10 +53,30 @@ const storeData = (state = defaultStore, action) => {
             return Object.assign({}, state, {
                 pageName: action.pageName,
             })
+        case 'LEVEL_UP':
+            return Object.assign({}, state, {
+                exp: action.exp,
+                lvl: action.lvl,
+                hp: action.hp,
+                tickets: action.tickets_max,
+                tickets_max: action.tickets_max,
+            })
         case 'CHOOSE_OPPONENT':
             return Object.assign({}, state, {
                 pageName: action.pageName,
                 inactiveId: action.id
+            })
+        case 'FIGHT_RESULTS':
+            return Object.assign({}, state, {
+                pageName: action.pageName,
+                outcome: action.outcome,
+                textCss: action.textCss,
+                inactiveId: action.id
+            })
+        case 'UPDATE_EXP_FAME':
+            return Object.assign({}, state, {
+                exp: action.exp,
+                fame: action.fame,
             })
         case 'LOGIN_DATA':
             return Object.assign({}, state, {
@@ -111,6 +133,3 @@ const store = createStore(
 
 window.store = store;
 export default store;
-
-// object assign in our switch case to 
-// return Object.assign({}, state.active_player,{attk: 25})
