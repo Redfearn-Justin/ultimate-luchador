@@ -80,7 +80,7 @@ class Login extends Component {
 
                 let email = currentAccount.email;
 
-                let uid = 11;
+                let uid = currentAccount.uid;
 
                 //Last Log in time (being converted from GMT to local time)
                 let lastLogIn = currentAccount.metadata.lastSignInTime;
@@ -97,9 +97,6 @@ class Login extends Component {
                     LastLogIn: convertedTime,
                     currentTime: currentTime
                 };
-
-                //let uid = 100;
-
 
                 console.log(userInfo);
     

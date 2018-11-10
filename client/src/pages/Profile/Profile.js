@@ -3,23 +3,45 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
+<<<<<<< HEAD
 // import ImageUploader from 'react-images-upload';
 
+=======
+import ImageUploader from 'react-images-upload';
+import Dropzone from 'react-dropzone'
+>>>>>>> master
 import "./Profile.css";
+
 
 class Profile extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = { pictures: [] };
-        this.onDrop = this.onDrop.bind(this);
+    state = {
+        src: ""
     }
 
-    onDrop(picture) {
-        console.log(picture);
+    onDrop(files) {
         this.setState({
-            pictures: this.state.pictures.concat(picture),
+            files
         });
+    }
+
+    onCancel() {
+        this.setState({
+            files: []
+        });
+    }
+
+    handleFile = (event: SyntheticEvent<HTMLImageElement>) => {
+        event.preventDefault();
+        if (event.target.files[0]) {
+            var reader = new FileReader();
+            reader.readAsDataURL(event.currentTarget.files[0]);
+            reader.onloadend = evt => {
+                this.setState({
+                    src: evt.target.result,
+                });
+            };
+        }
     }
 
     render() {
@@ -31,6 +53,7 @@ class Profile extends Component {
 
                     <div className="profile-main-bar">
                         <div className="profile-uploader">
+<<<<<<< HEAD
                             {/* <ImageUploader
                                 withIcon={false}
                                 // buttonText='Choose images'
@@ -38,9 +61,31 @@ class Profile extends Component {
                                 imgExtension={['.jpg', '.gif', '.png', '.gif']}
                                 maxFileSize={5242880}
                             /> */}
+=======
+
+                            {/* <div className="dropzone">
+                                <Dropzone
+                                    onDrop={this.onDrop.bind(this)}
+                                    onFileDialogCancel={this.onCancel.bind(this)}
+                                >
+                                    <p>Drop a file.</p>
+                                    <ul>
+                                    {
+                                        this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
+                                    }
+                                </ul>
+                                </Dropzone>
+                            </div> */}
+>>>>>>> master
                         </div>
                         <div className="profile-uploader">
-                            <div className="profile-picture"></div>
+                            <div className="profile-picture">
+                                <img src={this.state.src}></img>
+                                <input onInput={this.handleFile}
+                                    type="file"
+                                    accept="image/*"
+                                />
+                            </div>
                         </div>
                     </div>
 
@@ -70,8 +115,8 @@ class Profile extends Component {
             </div>
         );
     };
+}
 
-};
 
 const mapStateToProps = state => ({ storeData: state });
 const mapDispatchToProps = dispatch => (bindActionCreators(actionCreators, dispatch));

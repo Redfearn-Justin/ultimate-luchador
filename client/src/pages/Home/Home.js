@@ -63,10 +63,10 @@ class Splash extends Component {
                                 <div className="opponent-stats-bar">
                                     <span className="ability-span" style={{ color: this.props.storeData.ab1_color }}>{this.props.storeData.ab1_name}</span>
                                 </div>
-                                <div className="opponent-stats-bar">
-                                    <div>{this.props.storeData.ab1_dlow}-{this.props.storeData.ab1_dhigh}<img alt="icon" src="./images/icon_sword.svg" /></div>
-                                    <div>{this.props.storeData.ab1_speed}/5<img alt="icon" src="./images/icon_speed.svg" /></div>
-                                    <div>{this.props.storeData.ab1_crit * 100}%<img alt="icon" src="./images/icon_crit.svg" /></div>
+                                <div className="opponent-stats-bar stat-icons">
+                                    <div><span>{this.props.storeData.ab1_dlow}-{this.props.storeData.ab1_dhigh}<img alt="icon" src="./images/icon_sword.svg" /></span></div>
+                                    <div><span>{this.props.storeData.ab1_speed}/5<img alt="icon" src="./images/icon_speed.svg" /></span></div>
+                                    <div><span>{this.props.storeData.ab1_crit * 100}%<img alt="icon" src="./images/icon_crit.svg" /></span></div>
                                 </div>
                             </div>
                         </div>
@@ -84,10 +84,10 @@ class Splash extends Component {
                                 </div></div>
                             <div className="opponent-stats">
                                 <div className="opponent-stats-bar"><span className="ability-span" style={{ color: this.props.storeData.ab2_color }}>{this.props.storeData.ab2_name}</span></div>
-                                <div className="opponent-stats-bar">
-                                    <div>{this.props.storeData.ab2_dlow}-{this.props.storeData.ab2_dhigh}<img alt="icon" src="./images/icon_sword.svg" /></div>
-                                    <div>{this.props.storeData.ab2_speed}/5<img alt="icon" src="./images/icon_speed.svg" /></div>
-                                    <div>{this.props.storeData.ab2_crit * 100}%<img alt="icon" src="./images/icon_crit.svg" /></div>
+                                <div className="opponent-stats-bar stat-icons">
+                                    <div><span>{this.props.storeData.ab2_dlow}-{this.props.storeData.ab2_dhigh}<img alt="icon" src="./images/icon_sword.svg" /></span></div>
+                                    <div><span>{this.props.storeData.ab2_speed}/5<img alt="icon" src="./images/icon_speed.svg" /></span></div>
+                                    <div><span>{this.props.storeData.ab2_crit * 100}%<img alt="icon" src="./images/icon_crit.svg" /></span></div>
                                 </div>
                             </div>
                         </div>
@@ -105,10 +105,10 @@ class Splash extends Component {
                                 </div></div>
                             <div className="opponent-stats">
                                 <div className="opponent-stats-bar"><span className="ability-span" style={{ color: this.props.storeData.ab3_color }}>{this.props.storeData.ab3_name}</span></div>
-                                <div className="opponent-stats-bar">
-                                    <div>{this.props.storeData.ab3_dlow}-{this.props.storeData.ab3_dhigh}<img alt="icon" src="./images/icon_sword.svg" /></div>
-                                    <div>{this.props.storeData.ab3_speed}/5<img alt="icon" src="./images/icon_speed.svg" /></div>
-                                    <div>{this.props.storeData.ab3_crit * 100}%<img alt="icon" src="./images/icon_crit.svg" /></div>
+                                <div className="opponent-stats-bar stat-icons">
+                                    <div><span>{this.props.storeData.ab3_dlow}-{this.props.storeData.ab3_dhigh}<img alt="icon" src="./images/icon_sword.svg" /></span></div>
+                                    <div><span>{this.props.storeData.ab3_speed}/5<img alt="icon" src="./images/icon_speed.svg" /></span></div>
+                                    <div><span>{this.props.storeData.ab3_crit * 100}%<img alt="icon" src="./images/icon_crit.svg" /></span></div>
                                 </div>
                             </div>
                         </div>
