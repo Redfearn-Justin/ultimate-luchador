@@ -11,15 +11,31 @@ import "./Home.css";
 
 class Splash extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            imgFile: ""
+        }
+    }
+
+    componentDidMount = () => {
+        if (localStorage.getItem("imgFile")) {
+            
+            this.setState({
+                imgFile: localStorage.getItem("imgFile")
+            })
+        }
+    }
     widthBar = () => {
         var a = 170;
         var b = 200;
-        var sol = Math.floor((a/b)*100);
+        var sol = Math.floor((a / b) * 100);
         console.log("this is sol " + sol);
         return sol;
     }
 
     render() {
+        console.log(this.state);
         return (
             <div className="container">
                 <div className="box home-box">
@@ -33,14 +49,16 @@ class Splash extends Component {
                         {/* PROFILE PICTURE */}
                         <div className="profile-info-bar">
                             <div className="profile-left-icon flex-fix">
-                                <div className="profile-picture" style={{ backgroundImage: "url(" + this.props.storeData.profile_pic + ")", backgroundSize: "cover" }}></div>
+                                <div className="profile-picture" style={{ backgroundImage: "url(" + this.props.storeData.profile_pic + ")", backgroundSize: "cover" }}>
+                                <img src={this.state.imgFile}></img>
+                                </div>
                             </div>
                             <div className="profile-col">
                                 <div className="profile-player-info player-name"><span style={{ marginTop: "10px" }}>{this.props.storeData.char_name}</span></div>
                                 <div className="profile-player-info">
 
                                     <div className="player-level-bar">
-                                        <div className="player-exp" style={{ width: this.widthBar() + "%"}}></div>
+                                        <div className="player-exp" style={{ width: this.widthBar() + "%" }}></div>
                                         <div className="player-exp-stats">123/456 x</div>
                                         <div className="player-exp-lvl">12</div>
                                     </div>
