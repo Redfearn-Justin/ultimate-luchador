@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
 import axios from "axios";
 
+import FightText from "../../components/FightText";
+
 import "./Fight.css";
 
 class Fight extends Component {
@@ -46,7 +48,8 @@ class Fight extends Component {
         inact_attacks: [],
         outcome: "",
         textCss: "",
-        div: ""
+        divArray: [],
+        arrayId: 0
     };
 
     componentDidMount = () => {
@@ -88,7 +91,9 @@ class Fight extends Component {
                     ab3_speed: dataArray.ab3_speed,
                     ab3_crit: dataArray.ab3_crit,
                     ab3_fail: dataArray.ab3_fail,
-                    ab3_color: dataArray.ab3_color
+                    ab3_color: dataArray.ab3_color,
+                    divArray: [],
+                    arrayId: 0
                 });
                 console.log("---1) my hp: " + this.state.act_hp + " their hp: " + this.state.inact_hp);
                 this.setupRaffle();
@@ -136,7 +141,7 @@ class Fight extends Component {
     }
 
     chooseAttack = () => {
-        const flip =  Math.floor(Math.random() * 2) + 1
+        const flip = Math.floor(Math.random() * 2) + 1
 
         if (flip == 1) {
             console.log("active")
@@ -157,8 +162,8 @@ class Fight extends Component {
         var atkName = "";
         var atkColor = "";
         var atkDamage = 0;
-        var atkCrit = 0;
-        var atkFail = 0;
+        var atkCrit = "";
+        var atkFail = "";
 
         if (randAttack == "1") {
             atkDamage = this.getRandomInteger(this.state.ab1_dlow, this.state.ab1_dhigh);
@@ -167,10 +172,10 @@ class Fight extends Component {
 
             if (diceRoll >= 100 - (this.state.ab1_crit * 100)) {
                 atkDamage += Math.floor(atkDamage * 0.25);
-                atkCrit = 1;
+                atkCrit = "crit! ";
             } else if (diceRoll <= this.state.ab1_fail * 100) {
                 atkDamage -= Math.floor(atkDamage * 0.25);
-                atkFail = 1;
+                atkFail = "slip! ";
             }
 
         } else if (randAttack == "2") {
@@ -178,12 +183,12 @@ class Fight extends Component {
             atkName = this.state.ab2_name;
             atkColor = this.state.ab2_color;
 
-            if (diceRoll >= 100 - (this.state.ab2_crit * 100)) {
+            if (diceRoll >= 100 - (this.state.ab1_crit * 100)) {
                 atkDamage += Math.floor(atkDamage * 0.25);
-                atkCrit = 1;
-            } else if (diceRoll <= this.state.ab2_fail * 100) {
+                atkCrit = "crit! ";
+            } else if (diceRoll <= this.state.ab1_fail * 100) {
                 atkDamage -= Math.floor(atkDamage * 0.25);
-                atkFail = 1;
+                atkFail = "slip! ";
             }
 
         } else if (randAttack == "3") {
@@ -191,20 +196,39 @@ class Fight extends Component {
             atkName = this.state.ab3_name;
             atkColor = this.state.ab3_color;
 
-            if (diceRoll >= 100 - (this.state.ab3_crit * 100)) {
+            if (diceRoll >= 100 - (this.state.ab1_crit * 100)) {
                 atkDamage += Math.floor(atkDamage * 0.25);
-                atkCrit = 1;
-            } else if (diceRoll <= this.state.ab3_fail * 100) {
+                atkCrit = "crit! ";
+            } else if (diceRoll <= this.state.ab1_fail * 100) {
                 atkDamage -= Math.floor(atkDamage * 0.25);
-                atkFail = 1;
+                atkFail = "slip! ";
             }
         }
 
         var newDamage = this.state.act_hp - atkDamage;
-        console.log("They did " + atkDamage + " with attack "+randAttack+". I now have " + newDamage + ". c" + atkCrit + ". f" +atkFail)
+        console.log("They did " + atkDamage + " with attack " + randAttack + ". I now have " + newDamage + ". c" + atkCrit + ". f" + atkFail)
+
+        var dr = Math.floor(Math.random() * 7) + 1;
+
+        var pObject = {
+            who: "you",
+            results_color: "rgb(253, 48, 55)",
+            text_shadow: "1px 1px rgb(253, 48, 55, 0.4)",
+            dr: dr,
+            id: this.state.arrayId,
+            dmg: atkDamage,
+            hp_left: newDamage,
+            crit: atkCrit,
+            fail: atkFail,
+            name: this.state.char_name,
+            ab_name: atkName,
+            ab_color: atkColor
+        }
 
         this.setState({
-            act_hp: newDamage
+            act_hp: newDamage,
+            divArray: [...this.state.divArray, { obj: pObject }],
+            arrayId: this.state.arrayId += 1
         })
 
         if (this.state.act_hp <= 0) {
@@ -223,20 +247,20 @@ class Fight extends Component {
         var atkName = "";
         var atkColor = "";
         var atkDamage = 0;
-        var atkCrit = 0;
-        var atkFail = 0;
+        var atkCrit = "";
+        var atkFail = "";
 
         if (randAttack == "1") {
             atkDamage = this.getRandomInteger(this.props.storeData.ab1_dlow, this.props.storeData.ab1_dhigh);
             atkName = this.props.storeData.ab1_name;
             atkColor = this.props.storeData.ab1_color;
 
-            if (diceRoll >= 100 - (this.props.storeData.ab1_crit * 100)) {
+            if (diceRoll >= 100 - (this.state.ab1_crit * 100)) {
                 atkDamage += Math.floor(atkDamage * 0.25);
-                atkCrit = 1;
-            } else if (diceRoll <= this.props.storeData.ab1_fail * 100) {
+                atkCrit = "crit! ";
+            } else if (diceRoll <= this.state.ab1_fail * 100) {
                 atkDamage -= Math.floor(atkDamage * 0.25);
-                atkFail = 1;
+                atkFail = "slip! ";
             }
 
         } else if (randAttack == "2") {
@@ -244,12 +268,12 @@ class Fight extends Component {
             atkName = this.props.storeData.ab2_name;
             atkColor = this.props.storeData.ab2_color;
 
-            if (diceRoll >= 100 - (this.props.storeData.ab2_crit * 100)) {
+            if (diceRoll >= 100 - (this.state.ab1_crit * 100)) {
                 atkDamage += Math.floor(atkDamage * 0.25);
-                atkCrit = 1;
-            } else if (diceRoll <= this.props.storeData.ab2_fail * 100) {
+                atkCrit = "crit! ";
+            } else if (diceRoll <= this.state.ab1_fail * 100) {
                 atkDamage -= Math.floor(atkDamage * 0.25);
-                atkFail = 1;
+                atkFail = "slip! ";
             }
 
         } else if (randAttack == "3") {
@@ -257,20 +281,39 @@ class Fight extends Component {
             atkName = this.props.storeData.ab3_name;
             atkColor = this.props.storeData.ab3_color;
 
-            if (diceRoll >= 100 - (this.props.storeData.ab3_crit * 100)) {
+            if (diceRoll >= 100 - (this.state.ab1_crit * 100)) {
                 atkDamage += Math.floor(atkDamage * 0.25);
-                atkCrit = 1;
-            } else if (diceRoll <= this.props.storeData.ab3_fail * 100) {
+                atkCrit = "crit! ";
+            } else if (diceRoll <= this.state.ab1_fail * 100) {
                 atkDamage -= Math.floor(atkDamage * 0.25);
-                atkFail = 1;
+                atkFail = "slip! ";
             }
         }
 
         var newDamage = this.state.inact_hp - atkDamage;
-        console.log("I did " + atkDamage + ". They now have " + newDamage + ". c" + atkCrit + ". f" +atkFail)
+        console.log("I did " + atkDamage + ". They now have " + newDamage + ". c" + atkCrit + ". f" + atkFail)
+
+        var dr = Math.floor(Math.random() * 7) + 1;
+
+        var pObject = {
+            who: "they",
+            results_color: "rgb(0, 194, 42)",
+            text_shadow: "1px 1px rgb(0, 194, 42, 0.4)",
+            dr: dr,
+            id: this.state.arrayId,
+            dmg: atkDamage,
+            hp_left: newDamage,
+            crit: atkCrit,
+            fail: atkFail,
+            name: this.props.storeData.char_name,
+            ab_name: atkName,
+            ab_color: atkColor
+        }
 
         this.setState({
-            inact_hp: newDamage
+            inact_hp: newDamage,
+            divArray: [...this.state.divArray, { obj: pObject }],
+            arrayId: this.state.arrayId += 1
         })
 
         if (this.state.inact_hp <= 0) {
@@ -282,7 +325,7 @@ class Fight extends Component {
     }
 
     fightEnd = (outcome, textCss) => {
-        console.log("Outcome: "+outcome);
+        console.log("Outcome: " + outcome);
         this.setState({
             outcome: outcome,
             textCss: textCss
@@ -313,10 +356,24 @@ class Fight extends Component {
                     <div className="fighting-bar">
 
                         <div className="fight-build-box">
-                            <p>hi</p>
-                            <p>hi</p>
-                            <p>hi</p>
-                            <p>hi</p>
+                            {this.state.divArray.map(p => (
+                                <FightText
+                                    id={p.obj.id}
+                                    key={p.obj.id}
+                                    dmg={p.obj.dmg}
+                                    hp_left={p.obj.hp_left}
+                                    crit={p.obj.crit}
+                                    fail={p.obj.fail}
+                                    name={p.obj.name}
+                                    ab_name={p.obj.ab_name}
+                                    ab_color={p.obj.ab_color}
+                                    dr={p.obj.dr}
+                                    text_shadow={p.obj.text_shadow}
+                                    results_color={p.obj.results_color}
+                                    who={p.obj.who}
+                                />
+                            ))}
+                            <p style={{ marginBottom: "100px" }}>fight over</p>
                         </div>
 
                         <div className="fight-fade-top"></div>

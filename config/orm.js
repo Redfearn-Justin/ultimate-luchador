@@ -69,17 +69,57 @@ var orm = {
         });
     },
 
-    updateExpFame: (tableName, fame, exp, id, cb) => {
+    updateExpFame: (tableName, fame, exp, wins, losses, id, cb) => {
         var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
-        connection.query(queryString, {fame: fame, exp: exp}, function (err, res) {
+        connection.query(queryString, {fame: fame, exp: exp, wins: wins, losses: losses}, function (err, res) {
             if (err) throw err;
             cb(res);
         });
     },
 
-    levelUp: (tableName, lvl, hp, exp, tickets_max, id, cb) => {
+    levelUp: (tableName, lvl, hp, exp, tickets_max, refresh, id, cb) => {
         var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
-        connection.query(queryString, {lvl: lvl, hp: hp, exp: exp, tickets: tickets_max, tickets_max: tickets_max}, function (err, res) {
+        connection.query(queryString, {lvl: lvl, hp: hp, exp: exp, tickets: tickets_max, tickets_max: tickets_max, refresh: refresh}, function (err, res) {
+            if (err) throw err;
+            cb(res);
+        });
+    },
+
+    useTicket: (tableName, tickets, id, cb) => {
+        var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
+        connection.query(queryString, {tickets: tickets}, function (err, res) {
+            if (err) throw err;
+            cb(res);
+        });
+    },
+
+    useRefresh: (tableName, refresh, tickets, id, cb) => {
+        var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
+        connection.query(queryString, {refresh: refresh, tickets: tickets}, function (err, res) {
+            if (err) throw err;
+            cb(res);
+        });
+    },
+
+    newAbility1: (tableName, ab1_name, ab1_dlow, ab1_dhigh, ab1_speed, ab1_crit, ab1_color, ab1_icon, id, cb) => {
+        var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
+        connection.query(queryString, {ab1_name: ab1_name, ab1_dlow: ab1_dlow, ab1_dhigh: ab1_dhigh, ab1_speed: ab1_speed, ab1_crit: ab1_crit, ab1_color: ab1_color, ab1_icon: ab1_icon}, function (err, res) {
+            if (err) throw err;
+            cb(res);
+        });
+    },
+
+    newAbility2: (tableName, ab2_name, ab2_dlow, ab2_dhigh, ab2_speed, ab2_crit, ab2_color, ab2_icon, id, cb) => {
+        var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
+        connection.query(queryString, {ab2_name: ab2_name, ab2_dlow: ab2_dlow, ab2_dhigh: ab2_dhigh, ab2_speed: ab2_speed, ab2_crit: ab2_crit, ab2_color: ab2_color, ab2_icon: ab2_icon}, function (err, res) {
+            if (err) throw err;
+            cb(res);
+        });
+    },
+
+    newAbility3: (tableName, ab3_name, ab3_dlow, ab3_dhigh, ab3_speed, ab3_crit, ab3_color, ab3_icon, id, cb) => {
+        var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
+        connection.query(queryString, {ab3_name: ab3_name, ab3_dlow: ab3_dlow, ab3_dhigh: ab3_dhigh, ab3_speed: ab3_speed, ab3_crit: ab3_crit, ab3_color: ab3_color, ab3_icon: ab3_icon}, function (err, res) {
             if (err) throw err;
             cb(res);
         });

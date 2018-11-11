@@ -56,6 +56,8 @@ router.put("/api/updateExpFame", function (req, res) {
         "players",
         req.body.fame,
         req.body.exp,
+        req.body.wins,
+        req.body.losses,
         req.body.id,
         function (result) {
             res.json(result);
@@ -70,6 +72,81 @@ router.put("/api/levelUp", function (req, res) {
         req.body.hp,
         req.body.exp,
         req.body.tickets_max,
+        req.body.refresh,
+        req.body.id,
+        function (result) {
+            res.json(result);
+        }
+    );
+});
+
+router.put("/api/useTicket", function (req, res) {
+    orm.useTicket(
+        "players",
+        req.body.tickets,
+        req.body.id,
+        function (result) {
+            res.json(result);
+        }
+    );
+});
+
+router.put("/api/useRefresh", function (req, res) {
+    orm.useRefresh(
+        "players",
+        req.body.refresh,
+        req.body.tickets,
+        req.body.id,
+        function (result) {
+            res.json(result);
+        }
+    );
+});
+
+router.put("/api/newAbility1", function (req, res) {
+    orm.newAbility1(
+        "players",
+        req.body.ab1_name,
+        req.body.ab1_dlow,
+        req.body.ab1_dhigh,
+        req.body.ab1_speed,
+        req.body.ab1_crit,
+        req.body.ab1_color,
+        req.body.ab1_icon,
+        req.body.id,
+        function (result) {
+            res.json(result);
+        }
+    );
+});
+
+router.put("/api/newAbility2", function (req, res) {
+    orm.newAbility2(
+        "players",
+        req.body.ab2_name,
+        req.body.ab2_dlow,
+        req.body.ab2_dhigh,
+        req.body.ab2_speed,
+        req.body.ab2_crit,
+        req.body.ab2_color,
+        req.body.ab2_icon,
+        req.body.id,
+        function (result) {
+            res.json(result);
+        }
+    );
+});
+
+router.put("/api/newAbility3", function (req, res) {
+    orm.newAbility3(
+        "players",
+        req.body.ab3_name,
+        req.body.ab3_dlow,
+        req.body.ab3_dhigh,
+        req.body.ab3_speed,
+        req.body.ab3_crit,
+        req.body.ab3_color,
+        req.body.ab3_icon,
         req.body.id,
         function (result) {
             res.json(result);

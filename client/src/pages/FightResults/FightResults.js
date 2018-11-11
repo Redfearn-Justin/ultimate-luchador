@@ -22,7 +22,7 @@ class FightResults extends Component {
         newFame: 0,
         fameEarned: 0,
         newExp: 0,
-        expEarned: 0,
+        expEarned: 1,
     }
 
     componentDidMount = () => {
@@ -91,9 +91,15 @@ class FightResults extends Component {
             if (this.props.storeData.fame >= this.state.fame) {
                 // if you lose and your fame is higher
                 fameGain = this.getRandomNegInteger(6, 10);
+                if (-fameGain >= this.props.storeData.fame) {
+                    fameGain = 0;
+                }
             } else if (this.props.storeData.fame < this.state.fame) {
                 // if you lose and their fame is higher
                 fameGain = this.getRandomNegInteger(2, 4);
+                if (-fameGain >= this.props.storeData.fame) {
+                    fameGain = 0;
+                }
             }
         } // if end
 
@@ -107,8 +113,11 @@ class FightResults extends Component {
 
     calculateExp = () => {
         var expGain = 0;
+        var passWins = this.props.storeData.wins;
+        var passLoss = this.props.storeData.losses;
 
         if (this.props.storeData.outcome == "victory") {
+            passWins = this.props.storeData.wins += 1;
             if (this.props.storeData.lvl >= this.state.lvl) {
                 // if you win and your lvl is higher
                 expGain = this.getRandomInteger(25, 50);
@@ -116,16 +125,21 @@ class FightResults extends Component {
                 // if you win and their lvl is higher
                 expGain = this.getRandomInteger(40, 75);
             }
-        } // if end
+        } else {
+            passLoss = this.props.storeData.losses += 1;;
+        }// if end
 
         this.setState({
             expEarned: expGain,
             newExp: this.props.storeData.exp += expGain,
         });
 
-        // this.props.updateExpFame(this.state.newExp, this.state.newFame);
+        var passExp = this.props.storeData.exp += expGain;
+        var passFame = this.state.newFame;
 
-        axios.put('/api/updateExpFame/', {fame: this.state.newFame, exp: this.state.newExp, id: this.props.storeData.id})
+        this.props.updateExpFame(passExp, passFame, passWins, passLoss);
+
+        axios.put('/api/updateExpFame/', {fame: this.state.newFame, exp: this.state.newExp, id: this.props.storeData.id, wins: passWins, losses: passLoss})
         .then(response => {
            console.log(response);
         })
@@ -213,7 +227,7 @@ class FightResults extends Component {
                             <div className="results-stats-single-stat">exp: {this.state.expEarned}</div>
                         </div>
                         <div className="results-stats-home">
-                            <div className="button" onClick={this.homeButton}>home</div>
+                            <div className="button" onClick={this.homeButton}>proceed</div>
                         </div>
                     </div>
 
