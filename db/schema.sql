@@ -11,14 +11,14 @@ CREATE TABLE players (
     last_login TIMESTAMP NOT NULL DEFAULT current_timestamp,
     
     char_name VARCHAR(30) NOT NULL,
-    profile_pic VARCHAR (200) DEFAULT "./images/default.jpg",
+    profile_pic VARCHAR (250) DEFAULT "./images/default.jpg",
 
     exp INTEGER(5) NOT NULL DEFAULT 0,
     lvl INTEGER(2) NOT NULL DEFAULT 1,
     new_ability INTEGER(1) DEFAULT 0,
 
     fame INTEGER(4) NOT NULL DEFAULT 0,
-    hp INTEGER(3) NOT NULL DEFAULT 100,
+    hp INTEGER(3) NOT NULL DEFAULT 75,
 
     fights INTEGER (4) NOT NULL DEFAULT 0,
     wins INTEGER (4) NOT NULL DEFAULT 0,
@@ -30,7 +30,7 @@ CREATE TABLE players (
     refresh INTEGER (2) NOT NULL DEFAULT 0,
 
     ab1_name VARCHAR(30) NOT NULL DEFAULT "Flying Elbow",
-    ab1_dlow INTEGER(3) NOT NULL DEFAULT 7,
+    ab1_dlow INTEGER(3) NOT NULL DEFAULT 8,
     ab1_dhigh INTEGER(3) NOT NULL DEFAULT 15,
     ab1_speed INTEGER(1) NOT NULL DEFAULT 5,
     ab1_crit DECIMAL(3,2) NOT NULL DEFAULT 0.10,

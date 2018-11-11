@@ -17,7 +17,7 @@ function updateTicket() {
 
             connection.end();
         });
-
-}
+        
+};
 
 updateTicket();

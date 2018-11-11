@@ -85,13 +85,25 @@ var orm = {
         });
     },
 
-    // uploadprofilepic: (tableName) => {
-    //     var queryString = "";
-    //     connection.query(queryString, function (err, res) {
-    //         if (err) throw err;
-    //         cb(res);
-    //     });
-    // }
+    //Create/Connect account to SQL DB
+    //====================================
+    insertOne: (id, created, last_login, char_name, cb) => {
+        var queryString = "INSERT INTO players (id, created, last_login, char_name) VALUES ?";
+        connection.query(queryString, [id, created, last_login, char_name], function (err, res) {
+            if (err) throw err;
+            cb(res);
+        });
+    },
+
+    //last login time update test method
+    //=================================
+    updateOne: (tableName, id, cb) => {
+        var queryString = "UPDATE last_login " + tableName + " WHERE id = " + id;
+        connection.query(queryString, function (err, res) {
+            if (err) throw err;
+            cb(res);
+        });
+    },
 
 };
 // =============================
