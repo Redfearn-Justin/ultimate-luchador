@@ -80,8 +80,8 @@ class Login extends Component {
 
                 let email = currentAccount.email;
 
-                let uid = 100;
-                // let uid = currentAccount.uid; <- UNCOMMENT, JUST USED FOR TEST
+                // let uid = 100;
+                let uid = currentAccount.uid;
 
                 //verifying uid and email are successfully passed through 
                 console.log(`${uid} - is the id for the following email account: ${email}`);

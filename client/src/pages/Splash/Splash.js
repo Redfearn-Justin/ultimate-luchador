@@ -8,6 +8,7 @@ import axios from "axios";
 import "./Splash.css";
 import SplashTop from "../../components/SplashTop"
 import firebase, { auth } from "../../firebase";
+import moment from "moment";
 
 
 //Class
@@ -22,6 +23,7 @@ class Splash extends Component {
         //binding 'this' to the componentDidMount method
         this.componentDidMount.bind(this);
     }
+
     componentDidMount = () => {
         auth.onAuthStateChanged(firebaseUser => {
             if (firebaseUser) {
@@ -29,6 +31,7 @@ class Splash extends Component {
               // User is signed in, therfore...
               let email = firebaseUser.email;
               let uid = firebaseUser.uid;
+              
               //Time stamps
               //Last Log in time (being converted from GMT to local time)
               let lastLogIn = firebaseUser.metadata.lastSignInTime;

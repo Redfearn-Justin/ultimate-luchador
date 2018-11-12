@@ -168,8 +168,9 @@ router.put("/api/updateTime", function (req, res) {
 //create account in SQL DB
 //====================================================
 router.post("/api/createAccount", function (req, res) {
-    orm.insertOne(
-        req.body.uid,
+    orm.createAccount(
+        "players",
+        req.body.token,
         req.body.created,
         req.body.last_login,
         req.body.char_name,

@@ -8,6 +8,7 @@ import "./NewAccount.css";
 import firebase, { auth, database } from "../../firebase";
 import SplashTop from "../../components/SplashTop"
 import axios from "axios";
+import moment from "moment";
 
 //class
 //==================================================
@@ -92,7 +93,7 @@ class NewAccount extends Component {
                 let email = currentAccount.email;
                 let uid = currentAccount.uid;
                 let displayName = this.state.displayName.toLowerCase();
-                let currentTime = new Date().toLocaleString();
+                var mysqlTimestamp = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
 
                 //Object to put user token and display name into firebase DB
                 const newUserInfo = {
@@ -107,22 +108,18 @@ class NewAccount extends Component {
                  //API Call
                 //=======================================================
                 axios.post('/api/createAccount', {
-                    id: uid,
-                    created: currentTime,
-                    last_login: currentTime,
+                    token: uid,
+                    created: mysqlTimestamp,
+                    last_login: mysqlTimestamp,
                     char_name: displayName
                 })
                 .then(response => {
                     console.log(response);
-                    this.props.setPageName("Splash");
+                    this.props.setPageName("Login");
                 })
                 .catch(err => {
                     console.log(err);
                 });
-
-                //since successful creation, proceeding to next phase
-                //=========================================================
-                // setTimeout(() => this.props.setPageName("Splash"), 1000);
 
             })
             .catch(error => {

@@ -45,9 +45,9 @@ var orm = {
         });
     },
 
-    selectLuchador: (tableName, uid, cb) => {
-        var queryString = "SELECT * FROM " + tableName + " WHERE token = " + uid;
-        connection.query(queryString, function (err, res) {
+    selectLuchador: (tableName, token, cb) => {
+        var queryString = "SELECT * FROM " + tableName + " WHERE ?";
+        connection.query(queryString, {token: token}, function (err, res) {
             if (err) throw err;
             cb(res);
         });
@@ -127,9 +127,10 @@ var orm = {
 
     //Create/Connect account to SQL DB
     //====================================
-    insertOne: (id, created, last_login, char_name, cb) => {
-        var queryString = "INSERT INTO players (id, created, last_login, char_name) VALUES ?";
-        connection.query(queryString, [id, created, last_login, char_name], function (err, res) {
+    createAccount: (tableName, token, created, last_login, char_name, cb) => {
+        var queryString = `INSERT INTO ${tableName} SET ?`;
+        console.log(queryString);
+        connection.query(queryString, {token: token, created: created, last_login: last_login, char_name: char_name}, function (err, res) {
             if (err) throw err;
             cb(res);
         });
