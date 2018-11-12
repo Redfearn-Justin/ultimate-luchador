@@ -87,10 +87,15 @@ class NewAccount extends Component {
 
                 this.setState({ user: newUser });
 
+<<<<<<< HEAD
                 //getting account variables for SQL
+=======
+                //getting the current user according to firebase
+>>>>>>> master
                 const currentAccount = auth.currentUser;
                 let uid = currentAccount.uid;
                 let displayName = this.state.displayName.toLowerCase();
+<<<<<<< HEAD
                 //current time
                 let currentTime = new Date().toLocaleString();
                 //=========================================
@@ -109,10 +114,39 @@ class NewAccount extends Component {
                 .catch(err => {
                     console.log(err);
                 });
+=======
+                let currentTime = new Date().toLocaleString();
+
+                //Object to put user token and display name into firebase DB
+                const newUserInfo = {
+                    displayName: this.state.displayName.toLowerCase(),
+                    email: email,
+                    uid: uid,
+                }
+
+                //pushing user token and display name to firebase database
+                database.ref().push(newUserInfo);
+>>>>>>> master
+
+                 //API Call
+                //=======================================================
+                axios.post('/api/createAccount', {
+                    id: uid,
+                    created: currentTime,
+                    last_login: currentTime,
+                    char_name: displayName
+                })
+                .then(response => {
+                    console.log(response);
+                    this.props.setPageName("Splash");
+                })
+                .catch(err => {
+                    console.log(err);
+                });
 
                 //since successful creation, proceeding to next phase
                 //=========================================================
-                setTimeout(() => this.props.setPageName("Splash"), 1000);
+                // setTimeout(() => this.props.setPageName("Splash"), 1000);
 
             })
             .catch(error => {

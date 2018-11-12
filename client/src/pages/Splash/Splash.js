@@ -15,40 +15,28 @@ import firebase, { auth } from "../../firebase";
 class Splash extends Component {
 
     constructor(props) {
-
         super(props);
-
         this.state = {
-
             user: null
         }
         //binding 'this' to the componentDidMount method
         this.componentDidMount.bind(this);
     }
-
     componentDidMount = () => {
-
         auth.onAuthStateChanged(firebaseUser => {
-
-
             if (firebaseUser) {
                 
               // User is signed in, therfore...
-
               let email = firebaseUser.email;
               let uid = firebaseUser.uid;
-
               //Time stamps
-
               //Last Log in time (being converted from GMT to local time)
               let lastLogIn = firebaseUser.metadata.lastSignInTime;
               let setToLocal = new Date(lastLogIn);
               let convertedTime = setToLocal.toLocaleString();
-
               //current time
               let currentTime = new Date().toLocaleString();
               //=========================================
-
               const userInfo = {
                 email: email,
                 uid: uid,
@@ -56,22 +44,16 @@ class Splash extends Component {
                 currentTime: currentTime,
                 // creationTime: creationTime, // <- don't know if need
               };
-
               console.log(`${email} is currently signed in`);
               console.log(userInfo);
-
               //SQL/API section (WORK IN PROGRESS)
               //=========================================================
-
               axios.put('api/updateLuchador', {token: uid, last_login: currentTime})
               .then(response => {
-
                   console.log(response);
-
                   const id = response.data.id;
                   const token = response.data.token;
                   const last_login = response.data.last_login;
-
                   this.props.loginData("Home", id, token, last_login);
               })
               .catch(err => {
@@ -79,7 +61,6 @@ class Splash extends Component {
               });
               
               return;
-
               axios.get('/api/selectLuchador/' + uid)
               .then(response => {
                   const id = response.data.id;
@@ -128,9 +109,7 @@ class Splash extends Component {
               .catch(error => {
                   console.log(error);
               });
-
               return;
-
               //Immediately go to next page, since user is signed in
               //=========================================================
               setTimeout( () => this.props.setPageName("Home"), 1000);
