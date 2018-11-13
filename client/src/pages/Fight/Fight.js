@@ -30,6 +30,7 @@ class Fight extends Component {
         ab1_crit: 1,
         ab1_fail: 1,
         ab1_color: "",
+        ab1_icon: "",
         ab2_name: "",
         ab2_dlow: 1,
         ab2_dhigh: 2,
@@ -37,6 +38,7 @@ class Fight extends Component {
         ab2_crit: 1,
         ab2_fail: 1,
         ab2_color: "",
+        ab2_icon: "",
         ab3_name: "",
         ab3_dlow: 1,
         ab3_dhigh: 2,
@@ -44,12 +46,15 @@ class Fight extends Component {
         ab3_crit: 1,
         ab3_fail: 1,
         ab3_color: "",
+        ab3_icon: "",
         act_attacks: [],
         inact_attacks: [],
         outcome: "",
         textCss: "",
         divArray: [],
-        arrayId: 0
+        arrayId: 0,
+        newTrans: "0s linear",
+        newBottom: 0
     };
 
     componentDidMount = () => {
@@ -78,6 +83,7 @@ class Fight extends Component {
                     ab1_crit: dataArray.ab1_crit,
                     ab1_fail: dataArray.ab1_fail,
                     ab1_color: dataArray.ab1_color,
+                    ab1_icon: dataArray.ab1_icon,
                     ab2_name: dataArray.ab2_name,
                     ab2_dlow: dataArray.ab2_dlow,
                     ab2_dhigh: dataArray.ab2_dhigh,
@@ -85,6 +91,7 @@ class Fight extends Component {
                     ab2_crit: dataArray.ab2_crit,
                     ab2_fail: dataArray.ab2_fail,
                     ab2_color: dataArray.ab2_color,
+                    ab2_icon: dataArray.ab2_icon,
                     ab3_name: dataArray.ab3_name,
                     ab3_dlow: dataArray.ab3_dlow,
                     ab3_dhigh: dataArray.ab3_dhigh,
@@ -92,6 +99,7 @@ class Fight extends Component {
                     ab3_crit: dataArray.ab3_crit,
                     ab3_fail: dataArray.ab3_fail,
                     ab3_color: dataArray.ab3_color,
+                    ab3_icon: dataArray.ab3_icon,
                     divArray: [],
                     arrayId: 0
                 });
@@ -213,7 +221,7 @@ class Fight extends Component {
         var pObject = {
             who: "you",
             results_color: "rgb(0, 194, 42)",
-            text_shadow: "1px 1px rgb(253, 48, 55, 0.4)",
+            text_shadow: "1px 1px rgb(253, 48, 55, 0.6)",
             dr: dr,
             id: this.state.arrayId,
             dmg: atkDamage,
@@ -298,7 +306,7 @@ class Fight extends Component {
         var pObject = {
             who: "they",
             results_color: "rgb(253, 48, 55)",
-            text_shadow: "1px 1px rgb(0, 194, 42, 0.4)",
+            text_shadow: "1px 1px rgb(0, 194, 42, 0.6)",
             dr: dr,
             id: this.state.arrayId,
             dmg: atkDamage,
@@ -324,11 +332,54 @@ class Fight extends Component {
 
     }
 
+    setTransition = () => {
+        var offsetHeight = document.getElementById("fight-build-box-id").offsetHeight;
+        var passTrans = "";
+
+        if (this.state.newTrans === "0s linear") {
+            console.log("once");
+            if (offsetHeight <= 1200) {
+                passTrans = "25s linear"
+            } else if (offsetHeight > 1200 && offsetHeight <= 1500) {
+                passTrans = "30s linear"
+            } else if (offsetHeight > 1500 && offsetHeight <= 1800) {
+                passTrans = "35s linear"
+            } else if (offsetHeight > 1800 && offsetHeight <= 2100) {
+                passTrans = "40s linear"
+            } else if (offsetHeight > 2100 && offsetHeight <= 2400) {
+                passTrans = "45s linear"
+            } else if (offsetHeight > 2400 && offsetHeight <= 2700) {
+                passTrans = "50s linear"
+            } else if (offsetHeight > 2700 && offsetHeight <= 3000) {
+                passTrans = "55s linear"
+            } else if (offsetHeight > 3000 && offsetHeight <= 3300) {
+                passTrans = "60s linear"
+            } else if (offsetHeight > 3300) {
+                passTrans = "65s linear"
+            }
+
+            this.setState({
+                newTrans: passTrans,
+            })
+            this.setBottom();
+        }
+    }
+
+    setBottom = () => {
+        this.setState({
+            newBottom: "0px",
+        })
+    }
+
     fightEnd = (outcome, textCss) => {
         console.log("Outcome: " + outcome);
+        var offsetHeight = document.getElementById("fight-build-box-id").offsetHeight;
+        var initPosition = offsetHeight - 250;
+
         this.setState({
             outcome: outcome,
-            textCss: textCss
+            textCss: textCss,
+            newBottom: "-" + initPosition + "px",
         })
     }
 
@@ -343,11 +394,26 @@ class Fight extends Component {
                             <div className="profile-picture profile-picture-choose" style={{ backgroundImage: "url(" + this.state.profile_pic + ")", backgroundSize: "cover" }}></div>
                         </div>
                         <div className="opponent-stats">
-                            <div className="opponent-stats-bar">{this.state.char_name}</div>
+                            <div className="opponent-stats-bar fight-name">{this.state.char_name}</div>
                             <div className="opponent-stats-bar">
-                                <div>{this.state.inact_hp_base}</div>
-                                <div>{this.state.lvl}</div>
-                                <div>{this.state.fame}</div>
+                                <div>
+                                    <div className="newab-new-pic home-ability-pic" style={{ backgroundColor: this.state.ab1_color, marginLeft: "0", width: "96%" }}>
+                                        <img className="fight-icon-img" alt="zap" src={this.state.ab1_icon} />
+                                        <span className="speed-indicator">{this.state.ab1_speed}</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="newab-new-pic home-ability-pic" style={{ backgroundColor: this.state.ab2_color, marginLeft: "0", width: "96%" }}>
+                                        <img className="fight-icon-img" alt="zap" src={this.state.ab2_icon} />
+                                        <span className="speed-indicator">{this.state.ab2_speed}</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="newab-new-pic home-ability-pic" style={{ backgroundColor: this.state.ab3_color, marginLeft: "0", width: "96%" }}>
+                                        <img className="fight-icon-img" alt="zap" src={this.state.ab3_icon} />
+                                        <span className="speed-indicator">{this.state.ab3_speed}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -355,8 +421,8 @@ class Fight extends Component {
 
                     <div className="fighting-bar">
 
-                        <div className="fight-build-box">
-                            <p style={{ fontSize: "2rem" }}>fight!</p>
+                        <div id="fight-build-box-id" className="fight-build-box" style={{ position: "absolute", bottom: this.state.newBottom, transition: this.state.newTrans }}>
+                            <p className="fight-finish-text" style={{ marginBottom: "120px" }}>fight!</p>
                             {this.state.divArray.map(p => (
                                 <FightText
                                     id={p.obj.id}
@@ -374,7 +440,7 @@ class Fight extends Component {
                                     who={p.obj.who}
                                 />
                             ))}
-                            <p style={{ marginBottom: "100px", fontSize: "2rem" }}>finished!</p>
+                            <p className="fight-finish-text" style={{ marginBottom: "120px" }}>finished!</p>
                         </div>
 
                         <div className="fight-fade-top"></div>
@@ -384,9 +450,9 @@ class Fight extends Component {
 
                         <div className="fight-speed-buttons">
 
-                            {/* <div className="fight-speed-bar">
-                                <div className="fight-speed-up">speed up</div>
-                            </div> */}
+                            <div className="fight-speed-bar">
+                                <div className="fight-start" onClick={() => this.setTransition()}>start</div>
+                            </div>
                             <div className="fight-speed-bar">
                                 <div className="fight-finish" onClick={() => this.props.fightResults("FightResults", this.state.outcome, this.state.textCss, this.state.id)}>finish</div>
                             </div>
@@ -401,11 +467,26 @@ class Fight extends Component {
                             <div className="profile-picture profile-picture-choose" style={{ backgroundImage: "url(" + this.props.storeData.profile_pic + ")", backgroundSize: "cover" }}></div>
                         </div>
                         <div className="opponent-stats">
-                            <div className="opponent-stats-bar">{this.props.storeData.char_name}</div>
+                            <div className="opponent-stats-bar fight-name">{this.props.storeData.char_name}</div>
                             <div className="opponent-stats-bar">
-                                <div>{this.props.storeData.hp} hp</div>
-                                <div>{this.props.storeData.lvl} lvl</div>
-                                <div>{this.props.storeData.fame} fame</div>
+                                <div>
+                                    <div className="newab-new-pic home-ability-pic" style={{ backgroundColor: this.props.storeData.ab1_color, marginLeft: "0", width: "96%" }}>
+                                        <img className="fight-icon-img" alt="zap" src={this.props.storeData.ab1_icon} />
+                                        <span className="speed-indicator">{this.props.storeData.ab1_speed}</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="newab-new-pic home-ability-pic" style={{ backgroundColor: this.props.storeData.ab2_color, marginLeft: "0", width: "96%" }}>
+                                        <img className="fight-icon-img" alt="zap" src={this.props.storeData.ab2_icon} />
+                                        <span className="speed-indicator">{this.props.storeData.ab2_speed}</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="newab-new-pic home-ability-pic" style={{ backgroundColor: this.props.storeData.ab3_color, marginLeft: "0", width: "96%" }}>
+                                        <img className="fight-icon-img" alt="zap" src={this.props.storeData.ab3_icon} />
+                                        <span className="speed-indicator">{this.props.storeData.ab3_speed}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

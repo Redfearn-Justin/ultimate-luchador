@@ -214,7 +214,7 @@ class FightResults extends Component {
                             {/* <div className="results-player-stats">{this.props.storeData.char_name}</div> */}
                             <div className="results-player-stats">f {this.props.storeData.fame}</div>
                             <div className="results-player-stats">l {this.props.storeData.lvl}</div>
-                            <div className="results-player-stats mb"><span><span style={{ color: "green" }}>{this.props.storeData.wins}</span> / <span style={{ color: "red" }}>{this.props.storeData.losses}</span></span></div>
+                            <div className="results-player-stats mb"><span><span style={{ color: "rgb(0, 194, 42)" }}>{this.props.storeData.wins}</span> / <span style={{ color: "red" }}>{this.props.storeData.losses}</span></span></div>
                         </div>
                         <div className="results-vs-bar">vs</div>
                         <div className="results-player-bar">
@@ -224,7 +224,7 @@ class FightResults extends Component {
                             {/* <div className="results-player-stats">{this.state.char_name}</div> */}
                             <div className="results-player-stats">f {this.state.fame}</div>
                             <div className="results-player-stats">l {this.state.lvl}</div>
-                            <div className="results-player-stats mb"><span><span style={{ color: "green" }}>{this.state.wins}</span> / <span style={{ color: "red" }}>{this.state.losses}</span></span></div>
+                            <div className="results-player-stats mb"><span><span style={{ color: "rgb(0, 194, 42)" }}>{this.state.wins}</span> / <span style={{ color: "red" }}>{this.state.losses}</span></span></div>
                         </div>
                     </div>
 

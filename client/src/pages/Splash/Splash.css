@@ -5,7 +5,7 @@
     align-items: center;
     margin: 5px;
     width: 80%;
-    height: 25%;
+    height: 30%;
     cursor: pointer;
     font-size: 1.5rem;
     color: #fff;
@@ -28,11 +28,34 @@
 }
 
 .flex-buttons {
-    position: relative;
+    position: absolute;
     display: flex;
-    justify-content: center; /* align horizontal */
+    justify-content: center;
     align-items: center;
     flex-direction: column;
+    bottom: 0;
     width: 100%;
     height: 30%;
+    z-index: 1001;
+}
+
+.splash-lucha-image {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    z-index: 1000;
+    height: 82%;
+    bottom: 0;
+    /* background-image: url("./images/lucha.png"); */
+    /* background-size: cover; */
+}
+
+.splash-lucha-image img {
+    flex: none;
+    /* position: absolute;
+    left: 50%;
+    top: 50%;
+    background-size: cover;
+    -webkit-transform: translateX(-50%); */
 }

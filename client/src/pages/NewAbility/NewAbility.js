@@ -42,7 +42,6 @@ class NewAbility extends Component {
     };
 
     hanldeInputChange = event => {
-
         //Apprehending value from input
         let value = event.target.value;
         const name = event.target.name;
@@ -173,7 +172,7 @@ class NewAbility extends Component {
                     {/* New ability bar */}
                     <div className="newab-new-ability-bar">
                         <div className="newab-new-pic-bar">
-                            <div className="newab-new-pic" style={{ backgroundColor: this.state.newColor }}><img alt="icon" src={this.state.newIcon} /></div>
+                            <div className="newab-new-pic" style={{ backgroundColor: this.state.newColor }}><img className="ability-icon-size" alt="icon" src={this.state.newIcon} /></div>
                         </div>
                         <div className="newab-new-stats-bar">
                             <div className="newab-new-stats-text">

@@ -129,8 +129,11 @@ class Splash extends Component {
         return (
             <div className="container">
 
-                <div className="box">
-                    <SplashTop />
+                <div id="boxxx" className="box">
+                    {/* <SplashTop /> */}
+                    <div className="splash-lucha-image" >
+                        <img src="./images/lucha.png" />
+                    </div>
                     <div className="flex-buttons">
                         <div className="button loginButton" onClick={() => this.props.setPageName("Login")}>LOG IN</div>
                         <div className="button newAccountButton" onClick={() => this.props.setPageName("NewAccount")}>NEW ACCOUNT</div>
@@ -145,3 +148,5 @@ class Splash extends Component {
 const mapStateToProps = state => ({ storeData: state });
 const mapDispatchToProps = dispatch => (bindActionCreators(actionCreators, dispatch));
 export default connect(mapStateToProps, mapDispatchToProps)(Splash);
+
+// style={{ backgroundImage: "./images/lucha.png", backgroundSize: "cover" }}

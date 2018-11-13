@@ -101,6 +101,14 @@ var orm = {
         });
     },
 
+    changePicture: (tableName, profile_pic, id, cb) => {
+        var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
+        connection.query(queryString, {profile_pic: profile_pic}, function (err, res) {
+            if (err) throw err;
+            cb(res);
+        });
+    },
+
     newAbility1: (tableName, ab1_name, ab1_dlow, ab1_dhigh, ab1_speed, ab1_crit, ab1_color, ab1_icon, id, cb) => {
         var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
         connection.query(queryString, {ab1_name: ab1_name, ab1_dlow: ab1_dlow, ab1_dhigh: ab1_dhigh, ab1_speed: ab1_speed, ab1_crit: ab1_crit, ab1_color: ab1_color, ab1_icon: ab1_icon}, function (err, res) {

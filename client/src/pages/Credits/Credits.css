@@ -17,7 +17,7 @@
 
 .credits-members-bar {
     width: 90%;
-    height: 25%;
+    height: 30%;
     font-size: 4.5rem;
 }
 
@@ -28,7 +28,7 @@
 
 .credits-tech-bar {
     width: 90%;
-    height: 42%;
+    height: 35%;
     background-color: #fff;
     border-radius: 6px;
 }
@@ -42,6 +42,7 @@
 .credits-back {
     height: 100%;
     flex: 1;
+    flex-direction: row;
 }
 
 .credits-back div {

@@ -11,7 +11,7 @@ CREATE TABLE players (
     last_login TIMESTAMP NOT NULL DEFAULT current_timestamp,
     
     char_name VARCHAR(30) NOT NULL,
-    profile_pic VARCHAR (250) DEFAULT "./images/default.jpg",
+    profile_pic VARCHAR (500) DEFAULT "./images/default.jpg",
 
     exp INTEGER(5) NOT NULL DEFAULT 0,
     lvl INTEGER(2) NOT NULL DEFAULT 1,

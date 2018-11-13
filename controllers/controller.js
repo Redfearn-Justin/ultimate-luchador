@@ -103,6 +103,17 @@ router.put("/api/useRefresh", function (req, res) {
     );
 });
 
+router.put("/api/changePicture", function (req, res) {
+    orm.changePicture(
+        "players",
+        req.body.profile_pic,
+        req.body.id,
+        function (result) {
+            res.json(result);
+        }
+    );
+});
+
 router.put("/api/newAbility1", function (req, res) {
     orm.newAbility1(
         "players",
