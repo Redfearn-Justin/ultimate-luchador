@@ -1,64 +1,83 @@
+.profile-main-bar,
+.profile-section,
+.profile-uploader,
+.profile-buttons-bar,
+.profile-buttons-col,
+.profile-button div,
+.profile-button,
+.profile-section-stat,
+.profile-section-value {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .profile-text {
     height: 12%;
 }
 
 .profile-main-bar {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 90%;
-    height: 60%;
+    height: 56%;
     background-color: #fff;
     border-radius: 6px;
 }
 
-.profile-uploader {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.profile-section {
+    flex-direction: row;
     flex: 1;
+    width: 100%;
+    border: 1px solid red;
+}
+
+.profile-section-stat {
+    flex: 1.5;
+    height: 100%;
+    border: 1px solid blue;
+}
+
+.profile-section-value {
+    flex: 1;
+    height: 100%;
+    border: 1px solid blue;
+}
+
+.pf-font-size {
+    font-size: 2.3rem;
+}
+
+.profile-uploader {
+    flex: 1;
+}
+
+.fpic {
+    flex: 1.5;
 }
 
 .profile-buttons-bar {
     width: 90%;
-    height: 20%;
-    position: relative;
-    display: flex;
+    height: 19%;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
 }
 
 .profile-buttons-col {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     flex: 1;
     height: 100%;
 }
 
 .profile-button div {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     margin: 5px 0;
-    width: 85%;
-    height: 70%;
+    width: 90%;
+    height: 68%;
     cursor: pointer;
     border-radius: 80px;
     font-size: 1.2rem;
     color: #fff;
     transition: .3s;
-    border: 4px solid rgb(190, 14, 14);
-    background-color: rgb(253, 48, 55);
+    border: 4px solid rgb(30, 38, 129);
+    background-color: rgb(49, 59, 175);
 }
 
 .profile-button div:hover {
@@ -66,11 +85,6 @@
 }
 
 .profile-button {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     flex: 1;
     width: 100%;
 }
@@ -78,6 +92,10 @@
 @media only screen and (max-width: 380px) {
     .profile-button div {
         font-size: 1rem;
+    }
+
+    .profile-text {
+        font-size: 3.8rem;
     }
 }
 

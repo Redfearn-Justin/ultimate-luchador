@@ -35,10 +35,10 @@ class FightResults extends Component {
                 var circleCssHolder1 = "";
                 var circleCssHolder2 = "";
 
-                if (this.props.storeData.outcome == "victory") {
+                if (this.props.storeData.outcome === "victory") {
                     circleCssHolder1 = "0 0 20px rgba(0, 194, 42, 0.72)";
                     circleCssHolder2 = "0 0 20px rgba(194, 0, 0, 0.623)";
-                } else if (this.props.storeData.outcome == "defeat") {
+                } else if (this.props.storeData.outcome === "defeat") {
                     circleCssHolder1 = "0 0 20px rgba(194, 0, 0, 0.623)";
                     circleCssHolder2 = "0 0 20px rgba(0, 194, 42, 0.72)";
                 } else {
@@ -79,24 +79,24 @@ class FightResults extends Component {
     calculateFame = () => {
         var fameGain = 0;
 
-        if (this.props.storeData.outcome == "victory") {
+        if (this.props.storeData.outcome === "victory") {
             if (this.props.storeData.fame >= this.state.fame) {
                 // if you win and your fame is higher
-                fameGain = this.getRandomInteger(4, 6);
+                fameGain = this.getRandomInteger(4, 7);
             } else if (this.props.storeData.fame < this.state.fame) {
                 // if you win and their fame is higher
-                fameGain = this.getRandomInteger(8, 12);
+                fameGain = this.getRandomInteger(7, 10);
             }
-        } else if (this.props.storeData.outcome == "defeat") {
+        } else if (this.props.storeData.outcome === "defeat") {
             if (this.props.storeData.fame >= this.state.fame) {
                 // if you lose and your fame is higher
-                fameGain = this.getRandomNegInteger(6, 10);
+                fameGain = this.getRandomNegInteger(4, 6);
                 if (-fameGain >= this.props.storeData.fame) {
                     fameGain = 0;
                 }
             } else if (this.props.storeData.fame < this.state.fame) {
                 // if you lose and their fame is higher
-                fameGain = this.getRandomNegInteger(2, 4);
+                fameGain = this.getRandomNegInteger(2, 5);
                 if (-fameGain >= this.props.storeData.fame) {
                     fameGain = 0;
                 }
@@ -116,7 +116,7 @@ class FightResults extends Component {
         var passWins = this.props.storeData.wins;
         var passLoss = this.props.storeData.losses;
 
-        if (this.props.storeData.outcome == "victory") {
+        if (this.props.storeData.outcome === "victory") {
             passWins = this.props.storeData.wins += 1;
             if (this.props.storeData.lvl >= this.state.lvl) {
                 // if you win and your lvl is higher
@@ -125,9 +125,16 @@ class FightResults extends Component {
                 // if you win and their lvl is higher
                 expGain = this.getRandomInteger(40, 75);
             }
-        } else {
-            passLoss = this.props.storeData.losses += 1;;
-        }// if end
+        } else if (this.props.storeData.outcome === "defeat") {
+            passLoss = this.props.storeData.losses += 1;
+            if (this.props.storeData.lvl >= this.state.lvl) {
+                // if you lose and your lvl is higher
+                expGain = this.getRandomInteger(4, 8);
+            } else if (this.props.storeData.lvl < this.state.lvl) {
+                // if you lose and their lvl is higher
+                expGain = this.getRandomInteger(8, 16);
+            }
+        } // if end
 
         this.setState({
             expEarned: expGain,
@@ -204,9 +211,9 @@ class FightResults extends Component {
                             <div className="results-player-pic">
                                 <div className="results-pic" style={{ backgroundImage: "url(" + this.props.storeData.profile_pic + ")", backgroundSize: "cover", boxShadow: this.state.circleCss1 }}></div>
                             </div>
-                            <div className="results-player-stats">{this.props.storeData.char_name}</div>
-                            <div className="results-player-stats">fame {this.props.storeData.fame}</div>
-                            <div className="results-player-stats">lvl {this.props.storeData.lvl}</div>
+                            {/* <div className="results-player-stats">{this.props.storeData.char_name}</div> */}
+                            <div className="results-player-stats">f {this.props.storeData.fame}</div>
+                            <div className="results-player-stats">l {this.props.storeData.lvl}</div>
                             <div className="results-player-stats mb"><span><span style={{ color: "green" }}>{this.props.storeData.wins}</span> / <span style={{ color: "red" }}>{this.props.storeData.losses}</span></span></div>
                         </div>
                         <div className="results-vs-bar">vs</div>
@@ -214,17 +221,18 @@ class FightResults extends Component {
                             <div className="results-player-pic">
                                 <div className="results-pic" style={{ backgroundImage: "url(" + this.state.profile_pic + ")", backgroundSize: "cover", boxShadow: this.state.circleCss2 }}></div>
                             </div>
-                            <div className="results-player-stats">{this.state.char_name}</div>
-                            <div className="results-player-stats">fame {this.state.fame}</div>
-                            <div className="results-player-stats">lvl {this.state.lvl}</div>
+                            {/* <div className="results-player-stats">{this.state.char_name}</div> */}
+                            <div className="results-player-stats">f {this.state.fame}</div>
+                            <div className="results-player-stats">l {this.state.lvl}</div>
                             <div className="results-player-stats mb"><span><span style={{ color: "green" }}>{this.state.wins}</span> / <span style={{ color: "red" }}>{this.state.losses}</span></span></div>
                         </div>
                     </div>
 
                     <div className="results-stats-bar">
                         <div className="results-stats-stats">
-                            <div className="results-stats-single-stat">fame: {this.state.fameEarned}</div>
-                            <div className="results-stats-single-stat">exp: {this.state.expEarned}</div>
+                            <div className="results-stats-single-stat stat-green" style={{ marginTop: "5px" }}>take:</div>
+                            <div className="results-stats-single-stat">f: {this.state.fameEarned}</div>
+                            <div className="results-stats-single-stat" style={{ marginBottom: "5px" }}>e: {this.state.expEarned}</div>
                         </div>
                         <div className="results-stats-home">
                             <div className="button" onClick={this.homeButton}>proceed</div>

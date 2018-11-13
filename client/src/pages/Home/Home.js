@@ -115,7 +115,7 @@ class Splash extends Component {
                         {/* PROFILE PICTURE */}
                         <div className="profile-info-bar">
                             <div className="profile-left-icon flex-fix">
-                                <div className="profile-picture" style={{ backgroundImage: "url(" + this.props.storeData.profile_pic + ")", backgroundSize: "cover" }}></div>
+                                <div className="profile-picture" style={{ backgroundImage: "url(" + this.props.storeData.profile_pic + ")", backgroundSize: "cover", cursor: "pointer" }} onClick={() => this.props.setPageName("Profile")}></div>
                             </div>
                             <div className="profile-col">
                                 <div className="profile-player-info player-name"><span style={{ marginTop: "10px" }}>{this.props.storeData.char_name}</span></div>
@@ -200,9 +200,9 @@ class Splash extends Component {
 
                     <div className="fight-bar">
                         <div className="fight-buttons">
-                            <div className="fight-button" onClick={() => this.initiateFight()}>Fight</div>
-                            <div className="boss-button" onClick={() => this.props.setPageName("NewAbility")}>Boss</div>
-                            <div className="boss-button boss-red" onClick={() => this.props.setPageName("Profile")}>Profile</div>
+                            <div className="fight-buttons-click fight-button" onClick={() => this.initiateFight()}>Fight</div>
+                            <div className="boss-grey">Boss</div>
+                            <div className="fight-buttons-click profile-red" onClick={() => this.props.setPageName("Profile")}>Profile</div>
                         </div>
 
                         <div className="fight-stats">

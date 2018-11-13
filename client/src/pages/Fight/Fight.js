@@ -143,10 +143,10 @@ class Fight extends Component {
     chooseAttack = () => {
         const flip = Math.floor(Math.random() * 2) + 1
 
-        if (flip == 1) {
+        if (flip === 1) {
             console.log("active")
             this.activeAttack();
-        } else if (flip == 2) {
+        } else if (flip === 2) {
             console.log("iunactive")
             this.inactiveAttack();
         } else {
@@ -165,42 +165,42 @@ class Fight extends Component {
         var atkCrit = "";
         var atkFail = "";
 
-        if (randAttack == "1") {
+        if (randAttack === "1") {
             atkDamage = this.getRandomInteger(this.state.ab1_dlow, this.state.ab1_dhigh);
             atkName = this.state.ab1_name;
             atkColor = this.state.ab1_color;
 
             if (diceRoll >= 100 - (this.state.ab1_crit * 100)) {
-                atkDamage += Math.floor(atkDamage * 0.25);
+                atkDamage += Math.floor(atkDamage * 0.3);
                 atkCrit = "crit! ";
             } else if (diceRoll <= this.state.ab1_fail * 100) {
-                atkDamage -= Math.floor(atkDamage * 0.25);
+                atkDamage -= Math.floor(atkDamage * 0.5);
                 atkFail = "slip! ";
             }
 
-        } else if (randAttack == "2") {
+        } else if (randAttack === "2") {
             atkDamage = this.getRandomInteger(this.state.ab2_dlow, this.state.ab2_dhigh);
             atkName = this.state.ab2_name;
             atkColor = this.state.ab2_color;
 
             if (diceRoll >= 100 - (this.state.ab1_crit * 100)) {
-                atkDamage += Math.floor(atkDamage * 0.25);
+                atkDamage += Math.floor(atkDamage * 0.3);
                 atkCrit = "crit! ";
             } else if (diceRoll <= this.state.ab1_fail * 100) {
-                atkDamage -= Math.floor(atkDamage * 0.25);
+                atkDamage -= Math.floor(atkDamage * 0.5);
                 atkFail = "slip! ";
             }
 
-        } else if (randAttack == "3") {
+        } else if (randAttack === "3") {
             atkDamage = this.getRandomInteger(this.state.ab3_dlow, this.state.ab3_dhigh);
             atkName = this.state.ab3_name;
             atkColor = this.state.ab3_color;
 
             if (diceRoll >= 100 - (this.state.ab1_crit * 100)) {
-                atkDamage += Math.floor(atkDamage * 0.25);
+                atkDamage += Math.floor(atkDamage * 0.3);
                 atkCrit = "crit! ";
             } else if (diceRoll <= this.state.ab1_fail * 100) {
-                atkDamage -= Math.floor(atkDamage * 0.25);
+                atkDamage -= Math.floor(atkDamage * 0.5);
                 atkFail = "slip! ";
             }
         }
@@ -212,7 +212,7 @@ class Fight extends Component {
 
         var pObject = {
             who: "you",
-            results_color: "rgb(253, 48, 55)",
+            results_color: "rgb(0, 194, 42)",
             text_shadow: "1px 1px rgb(253, 48, 55, 0.4)",
             dr: dr,
             id: this.state.arrayId,
@@ -250,42 +250,42 @@ class Fight extends Component {
         var atkCrit = "";
         var atkFail = "";
 
-        if (randAttack == "1") {
+        if (randAttack === "1") {
             atkDamage = this.getRandomInteger(this.props.storeData.ab1_dlow, this.props.storeData.ab1_dhigh);
             atkName = this.props.storeData.ab1_name;
             atkColor = this.props.storeData.ab1_color;
 
             if (diceRoll >= 100 - (this.state.ab1_crit * 100)) {
-                atkDamage += Math.floor(atkDamage * 0.25);
+                atkDamage += Math.floor(atkDamage * 0.3);
                 atkCrit = "crit! ";
             } else if (diceRoll <= this.state.ab1_fail * 100) {
-                atkDamage -= Math.floor(atkDamage * 0.25);
+                atkDamage -= Math.floor(atkDamage * 0.5);
                 atkFail = "slip! ";
             }
 
-        } else if (randAttack == "2") {
+        } else if (randAttack === "2") {
             atkDamage = this.getRandomInteger(this.props.storeData.ab2_dlow, this.props.storeData.ab2_dhigh);
             atkName = this.props.storeData.ab2_name;
             atkColor = this.props.storeData.ab2_color;
 
             if (diceRoll >= 100 - (this.state.ab1_crit * 100)) {
-                atkDamage += Math.floor(atkDamage * 0.25);
+                atkDamage += Math.floor(atkDamage * 0.3);
                 atkCrit = "crit! ";
             } else if (diceRoll <= this.state.ab1_fail * 100) {
-                atkDamage -= Math.floor(atkDamage * 0.25);
+                atkDamage -= Math.floor(atkDamage * 0.5);
                 atkFail = "slip! ";
             }
 
-        } else if (randAttack == "3") {
+        } else if (randAttack === "3") {
             atkDamage = this.getRandomInteger(this.props.storeData.ab3_dlow, this.props.storeData.ab3_dhigh);
             atkName = this.props.storeData.ab3_name;
             atkColor = this.props.storeData.ab3_color;
 
             if (diceRoll >= 100 - (this.state.ab1_crit * 100)) {
-                atkDamage += Math.floor(atkDamage * 0.25);
+                atkDamage += Math.floor(atkDamage * 0.3);
                 atkCrit = "crit! ";
             } else if (diceRoll <= this.state.ab1_fail * 100) {
-                atkDamage -= Math.floor(atkDamage * 0.25);
+                atkDamage -= Math.floor(atkDamage * 0.5);
                 atkFail = "slip! ";
             }
         }
@@ -297,7 +297,7 @@ class Fight extends Component {
 
         var pObject = {
             who: "they",
-            results_color: "rgb(0, 194, 42)",
+            results_color: "rgb(253, 48, 55)",
             text_shadow: "1px 1px rgb(0, 194, 42, 0.4)",
             dr: dr,
             id: this.state.arrayId,
@@ -356,6 +356,7 @@ class Fight extends Component {
                     <div className="fighting-bar">
 
                         <div className="fight-build-box">
+                            <p style={{ fontSize: "2rem" }}>fight!</p>
                             {this.state.divArray.map(p => (
                                 <FightText
                                     id={p.obj.id}
@@ -373,7 +374,7 @@ class Fight extends Component {
                                     who={p.obj.who}
                                 />
                             ))}
-                            <p style={{ marginBottom: "100px" }}>fight over</p>
+                            <p style={{ marginBottom: "100px", fontSize: "2rem" }}>finished!</p>
                         </div>
 
                         <div className="fight-fade-top"></div>
@@ -383,9 +384,9 @@ class Fight extends Component {
 
                         <div className="fight-speed-buttons">
 
-                            <div className="fight-speed-bar">
+                            {/* <div className="fight-speed-bar">
                                 <div className="fight-speed-up">speed up</div>
-                            </div>
+                            </div> */}
                             <div className="fight-speed-bar">
                                 <div className="fight-finish" onClick={() => this.props.fightResults("FightResults", this.state.outcome, this.state.textCss, this.state.id)}>finish</div>
                             </div>

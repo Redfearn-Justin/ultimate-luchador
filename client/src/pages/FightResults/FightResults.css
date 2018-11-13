@@ -23,7 +23,6 @@ align-items: center;
 
 .results-victory-text {
     width: 90%;
-    height: 12%;
     font-size: 4.5rem;
     color: rgb(0, 194, 42);
     text-shadow: 4px 4px 0px rgb(0, 124, 27),
@@ -35,7 +34,6 @@ align-items: center;
 
 .results-defeat-text {
     width: 90%;
-    height: 12%;
     font-size: 4.5rem;
     color: rgb(253, 48, 55);
     text-shadow: 4px 4px 0px rgb(110, 0, 0),
@@ -48,11 +46,10 @@ align-items: center;
 .results-info-bar {
     flex-direction: row;
     width: 90%;
-    height: 60%;
+    height: 58%;
     background-color: #fff;
     border-radius: 6px;
 }
-
 
 /* Player bars */
 
@@ -99,12 +96,14 @@ align-items: center;
 }
 
 .results-stats-stats {
-    width: 60%;
+    background-color: #fff;
+    border-radius: 6px;
+    flex: 4;
     height: 100%;
 }
 
 .results-player-stats {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
 }
 
 .mb {
@@ -112,14 +111,23 @@ align-items: center;
 }
 
 .results-stats-home {
-    width: 40%;
+    flex: 6;
     height: 100%;
 }
 
 .results-stats-single-stat {
     flex: 1;
     width: 100%;
-    font-size: 1.7rem;
+    font-size: 1.3rem;
+}
+
+.stat-green {
+    color: rgb(0, 194, 42);
+    text-shadow: 2px 2px 0px rgb(0, 124, 27),
+    -1px -1px 0px rgb(0, 124, 27),
+    1px -1px 0px rgb(0, 124, 27),
+    -1px 1px 0px rgb(0, 124, 27),
+    1px 1px 0px rgb(0, 124, 27);
 }
 
 .results-stats-home div {
@@ -133,6 +141,10 @@ align-items: center;
     .results-pic {
         width: 125px;
         height: 125px;
+    }
+
+    .results-player-stats {
+        font-size: 1.5rem;
     }
 }
 

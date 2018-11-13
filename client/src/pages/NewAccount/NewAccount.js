@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
 import "./NewAccount.css";
-import firebase, { auth, database } from "../../firebase";
+import { auth, database } from "../../firebase";
 import SplashTop from "../../components/SplashTop"
 import axios from "axios";
 import moment from "moment";
@@ -70,7 +70,7 @@ class NewAccount extends Component {
             return; 
         }
 
-        else if (regexDisplayName.test(this.state.displayName) == false) {
+        else if (regexDisplayName.test(this.state.displayName) === false) {
             alert("No spaces or special characters!");
             return; 
         }
