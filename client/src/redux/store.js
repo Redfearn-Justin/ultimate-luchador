@@ -53,13 +53,15 @@ const storeData = (state = defaultStore, action) => {
             return Object.assign({}, state, {
                 pageName: action.pageName,
             })
-        case 'LEVEL_UP':
+        case 'USE_TICKET':
             return Object.assign({}, state, {
-                exp: action.exp,
-                lvl: action.lvl,
-                hp: action.hp,
-                tickets: action.tickets_max,
-                tickets_max: action.tickets_max,
+                pageName: action.pageName,
+                tickets: action.tickets,
+            })
+        case 'USE_REFRESH':
+            return Object.assign({}, state, {
+                refresh: action.refresh,
+                tickets: action.tickets,
             })
         case 'CHOOSE_OPPONENT':
             return Object.assign({}, state, {
@@ -77,6 +79,53 @@ const storeData = (state = defaultStore, action) => {
             return Object.assign({}, state, {
                 exp: action.exp,
                 fame: action.fame,
+                wins: action.wins,
+                losses: action.losses
+            })
+        case 'LEVEL_UP':
+            return Object.assign({}, state, {
+                exp: action.exp,
+                lvl: action.lvl,
+                hp: action.hp,
+                refresh: action.refresh,
+                tickets: action.tickets,
+                tickets_max: action.tickets
+            })
+        case 'NEW_AB_1':
+            return Object.assign({}, state, {
+                pageName: action.pageName,
+                ab1_name: action.ab1_name,
+                ab1_dlow: action.ab1_dlow,
+                ab1_dhigh: action.ab1_dhigh,
+                ab1_speed: action.ab1_speed,
+                ab1_crit: action.ab1_crit,
+                ab1_fail: action.ab1_fail,
+                ab1_color: action.ab1_color,
+                ab1_icon: action.ab1_icon,
+            })
+        case 'NEW_AB_2':
+            return Object.assign({}, state, {
+                pageName: action.pageName,
+                ab2_name: action.ab2_name,
+                ab2_dlow: action.ab2_dlow,
+                ab2_dhigh: action.ab2_dhigh,
+                ab2_speed: action.ab2_speed,
+                ab2_crit: action.ab2_crit,
+                ab2_fail: action.ab2_fail,
+                ab2_color: action.ab2_color,
+                ab2_icon: action.ab2_icon,
+            })
+        case 'NEW_AB_3':
+            return Object.assign({}, state, {
+                pageName: action.pageName,
+                ab3_name: action.ab3_name,
+                ab3_dlow: action.ab3_dlow,
+                ab3_dhigh: action.ab3_dhigh,
+                ab3_speed: action.ab3_speed,
+                ab3_crit: action.ab3_crit,
+                ab3_fail: action.ab3_fail,
+                ab3_color: action.ab3_color,
+                ab3_icon: action.ab3_icon,
             })
         case 'LOGIN_DATA':
             return Object.assign({}, state, {

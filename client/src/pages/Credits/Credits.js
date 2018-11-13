@@ -38,9 +38,6 @@ class Credits extends Component {
                         <div className="credits-back">
                             <div className="button" onClick={() => this.props.setPageName("Home")}>back</div>
                         </div>
-                        <div className="credits-github">
-                            <div className="button" onClick={() => this.props.setPageName("Home")}>gh</div>
-                        </div>                        
                     </div>
 
                 </div>

@@ -47,39 +47,39 @@ class ChooseOpponent extends Component {
         }
 
         axios.get('/api/selectOpponents/' + fameLow + '/' + fameHigh)
-        .then(response => {
-            const dataArray = response.data;
-            const index1 = Math.floor(Math.random()*dataArray.length);
-            const index2 = Math.floor(Math.random()*dataArray.length);
-            const index3 = Math.floor(Math.random()*dataArray.length);
+            .then(response => {
+                const dataArray = response.data;
+                const index1 = Math.floor(Math.random() * dataArray.length);
+                const index2 = Math.floor(Math.random() * dataArray.length);
+                const index3 = Math.floor(Math.random() * dataArray.length);
 
-            this.setState({
-                opp1name: dataArray[index1].char_name,
-                opp1id: dataArray[index1].id,
-                opp1pic: dataArray[index1].profile_pic,
-                opp1fame: dataArray[index1].fame,
-                opp1lvl: dataArray[index1].lvl,
-                opp1wins: dataArray[index1].wins,
-                opp1losses: dataArray[index1].losses,
-                opp2name: dataArray[index2].char_name,
-                opp2id: dataArray[index2].id,
-                opp2pic: dataArray[index1].profile_pic,
-                opp2fame: dataArray[index2].fame,
-                opp2lvl: dataArray[index2].lvl,
-                opp2wins: dataArray[index2].wins,
-                opp2losses: dataArray[index2].losses,
-                opp3name: dataArray[index3].char_name,
-                opp3id: dataArray[index3].id,
-                opp3pic: dataArray[index1].profile_pic,
-                opp3fame: dataArray[index3].fame,
-                opp3lvl: dataArray[index3].lvl,
-                opp3wins: dataArray[index3].wins,
-                opp3losses: dataArray[index3].losses
+                this.setState({
+                    opp1name: dataArray[index1].char_name,
+                    opp1id: dataArray[index1].id,
+                    opp1pic: dataArray[index1].profile_pic,
+                    opp1fame: dataArray[index1].fame,
+                    opp1lvl: dataArray[index1].lvl,
+                    opp1wins: dataArray[index1].wins,
+                    opp1losses: dataArray[index1].losses,
+                    opp2name: dataArray[index2].char_name,
+                    opp2id: dataArray[index2].id,
+                    opp2pic: dataArray[index2].profile_pic,
+                    opp2fame: dataArray[index2].fame,
+                    opp2lvl: dataArray[index2].lvl,
+                    opp2wins: dataArray[index2].wins,
+                    opp2losses: dataArray[index2].losses,
+                    opp3name: dataArray[index3].char_name,
+                    opp3id: dataArray[index3].id,
+                    opp3pic: dataArray[index3].profile_pic,
+                    opp3fame: dataArray[index3].fame,
+                    opp3lvl: dataArray[index3].lvl,
+                    opp3wins: dataArray[index3].wins,
+                    opp3losses: dataArray[index3].losses
+                });
+            })
+            .catch(error => {
+                console.log(error);
             });
-        })
-        .catch(error => {
-            console.log(error);
-        });
     }
 
     render() {
@@ -87,7 +87,13 @@ class ChooseOpponent extends Component {
             <div className="container">
                 <div className="box opponent-box">
 
-                    <div className="text-bar">choose your opponent</div>
+                    <div className="text-bar">
+                        <div className="text-bar-row f2">choose your opponent</div>
+                        <div className="text-bar-row">
+                            <div className="text-bar-col">my f: {this.props.storeData.fame}</div>
+                            <div className="text-bar-col">my l: {this.props.storeData.lvl}</div>
+                        </div>
+                    </div>
 
                     <div className="opponent-bar">
 
@@ -96,11 +102,11 @@ class ChooseOpponent extends Component {
                                 <div className="profile-picture profile-picture-choose" style={{ backgroundImage: "url(" + this.state.opp1pic + ")", backgroundSize: "cover" }}></div>
                             </div>
                             <div className="opponent-stats">
-                                <div className="opponent-stats-bar"><span>{this.state.opp1name}</span></div>
+                                <div className="opponent-stats-bar"><span className="osb-span">{this.state.opp1name}</span></div>
                                 <div className="opponent-stats-bar">
                                     <div>{this.state.opp1fame}</div>
                                     <div>{this.state.opp1lvl}</div>
-                                    <div>{this.state.opp1wins} W - {this.state.opp1losses} L</div>
+                                    <div><span><span style={{ color: "rgb(0, 194, 42)" }}>{this.state.opp1wins}</span> - <span style={{ color: "red" }}>{this.state.opp1losses}</span></span></div>
                                 </div>
                             </div>
                         </div>
@@ -110,11 +116,11 @@ class ChooseOpponent extends Component {
                                 <div className="profile-picture profile-picture-choose" style={{ backgroundImage: "url(" + this.state.opp2pic + ")", backgroundSize: "cover" }}></div>
                             </div>
                             <div className="opponent-stats">
-                                <div className="opponent-stats-bar"><span>{this.state.opp2name}</span></div>
+                                <div className="opponent-stats-bar"><span className="osb-span">{this.state.opp2name}</span></div>
                                 <div className="opponent-stats-bar">
                                     <div>{this.state.opp2fame}</div>
                                     <div>{this.state.opp2lvl}</div>
-                                    <div>{this.state.opp2wins} W - {this.state.opp2losses} L</div>
+                                    <div><span><span style={{ color: "rgb(0, 194, 42)" }}>{this.state.opp2wins}</span> - <span style={{ color: "red" }}>{this.state.opp2losses}</span></span></div>
                                 </div>
                             </div>
                         </div>
@@ -124,11 +130,11 @@ class ChooseOpponent extends Component {
                                 <div className="profile-picture profile-picture-choose" style={{ backgroundImage: "url(" + this.state.opp3pic + ")", backgroundSize: "cover" }}></div>
                             </div>
                             <div className="opponent-stats">
-                                <div className="opponent-stats-bar"><span>{this.state.opp3name}</span></div>
+                                <div className="opponent-stats-bar"><span className="osb-span">{this.state.opp3name}</span></div>
                                 <div className="opponent-stats-bar">
                                     <div>{this.state.opp3fame}</div>
                                     <div>{this.state.opp3lvl}</div>
-                                    <div>{this.state.opp3wins} W - {this.state.opp3losses} L</div>
+                                    <div><span><span style={{ color: "rgb(0, 194, 42)" }}>{this.state.opp3wins}</span> - <span style={{ color: "red" }}>{this.state.opp3losses}</span></span></div>
                                 </div>
                             </div>
                         </div>
@@ -137,10 +143,7 @@ class ChooseOpponent extends Component {
 
                     <div className="opponent-button-bar">
                         <div className="opponent-button-back" onClick={() => this.props.setPageName("Home")}>
-                            <div>back</div>
-                        </div>
-                        <div className="opponent-button-refresh">
-                            <div>Reroll: {this.props.storeData.tickets}</div>
+                            <div>give up</div>
                         </div>
                     </div>
 
