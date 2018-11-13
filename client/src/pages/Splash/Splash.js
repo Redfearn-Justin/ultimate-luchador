@@ -22,21 +22,27 @@ class Splash extends Component {
         //binding 'this' to the componentDidMount method
         this.componentDidMount.bind(this);
     }
+
     componentDidMount = () => {
+
         auth.onAuthStateChanged(firebaseUser => {
             if (firebaseUser) {
                 
               // User is signed in, therfore...
               let email = firebaseUser.email;
               let uid = firebaseUser.uid;
+
               //Time stamps
+
               //Last Log in time (being converted from GMT to local time)
               let lastLogIn = firebaseUser.metadata.lastSignInTime;
               let setToLocal = new Date(lastLogIn);
               let convertedTime = setToLocal.toLocaleString();
+
               //current time
               let currentTime = new Date().toLocaleString();
               //=========================================
+
               const userInfo = {
                 email: email,
                 uid: uid,
@@ -44,9 +50,11 @@ class Splash extends Component {
                 currentTime: currentTime,
                 // creationTime: creationTime, // <- don't know if need
               };
+
               console.log(`${email} is currently signed in`);
               console.log(userInfo);
-              //SQL/API section (WORK IN PROGRESS)
+
+              //SQL/API section (WORK IN PROGRESS) -- NOT CURRENTLY WORKING
               //=========================================================
               axios.put('api/updateLuchador', {token: uid, last_login: currentTime})
               .then(response => {

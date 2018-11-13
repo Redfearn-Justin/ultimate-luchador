@@ -82,30 +82,8 @@ class Login extends Component {
 
                 let uid = currentAccount.uid;
 
-                //Last Log in time (being converted from GMT to local time)
-                let lastLogIn = currentAccount.metadata.lastSignInTime;
-                let setToLocal = new Date(lastLogIn);
-                let convertedTime = setToLocal.toLocaleString();
-
-                //current time
-                let currentTime = new Date().toLocaleString();
-                //=========================================
-
-                const userInfo = {
-                    email: email,
-                    uid: uid,
-                    LastLogIn: convertedTime,
-                    currentTime: currentTime
-                };
-
-                console.log(userInfo);
-    
-                // let uid = currentAccount.uid; <- UNCOMMENT, JUST USED FOR TEST
-
                 //verifying uid and email are successfully passed through 
                 console.log(`${uid} - is the id for the following email account: ${email}`);
-
-
 
                 //Last Log in time (being converted from GMT to local time)
                 let lastLogIn = currentAccount.metadata.lastSignInTime;

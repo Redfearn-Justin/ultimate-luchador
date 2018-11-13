@@ -3,10 +3,6 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
-<<<<<<< HEAD
-// import ImageUploader from 'react-images-upload';
-=======
->>>>>>> master
 
 import axios from "axios";
 
