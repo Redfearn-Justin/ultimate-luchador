@@ -11,7 +11,6 @@ import "./LevelUp.css";
 class LevelUp extends Component {
 
     state = {
-        newExp: 0,
         newLvl: 0,
         newTicketsMax: 0,
         newHp: 0
@@ -20,33 +19,26 @@ class LevelUp extends Component {
     componentDidMount = () => {
         var hpGain = this.getRandomInteger(2, 4)
 
+        var newLvl = this.props.storeData.lvl += 1;
+        var newTicketsMax = this.props.storeData.tickets_max += 1;
+        var newHp = this.props.storeData.hp += hpGain;
+        var newRefresh = this.props.storeData.refresh += 1;
+
         this.setState({
-            newLvl: this.props.storeData.lvl += 1,
-            newTicketsMax: this.props.storeData.tickets_max += 1,
-            newHp: this.props.storeData.hp += hpGain,
+            newLvl: newLvl,
+            newTicketsMax: newTicketsMax,
+            newHp: newHp
         });
 
-        // this.props.levelUp(this.state.newExp, this.state.newLvl, this.state.newHp, this.state.newTicketsMax);
+        this.props.levelUp(0, newLvl, newHp, newTicketsMax, newRefresh);
 
-        // console.log(this.state.newLvl, this.state.newHp);
-        // console.log("========")
-        // console.log(this.props.storeData.lvl, this.props.storeData.hp)
-
-        // axios.put('/api/levelUp/', {lvl: this.state.newLvl, hp: this.state.newHp, exp: this.state.newExp, tickets_max: this.state.newTicketsMax, id: this.props.storeData.id})
-        // .then(response => {
-        //    console.log(response);
-        // })
-        // .catch(error => {
-        //     console.log(error);
-        // });
-
-        this.next();
-    }
-
-    next = () => {
-        console.log(this.state.newLvl, this.state.newHp);
-        console.log("========")
-        console.log(this.props.storeData.lvl, this.props.storeData.hp)
+        axios.put('/api/levelUp/', {lvl: newLvl, hp: newHp, exp: 0, tickets_max: newTicketsMax, refresh: newRefresh, id: this.props.storeData.id})
+        .then(response => {
+           console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        });
     }
 
     getRandomInteger = (min, max) => {
@@ -66,7 +58,7 @@ class LevelUp extends Component {
                         <div className="levelup-stat">level {this.state.newLvl}</div>
                         <div className="levelup-stat">hp: {this.state.newHp}</div>
                         <div className="levelup-stat">tickets: {this.state.newTicketsMax}</div>
-                        <div className="levelup-stat">{this.state.newExp}</div>
+                        <div className="levelup-stat">0</div>
                     </div>
 
                     <div className="levelup-home-bar">

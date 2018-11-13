@@ -5,9 +5,10 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
 import "./NewAccount.css";
-import firebase, { auth, database } from "../../firebase";
+import { auth, database } from "../../firebase";
 import SplashTop from "../../components/SplashTop"
 import axios from "axios";
+import moment from "moment";
 
 //class
 //==================================================
@@ -69,7 +70,7 @@ class NewAccount extends Component {
             return; 
         }
 
-        else if (regexDisplayName.test(this.state.displayName) == false) {
+        else if (regexDisplayName.test(this.state.displayName) === false) {
             alert("No spaces or special characters!");
             return; 
         }
@@ -91,24 +92,22 @@ class NewAccount extends Component {
                 const currentAccount = auth.currentUser;
                 let uid = currentAccount.uid;
                 let displayName = this.state.displayName.toLowerCase();
+                // var mysqlTimestamp = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+
 
                  //API Call
                 //=======================================================
                 axios.post('/api/createAccount', {
-                    id: uid,
+                    token: uid,
                     char_name: displayName
                 })
                 .then(response => {
                     console.log(response);
-                    this.props.setPageName("Splash");
+                    this.props.setPageName("Login");
                 })
                 .catch(err => {
                     console.log(err);
                 });
-
-                //since successful creation, proceeding to next phase
-                //=========================================================
-                // setTimeout(() => this.props.setPageName("Splash"), 1000);
 
             })
             .catch(error => {

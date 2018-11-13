@@ -164,7 +164,6 @@
     position: absolute;
     left: 5%;
     color: #fff;
-    font-size: 1.2rem;
 }
 
 .break-line {
@@ -221,7 +220,7 @@
     font-size: 1.2rem;
 } */
 
-.fight-buttons div {
+.fight-buttons-click {
     margin: 5px 0;
     width: 95%;
     height: 35%;
@@ -232,17 +231,27 @@
     transition: .3s;
 }
 
-.fight-buttons div:hover {
+.fight-buttons-click:hover {
     transform: scale(1.05);
 }
 
-.fight-button,
-.boss-button {
+.fight-button {
     border: 4px solid rgb(30, 38, 129);
     background-color: rgb(49, 59, 175);
 }
 
-.boss-red {
+.boss-grey {
+    border: 4px solid rgb(98, 98, 98);
+    background-color: rgb(138, 138, 138);
+    color: rgb(98, 98, 98);
+    margin: 5px 0;
+    width: 95%;
+    height: 35%;
+    border-radius: 80px;
+    font-size: 1.5rem;
+}
+
+.profile-red {
     background-color: rgb(253, 48, 55);
     border: 4px solid rgb(190, 14, 14);
 }
@@ -321,6 +330,14 @@
     .ability-span {
         font-size: 1rem;
         line-height: .8;
+    }
+
+    .player-level-bar {
+        font-size: .8rem;
+    }
+
+    .player-name {
+        font-size: 1rem;
     }
   }
 

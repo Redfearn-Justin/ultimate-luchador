@@ -10,7 +10,9 @@
 .opponent-stats-bar,
 .opponent-stats-bar div,
 .opponent-button-refresh div,
-.opponent-button-back div {
+.opponent-button-back div,
+.text-bar-row,
+.text-bar-col {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -25,7 +27,17 @@
 
 .text-bar {
     width: 90%;
-    height: 15%;
+    height: 17%;
+}
+
+.text-bar-row {
+    flex-direction: row;
+    flex: 1;
+    width: 100%;
+}
+
+.f2 {
+    flex: 2;
     font-size: 2.3rem;
     color: rgb(253, 48, 55);
     text-shadow: 4px 4px 0px rgb(110, 0, 0),
@@ -33,6 +45,12 @@
     1px -1px 0px rgb(110, 0, 0),
     -1px 1px 0px rgb(110, 0, 0),
     1px 1px 0px rgb(110, 0, 0);
+}
+
+.text-bar-col {
+    flex: 1;
+    font-size: 1.3rem;
+    height: 100%;
 }
 
 .opponent-bar {
@@ -58,11 +76,13 @@
 }
 
 .opponent-pic {
+    margin-left: 7px;
     flex: 1;
     height: 100%;
 }
 
 .opponent-stats {
+    margin-right: 5px;
     flex: 3;
     height: 100%;
 }
@@ -76,6 +96,7 @@
 .opponent-stats-bar div {
     height: 100%;
     flex: 1;
+    font-size: 1.15rem;
 }
 
 .opponent-stats-bar img {
@@ -85,22 +106,21 @@
 .opponent-button-bar {
     flex-direction: row;
     width: 90%;
-    height: 15%;
+    height: 12%;
 }
 
-.opponent-button-back,
-.opponent-button-refresh {
+.opponent-button-back {
     border-radius: 80px;
-    height: 46%;
+    width: 90%;
+    height: 60%;
     margin: 10px;
     cursor: pointer;
     transition: .3s;
     color: #fff;
 }
 
-.opponent-button-back:hover,
-.opponent-button-refresh:hover {
-    transform: scale(1.1);
+.opponent-button-back:hover {
+    transform: scale(1.05);
 }
 
 .opponent-button-back {
@@ -109,27 +129,20 @@
     background-color: rgb(253, 48, 55);
 }
 
-.opponent-button-refresh {
-    flex: 2;
-    border: 4px solid rgb(30, 38, 129);
-    background-color: rgb(49, 59, 175);
-}
-
-
-.opponent-button-refresh div,
 .opponent-button-back div {
     height: 100%;
     font-size: 1.5rem;
 }
 
-.opponent-stats-bar span {
+.osb-span {
     width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 1.35rem;
+    text-shadow: 1px 1px rgb(253, 48, 55, 0.4);
 }
 
 .profile-picture-choose {
-    left: 8px;
+    height: 90px;
+    width: 90px;
 }
 
 @media only screen and (max-width: 470px) {
@@ -140,10 +153,22 @@
     .opponent-stats-bar {
         font-size: .8rem;
     }
+    
+    .opponent-stats-bar div {
+        font-size: 1rem;
+    }
 
     .profile-picture-choose {
-        width: 65px;
-        height: 65px;
+        width: 75px;
+        height: 75px;
+    }
+
+    .opponent-pic {
+        margin-left: 10px;
+    }
+
+    .osb-span {
+        font-size: 1.2rem;
     }
   }
 
@@ -153,9 +178,13 @@
     .opponent-button-back div {
         font-size: 1.2rem;
     }
-    
+
     .profile-picture-choose {
-        width: 55px;
-        height: 55px;
+        width: 60px;
+        height: 60px;
+    }
+
+    .osb-span {
+        font-size: 1rem;
     }
 }
