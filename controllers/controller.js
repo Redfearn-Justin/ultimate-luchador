@@ -198,8 +198,6 @@ router.post("/api/createAccount", function (req, res) {
     orm.createAccount(
         "players",
         req.body.token,
-        req.body.created,
-        req.body.last_login,
         req.body.char_name,
         function (result) {
             res.json(result[0]);

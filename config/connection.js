@@ -5,6 +5,7 @@ var connection;
 if (process.env.JAWSDB_URL) {
   connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
+  console.log("connected to SQL DB");
   connection = mysql.createConnection({
     host: "localhost",
     port: 3306,

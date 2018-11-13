@@ -146,10 +146,10 @@ var orm = {
 
     //Create/Connect account to SQL DB
     //====================================
-    createAccount: (tableName, token, created, last_login, char_name, cb) => {
+    createAccount: (tableName, token, char_name, cb) => {
         var queryString = `INSERT INTO ${tableName} SET ?`;
         console.log(queryString);
-        connection.query(queryString, {token: token, created: created, last_login: last_login, char_name: char_name}, function (err, res) {
+        connection.query(queryString, {token: token, char_name: char_name}, function (err, res) {
             if (err) throw err;
             cb(res);
         });
@@ -158,7 +158,7 @@ var orm = {
     //last login time update test method
     //=================================
     updateOne: (tableName, id, cb) => {
-        var queryString = "UPDATE last_login " + tableName + " WHERE id = " + id;
+        var queryString = `UPDATE last_login ${tableName} WHERE id = ${id}`;
         connection.query(queryString, function (err, res) {
             if (err) throw err;
             cb(res);
