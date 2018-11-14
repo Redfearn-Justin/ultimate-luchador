@@ -157,9 +157,9 @@ var orm = {
 
     //last login time update test method
     //=================================
-    updateOne: (tableName, id, cb) => {
-        var queryString = `UPDATE last_login ${tableName} WHERE id = ${id}`;
-        connection.query(queryString, function (err, res) {
+    updateOne: (tableName, id, last_login, cb) => {
+        var queryString = `UPDATE ${tableName} SET ? WHERE id = ${id}`;
+        connection.query(queryString, {last_login: last_login}, function (err, res) {
             if (err) throw err;
             cb(res);
         });

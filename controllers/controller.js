@@ -187,6 +187,7 @@ router.put("/api/updateTime", function (req, res) {
     orm.updateOne(
         "players",
         req.body.uid,
+        req.body.last_login,
         function (result) {
             res.json(result[0]);
         }
