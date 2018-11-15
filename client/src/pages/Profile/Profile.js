@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
 import axios from "axios";
+import { auth }  from "../../firebase";
 
 import "./Profile.css";
 
@@ -62,6 +63,17 @@ class Profile extends Component {
         this.setState({
             [name]: value
         });
+    };
+
+    signOut = () => {
+        const currentUser = auth.currentUser;
+        const email = currentUser.email;
+
+        console.log(`${email} has signed out`);
+
+        auth.signOut();
+
+        this.props.setPageName("Splash");
     };
 
     render() {
@@ -137,7 +149,7 @@ class Profile extends Component {
                                 <div className="profile-shop-text">shop</div>
                             </div>
                             <div className="profile-button">
-                                <div className="profile-button-text">log out</div>
+                                <div className="profile-button-text" onClick={this.signOut}>log out</div>
                             </div>
                         </div>
 

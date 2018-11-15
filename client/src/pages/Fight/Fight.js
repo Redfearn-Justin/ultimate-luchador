@@ -104,7 +104,6 @@ class Fight extends Component {
                     divArray: [],
                     arrayId: 0
                 });
-                console.log("---1) my hp: " + this.state.act_hp + " their hp: " + this.state.inact_hp);
                 this.setupRaffle();
             })
             .catch(error => {
@@ -162,13 +161,13 @@ class Fight extends Component {
     }
 
     commPreface = () => {
-        var array = ["the force is strong with", "woah!", "holy moley guacamole,", "ka pow!!", "watch out,", "here comes the boom!", "ready or not", "this could get ulgy,", "incoming!!", "coming in hot -", "cover your eyes, folks,", "holy shit!", "look out!", "woah, is that..?!", "I can't believe what I'm seeing", "okay, so", "well then", "I couldn't care less, but", "the smelly", "the heroic", "the oddly shaped", "the mean", "the effectionate lover", "the underdog", "holy cow!", "did you see that, chuck?!", "chuck, look!", "folks if you look closely"];
+        var array = ["the force is strong with this one...", "woah!", "holy moley guacamole,", "ka pow!!", "watch out,", "here comes the boom!", "ready or not", "this could get ulgy,", "incoming!!", "coming in hot -", "cover your eyes, folks,", "holy shit!", "look out!", "woah, is that..?!", "I can't believe what I'm seeing", "okay, so", "well then", "I couldn't care less, but", "the smelly", "the heroic", "the oddly shaped", "the mean", "the effectionate lover", "the underdog", "holy cow!", "did you see that, chuck?!", "chuck, look!", "folks if you look closely"];
         var comm = array[Math.floor(Math.random()*array.length)];
         return comm;
     }
 
     commDescription = () => {
-        var array = ["used the attack", "used the move", "used", "pummeled their opponent with", "shook the floor with", "exploded the nips of the audience with the", "shit the bed with their signiture move,", "broke records with", "swept the floor with", "took their opponent to church with the", "let their opponent have it with", "silenced the audience with", "aligned the planets with the", "cleaned their opponent's clock with", "made their opponent see stars with", "woke the dead with", "hugged their momma with", "used their favorite move", "came in flying with a", "smashed even innocent bystanders with a", "plowed ur granny with the", "brought peace to the middle east with", "poped their opponent with", "pulled the classic", "threw the ol'", "gave 'em the ol'", "pulled all the stops with", "knocked the living crap out of 'em with", "went to the moon and back for that hit with", "just went out doing the most with", "just broke their opponent's ankles with", "successfully smashed with", "looked like a fool out there with", "with the delivery using", "swang with", "hit with", "pummeled bootie with", "smacked ass with"];
+        var array = ["used the attack", "used the move", "used", "pummeled their opponent with", "shook the floor with", "exploded the nips of the audience with a", "shit the bed with their signiture move,", "broke every record with a", "swept the floor with a", "took their opponent to church with the", "let their opponent have it with", "silenced the audience with", "aligned the planets with the", "cleaned their opponent's clock with a", "made their opponent see stars with", "woke the dead with the", "committed a hate crime with", "used their favorite move", "came flying in with a", "smashed even innocent bystanders with a", "plowed ur granny with the", "brought peace to the middle east with the", "popped their opponent with", "pulled the classic", "threw the ol'", "gave 'em the ol'", "pulled out all the stops with the", "knocked the living crap out of 'em with a", "went to the moon and back for that hit with the", "just went out doing the most with a", "just broke their opponent's ankles with", "successfully smashed with", "looked like a fool out there with the", "with the delivery using", "swang with a", "hit with the", "pummeled bootie with the", "smacked ass with a"];
         var comm = array[Math.floor(Math.random()*array.length)];
         return comm;
     }
@@ -197,8 +196,6 @@ class Fight extends Component {
         if (diceQuip >= 90) {
             commQuip = this.commQuip();
         }
-
-        console.log("comm", commPreface, commDescription, commQuip)
 
         if (randAttack === "1") {
             atkDamage = this.getRandomInteger(this.state.ab1_dlow, this.state.ab1_dhigh);
@@ -377,31 +374,31 @@ class Fight extends Component {
 
         if (this.state.newTrans === "0s linear") {
             if (offsetHeight <= 1200) {
-                passTrans = "30s linear"
-            } else if (offsetHeight > 1200 && offsetHeight <= 1500) {
-                passTrans = "35s linear"
-            } else if (offsetHeight > 1500 && offsetHeight <= 1800) {
                 passTrans = "40s linear"
-            } else if (offsetHeight > 1800 && offsetHeight <= 2100) {
+            } else if (offsetHeight > 1200 && offsetHeight <= 1500) {
                 passTrans = "45s linear"
-            } else if (offsetHeight > 2100 && offsetHeight <= 2400) {
+            } else if (offsetHeight > 1500 && offsetHeight <= 1800) {
                 passTrans = "50s linear"
-            } else if (offsetHeight > 2400 && offsetHeight <= 2700) {
+            } else if (offsetHeight > 1800 && offsetHeight <= 2100) {
                 passTrans = "55s linear"
-            } else if (offsetHeight > 2700 && offsetHeight <= 3000) {
+            } else if (offsetHeight > 2100 && offsetHeight <= 2400) {
                 passTrans = "60s linear"
-            } else if (offsetHeight > 3000 && offsetHeight <= 3300) {
+            } else if (offsetHeight > 2400 && offsetHeight <= 2700) {
                 passTrans = "65s linear"
-            } else if (offsetHeight > 3300 && offsetHeight <= 3600) {
+            } else if (offsetHeight > 2700 && offsetHeight <= 3000) {
                 passTrans = "70s linear"
-            } else if (offsetHeight > 3600 && offsetHeight <= 3900) {
+            } else if (offsetHeight > 3000 && offsetHeight <= 3300) {
                 passTrans = "75s linear"
-            } else if (offsetHeight > 3900 && offsetHeight <= 4200) {
+            } else if (offsetHeight > 3300 && offsetHeight <= 3600) {
                 passTrans = "80s linear"
-            } else if (offsetHeight > 4200 && offsetHeight <= 4500) {
+            } else if (offsetHeight > 3600 && offsetHeight <= 3900) {
                 passTrans = "85s linear"
-            } else if (offsetHeight > 4500) {
+            } else if (offsetHeight > 3900 && offsetHeight <= 4200) {
                 passTrans = "90s linear"
+            } else if (offsetHeight > 4200 && offsetHeight <= 4500) {
+                passTrans = "95s linear"
+            } else if (offsetHeight > 4500) {
+                passTrans = "100s linear"
             }
 
             this.setState({
@@ -418,7 +415,6 @@ class Fight extends Component {
     }
 
     fightEnd = (outcome, textCss) => {
-        console.log("Outcome: " + outcome);
         var offsetHeight = document.getElementById("fight-build-box-id").offsetHeight;
         var initPosition = offsetHeight - 250;
 

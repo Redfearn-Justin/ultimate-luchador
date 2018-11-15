@@ -21,7 +21,7 @@ class Credits extends Component {
 
                     <div className="credits-members-bar">
                         <div className="credits-member">
-                            <span style={{ textShadow: "1px 1px lightblue" }}>Gavin Baxter - <span style={{ fontStyle: "italic" }}>Project Manager</span></span>
+                            <span style={{ textShadow: "1px 1px #000", color: "rgb(82, 208, 247)" }}>Gavin Baxter - <span style={{ fontStyle: "italic" }}>Project Manager</span></span>
                             <div>
                                 <a href="https://github.com/gavbax99"><img alt="icon" src="./images/github.svg" style={{ height: "18px", position: "relative", top: "2px", margin: "0px 8px" }} /></a>
                                 <a href="https://www.linkedin.com/in/gavinbaxter99/"><img alt="icon" src="./images/linkedin.svg" style={{ height: "18px", position: "relative", top: "2px", margin: "0px 8px" }} /></a>
@@ -29,27 +29,25 @@ class Credits extends Component {
                             </div>
                         </div>
                         <div className="credits-member">
-                            <span style={{ textShadow: "1px 1px orange" }}>Justin Redfearn - <span style={{ fontStyle: "italic" }}>Developer</span></span>
+                            <span style={{ textShadow: "1px 1px #000", color: "orange" }}>Justin Redfearn - <span style={{ fontStyle: "italic" }}>Developer</span></span>
                             <div>
-                                <a href="https://github.com/gavbax99"><img alt="icon" src="./images/github.svg" style={{ height: "18px", position: "relative", top: "2px", margin: "0px 8px" }} /></a>
+                                <a href="https://github.com/Redfearn-Justin"><img alt="icon" src="./images/github.svg" style={{ height: "18px", position: "relative", top: "2px", margin: "0px 8px" }} /></a>
                                 <a href="https://www.linkedin.com/in/gavinbaxter99/"><img alt="icon" src="./images/linkedin.svg" style={{ height: "18px", position: "relative", top: "2px", margin: "0px 8px" }} /></a>
                                 <a href="https://gavbax99.github.io/UCDPortfolio/"><img alt="icon" src="./images/home.svg" style={{ height: "18px", position: "relative", top: "2px", margin: "0px 8px" }} /></a>
                             </div>
                         </div>
                         <div className="credits-member">
-                            <span style={{ textShadow: "1px 1px lightgreen" }}>Matt Bower - <span style={{ fontStyle: "italic" }}>Developer</span></span>
+                            <span style={{ textShadow: "1px 1px #000", color: "rgb(65, 201, 65)" }}>Matt Bower - <span style={{ fontStyle: "italic" }}>Developer</span></span>
                             <div>
-                                <a href="https://github.com/gavbax99"><img alt="icon" src="./images/github.svg" style={{ height: "18px", position: "relative", top: "2px", margin: "0px 8px" }} /></a>
+                                <a href="https://github.com/mmbower1"><img alt="icon" src="./images/github.svg" style={{ height: "18px", position: "relative", top: "2px", margin: "0px 8px" }} /></a>
                                 <a href="https://www.linkedin.com/in/gavinbaxter99/"><img alt="icon" src="./images/linkedin.svg" style={{ height: "18px", position: "relative", top: "2px", margin: "0px 8px" }} /></a>
                                 <a href="https://gavbax99.github.io/UCDPortfolio/"><img alt="icon" src="./images/home.svg" style={{ height: "18px", position: "relative", top: "2px", margin: "0px 8px" }} /></a>
                             </div>
                         </div>
                         <div className="credits-member">
-                            <span style={{ textShadow: "1px 1px pink" }}>Kyle Janssen - <span style={{ fontStyle: "italic" }}>Art Director</span></span>
+                            <span style={{ textShadow: "1px 1px #000", color: "rgb(255, 151, 158)" }}>Kyle Janssen - <span style={{ fontStyle: "italic" }}>Art Director</span></span>
                             <div>
-                                <a href="https://github.com/gavbax99"><img alt="icon" src="./images/github.svg" style={{ height: "18px", position: "relative", top: "2px", margin: "0px 8px" }} /></a>
-                                <a href="https://www.linkedin.com/in/gavinbaxter99/"><img alt="icon" src="./images/linkedin.svg" style={{ height: "18px", position: "relative", top: "2px", margin: "0px 8px" }} /></a>
-                                <a href="https://gavbax99.github.io/UCDPortfolio/"><img alt="icon" src="./images/home.svg" style={{ height: "18px", position: "relative", top: "2px", margin: "0px 8px" }} /></a>
+                                <a href="https://www.instagram.com/kaykoj/"><img alt="icon" src="./images/insta.svg" style={{ height: "18px", position: "relative", top: "2px", margin: "0px 8px" }} /></a>
                             </div>
                         </div>
                     </div>

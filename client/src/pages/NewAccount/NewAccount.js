@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
 import "./NewAccount.css";
 import { auth, database } from "../../firebase";
-import SplashTop from "../../components/SplashTop"
 import axios from "axios";
 import moment from "moment";
 
@@ -133,28 +132,25 @@ class NewAccount extends Component {
                 if (errorCode === "auth/weak-password") {
 
                     alert("Please pick a stronger password.");
-
-                    throw (errorCode, errorMessage);
+                    console.log(errorCode, errorMessage);
 
                 } else if (errorCode === "auth/email-already-in-use") {
 
                     alert("This email is already associated with an account. Please choose another email.");
-
-                    throw (errorCode, errorMessage);
+        
+                    console.log(errorCode, errorMessage);
 
                 } else if (errorCode === "auth/invalid-email") {
 
-                    alert("Invalid email. Please try again");
-
-                    throw (errorCode, errorMessage);
+                    alert("Invalid credentials, please try again.");
+                    console.log(errorCode, errorMessage);
 
                 } else {
 
-                    console.log("An error has occured. Please try again");
+                    alert("An error occured. Please try again");
+                    console.log(errorCode, errorMessage);
 
-                    throw (errorCode, errorMessage);
                 }
-
             });
 
     }
