@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
+import { auth}  from "../../firebase";
 
 import "./Profile.css";
 
@@ -17,6 +18,20 @@ class Profile extends Component {
         var number = (a/(a+b))*100;
         var calc = number.toFixed(2);
         return calc;
+    }
+
+    signOut = () => {
+
+        const currentUser = auth.currentUser;
+
+        const email = currentUser.email;
+
+        console.log(`${email} has signed out`);
+
+        auth.signOut();
+
+        this.props.setPageName("Splash");
+        
     }
 
     render() {
@@ -56,7 +71,7 @@ class Profile extends Component {
                                 <div onClick={() => this.goToGh()}>github</div>
                             </div>
                             <div className="profile-button">
-                                <div>log out</div>
+                                <div onClick={this.signOut}>log out</div>
                             </div>
                         </div>
 

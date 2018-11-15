@@ -5,11 +5,13 @@ var connection;
 if (process.env.JAWSDB_URL) {
   connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
+  console.log("connected to SQL DB");
   connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "root",
+    password: "password", // <--- FOR JUSTIN DB ONLY
+    // password: "root", // <--- UNCOMMENT 
     database: "luchador_db"
     //edit user & password once we push to Heroku !!
   });
