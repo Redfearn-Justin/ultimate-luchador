@@ -51,6 +51,33 @@ router.get("/api/selectSingleOpponent/:id", function (req, res) {
     );
 });
 
+//Last log in time update
+//=================================================
+router.put("/api/updateTime", function (req, res) {
+    orm.updateOne(
+        "players",
+        req.body.uid,
+        function (result) {
+            res.json(result[0]);
+        }
+    );
+});
+
+//create account in SQL DB
+//====================================================
+router.post("/api/createAccount", function (req, res) {
+    orm.insertOne(
+        req.body.uid,
+        req.body.created,
+        req.body.last_login,
+        req.body.char_name,
+        function (result) {
+            res.json(result[0]);
+        }
+    );
+});
+
+
 router.put("/api/updateExpFame", function (req, res) {
     orm.updateExpFame(
         "players",
@@ -165,12 +192,13 @@ router.put("/api/newAbility3", function (req, res) {
     );
 });
 
-//Last log in time update
+//Last log in time update -- currently not functional
 //=================================================
 router.put("/api/updateTime", function (req, res) {
     orm.updateOne(
         "players",
         req.body.uid,
+        req.body.last_login,
         function (result) {
             res.json(result[0]);
         }
@@ -182,8 +210,6 @@ router.post("/api/createAccount", function (req, res) {
     orm.createAccount(
         "players",
         req.body.token,
-        req.body.created,
-        req.body.last_login,
         req.body.char_name,
         function (result) {
             res.json(result[0]);
