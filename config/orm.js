@@ -36,26 +36,7 @@ function objToSql(ob) {
 // =============================
 var orm = {
 
-    //Create/Connect account to SQL DB
-    //====================================
-    insertOne: (id, created, last_login, char_name, cb) => {
-        var queryString = "INSERT INTO players (id, created, last_login, char_name)" + " VALUES (?) "
-        connection.query(queryString, [id, created, last_login, char_name], function (err, res) {
-            if (err) throw err;
-            cb(res);
-        });
-    },
-
-    //last login time update test method
-    //=================================
-    updateOne: (tableName, id, cb) => {
-        var queryString = "UPDATE last_login " + tableName + " WHERE id = " + id;
-        connection.query(queryString, function (err, res) {
-            if (err) throw err;
-            cb(res);
-        });
-    },
-
+    // EXAMPLE METHOD
     selectOne: (tableName, id, cb) => {
         var queryString = "SELECT * FROM " + tableName + " WHERE id = " + id;
         connection.query(queryString, function (err, res) {
@@ -154,20 +135,20 @@ var orm = {
 
     //Create/Connect account to SQL DB
     //====================================
-    createAccount: (tableName, token, char_name, cb) => {
+    createAccount: (tableName, token, created, last_login, char_name, cb) => {
         var queryString = `INSERT INTO ${tableName} SET ?`;
         console.log(queryString);
-        connection.query(queryString, {token: token, char_name: char_name}, function (err, res) {
+        connection.query(queryString, {token: token, created: created, last_login: last_login, char_name: char_name}, function (err, res) {
             if (err) throw err;
             cb(res);
         });
     },
 
-    //last login time update test method -- Currently not functional
+    //last login time update test method
     //=================================
-    updateOne: (tableName, id, last_login, cb) => {
-        var queryString = `UPDATE ${tableName} SET ? WHERE id = ${id}`;
-        connection.query(queryString, {last_login: last_login}, function (err, res) {
+    updateOne: (tableName, id, cb) => {
+        var queryString = "UPDATE last_login " + tableName + " WHERE id = " + id;
+        connection.query(queryString, function (err, res) {
             if (err) throw err;
             cb(res);
         });

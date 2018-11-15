@@ -9,7 +9,6 @@ import "./Login.css";
 import SplashTop from "../../components/SplashTop"
 import { throws } from "assert";
 import axios from "axios";
-import moment from "moment";
 
 //Class
 //===============================================
@@ -81,44 +80,32 @@ class Login extends Component {
 
                 let email = currentAccount.email;
 
-                // let uid = currentAccount.uid;
-                let uid = 100; // <- for test purposes only
+                // let uid = 100;
+                let uid = currentAccount.uid;
 
                 //verifying uid and email are successfully passed through 
                 console.log(`${uid} - is the id for the following email account: ${email}`);
 
-                //current time
-                let mysqlTimestamp = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
-                // let currentTime = new Date().toLocaleString();
-                //=========================================
 
+
+                //Last Log in time (being converted from GMT to local time)
+                let lastLogIn = currentAccount.metadata.lastSignInTime;
+                let setToLocal = new Date(lastLogIn);
+                let convertedTime = setToLocal.toLocaleString();
+                //current time
+                let currentTime = new Date().toLocaleString();
+                //=========================================
                 const userInfo = {
                     email: email,
                     uid: uid,
-                    LastLogIn: mysqlTimestamp
+                    LastLogIn: convertedTime,
+                    currentTime: currentTime
                 };
                 console.log("Last log in time info: ", userInfo);
 
 
 
                 // AXIOS ========================================
-
-                // === AXIOS Call for time update
-                // axios.put('/api/updateTime', {
-                //     token: uid, 
-                //     last_login: mysqlTimestamp
-                // })
-                // .then(response => {
-                //     console.log(response);
-                //     const id = response.data.id;
-                //     const token = response.data.token;
-                //     const last_login = response.data.last_login;
-                //     this.props.loginData("Home", id, token, last_login);
-                // })
-                // .catch(err => {
-                //     console.log(err);
-                // });
-                
                 axios.get('/api/selectLuchador/' + uid)
                     .then(response => {
                         const id = response.data.id;
@@ -178,25 +165,25 @@ class Login extends Component {
 
                     alert("The user associated with those credentials has been disabled. Please create a new account.");
 
-                    console.log(errorCode, errorMessage);
+                    throw (errorCode, errorMessage);
 
                 } else if (errorCode === "auth/user-not-found") {
 
                     alert("There was no user found with those credentials. Please try to log in again, or create another account");
 
-                    console.log(errorCode, errorMessage);
+                    throw (errorCode, errorMessage);
 
                 } else if (errorCode === "auth/wrong-password") {
 
                     alert("Incorrect password associated with the email account. Please try again.");
 
-                    console.log(errorCode, errorMessage);
+                    throw (errorCode, errorMessage);
 
                 } else {
 
-                    alert("An error has occured. Please try again");
+                    console.log("An error has occured. Please try again");
 
-                    console.log(errorCode, errorMessage);
+                    throw (errorCode, errorMessage);
                 };
 
             });

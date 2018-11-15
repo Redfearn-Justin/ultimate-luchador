@@ -90,15 +90,27 @@ class NewAccount extends Component {
 
                 //getting the current user according to firebase
                 const currentAccount = auth.currentUser;
+                let email = currentAccount.email;
                 let uid = currentAccount.uid;
                 let displayName = this.state.displayName.toLowerCase();
-                // var mysqlTimestamp = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+                var mysqlTimestamp = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
 
+                //Object to put user token and display name into firebase DB
+                const newUserInfo = {
+                    displayName: this.state.displayName.toLowerCase(),
+                    email: email,
+                    uid: uid,
+                }
+
+                //pushing user token and display name to firebase database
+                database.ref().push(newUserInfo);
 
                  //API Call
                 //=======================================================
                 axios.post('/api/createAccount', {
                     token: uid,
+                    created: mysqlTimestamp,
+                    last_login: mysqlTimestamp,
                     char_name: displayName
                 })
                 .then(response => {
@@ -122,25 +134,27 @@ class NewAccount extends Component {
 
                     alert("Please pick a stronger password.");
 
-                    console.log(errorCode, errorMessage);
+                    throw (errorCode, errorMessage);
 
                 } else if (errorCode === "auth/email-already-in-use") {
 
                     alert("This email is already associated with an account. Please choose another email.");
-                
-                    console.log(errorCode, errorMessage);
+
+                    throw (errorCode, errorMessage);
 
                 } else if (errorCode === "auth/invalid-email") {
 
-                    console.log(errorCode, errorMessage);
+                    alert("Invalid email. Please try again");
+
+                    throw (errorCode, errorMessage);
 
                 } else {
 
-                    alert("An error occured. Please try again");
+                    console.log("An error has occured. Please try again");
 
-                    console.log(errorCode, errorMessage);
-
+                    throw (errorCode, errorMessage);
                 }
+
             });
 
     }
