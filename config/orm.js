@@ -155,7 +155,7 @@ var orm = {
         });
     },
 
-    //last login time update test method
+    //last login time update test method -- Currently not functional
     //=================================
     updateOne: (tableName, id, last_login, cb) => {
         var queryString = `UPDATE ${tableName} SET ? WHERE id = ${id}`;

@@ -82,13 +82,13 @@ class Login extends Component {
                 let email = currentAccount.email;
 
                 // let uid = currentAccount.uid;
-                let uid = 100;
+                let uid = 100; // <- for test purposes only
 
                 //verifying uid and email are successfully passed through 
                 console.log(`${uid} - is the id for the following email account: ${email}`);
 
                 //current time
-                var mysqlTimestamp = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+                let mysqlTimestamp = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
                 // let currentTime = new Date().toLocaleString();
                 //=========================================
 
@@ -102,6 +102,8 @@ class Login extends Component {
 
 
                 // AXIOS ========================================
+
+                // === AXIOS Call for time update
                 // axios.put('/api/updateTime', {
                 //     token: uid, 
                 //     last_login: mysqlTimestamp

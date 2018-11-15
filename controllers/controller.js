@@ -181,7 +181,7 @@ router.put("/api/newAbility3", function (req, res) {
     );
 });
 
-//Last log in time update
+//Last log in time update -- currently not functional
 //=================================================
 router.put("/api/updateTime", function (req, res) {
     orm.updateOne(
