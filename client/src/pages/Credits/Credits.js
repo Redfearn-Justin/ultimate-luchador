@@ -55,14 +55,14 @@ class Credits extends Component {
                     <div className="credits-tech-bar">
 
                         <div className="credits-tech-row">
-                            <div className="credits-tech-col"><img src="./images/react.png" /></div>
-                            <div className="credits-tech-col"><img src="./images/node.png" /></div>
-                            <div className="credits-tech-col"><img src="./images/mysql.png" /></div>
+                            <div className="credits-tech-col"><img alt="icon" src="./images/react.png" /></div>
+                            <div className="credits-tech-col"><img alt="icon" src="./images/node.png" /></div>
+                            <div className="credits-tech-col"><img alt="icon" src="./images/mysql.png" /></div>
                         </div>
                         <div className="credits-tech-row">
-                            <div className="credits-tech-col"><img src="./images/redux.png" /></div>
-                            <div className="credits-tech-col"><img src="./images/firebase.png" /></div>
-                            <div className="credits-tech-col"><img src="./images/heroku.png" /></div>
+                            <div className="credits-tech-col"><img alt="icon" src="./images/redux.png" /></div>
+                            <div className="credits-tech-col"><img alt="icon" src="./images/firebase.png" /></div>
+                            <div className="credits-tech-col"><img alt="icon" src="./images/heroku.png" /></div>
                         </div>
 
                     </div>

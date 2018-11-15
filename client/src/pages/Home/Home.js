@@ -24,14 +24,12 @@ class Splash extends Component {
     }
 
     cheat = () => {
-        if (this.props.storeData.char_name === "testcharacter") {
+        if (this.props.storeData.char_name === "gavin") {
             this.props.setPageName("LevelUp");
         }
     }
 
     widthBar = (a, b) => {
-        // var a = 0;
-        // var b = 200;
         var sol = Math.floor((a / b) * 100);
         return sol;
     }
@@ -88,7 +86,7 @@ class Splash extends Component {
                     console.log(error);
                 });
         }
-    }
+    };
 
     refreshTickets = () => {
         if (this.props.storeData.refresh > 0) {
@@ -105,7 +103,7 @@ class Splash extends Component {
                     console.log(error);
                 });
         }
-    }
+    };
 
     render() {
         return (

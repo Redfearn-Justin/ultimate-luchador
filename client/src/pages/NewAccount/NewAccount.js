@@ -165,7 +165,7 @@ class NewAccount extends Component {
                     <p className="title">ULTIMATE<br />LUCHADOR</p>
 
                     <div className="splash-lucha-image" >
-                        <img src="./images/lucha.png" />
+                        <img alt="background picture" src="./images/lucha.png" />
                     </div>
 
                     <div className="flex-input">

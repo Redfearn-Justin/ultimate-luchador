@@ -9,6 +9,8 @@ import "./NewAbility.css";
 
 class NewAbility extends Component {
 
+// I3fjoum5S8Ty6G687wfRBbS3M5E2
+
     state = {
         newName: "",
         newDlow: 1,
@@ -64,44 +66,44 @@ class NewAbility extends Component {
         var color;
         var icon;
 
-        if (rollSpeed >= 1 && rollSpeed <= 45) {
-            dlow = this.getRandomInteger(4, 8);
-            dhigh = this.getRandomInteger(9, 15);
+        if (rollSpeed >= 1 && rollSpeed <= 33) {
+            dlow = this.getRandomInteger(4, 9);
+            dhigh = this.getRandomInteger(10, 15);
             speed = 5;
-            crit = (this.getRandomInteger(8, 12)) / 100;
-            fail = (this.getRandomInteger(3, 8)) / 100;
+            crit = (this.getRandomInteger(10, 15)) / 100;
+            fail = (this.getRandomInteger(0, 10)) / 100;
             color = this.randomColor();
             icon = this.randomIcon();
-        } else if (rollSpeed >= 46 && rollSpeed <= 70) {
-            dlow = this.getRandomInteger(5, 10);
-            dhigh = this.getRandomInteger(11, 17);
+        } else if (rollSpeed >= 34 && rollSpeed <= 57) {
+            dlow = this.getRandomInteger(7, 13);
+            dhigh = this.getRandomInteger(14, 18);
             speed = 4;
-            crit = (this.getRandomInteger(10, 14)) / 100;
-            fail = (this.getRandomInteger(4, 9)) / 100;
+            crit = (this.getRandomInteger(6, 18)) / 100;
+            fail = (this.getRandomInteger(0, 15)) / 100;
             color = this.randomColor();
             icon = this.randomIcon();
-        } else if (rollSpeed >= 71 && rollSpeed <= 85) {
-            dlow = this.getRandomInteger(6, 12);
-            dhigh = this.getRandomInteger(13, 18);
+        } else if (rollSpeed >= 58 && rollSpeed <= 76) {
+            dlow = this.getRandomInteger(12, 16);
+            dhigh = this.getRandomInteger(17, 23);
             speed = 3;
-            crit = (this.getRandomInteger(11, 15)) / 100;
-            fail = (this.getRandomInteger(5, 9)) / 100;
+            crit = (this.getRandomInteger(4, 20)) / 100;
+            fail = (this.getRandomInteger(0, 18)) / 100;
             color = this.randomColor();
             icon = this.randomIcon();
-        } else if (rollSpeed >= 86 && rollSpeed <= 95) {
-            dlow = this.getRandomInteger(8, 15);
-            dhigh = this.getRandomInteger(16, 21);
+        } else if (rollSpeed >= 77 && rollSpeed <= 90) {
+            dlow = this.getRandomInteger(15, 20);
+            dhigh = this.getRandomInteger(21, 28);
             speed = 2;
-            crit = (this.getRandomInteger(12, 16)) / 100;
-            fail = (this.getRandomInteger(6, 9)) / 100;
+            crit = (this.getRandomInteger(2, 22)) / 100;
+            fail = (this.getRandomInteger(0, 18)) / 100;
             color = this.randomColor();
             icon = this.randomIcon();
-        } else if (rollSpeed >= 96 && rollSpeed <= 100) {
-            dlow = this.getRandomInteger(10, 20);
-            dhigh = this.getRandomInteger(21, 30);
+        } else if (rollSpeed >= 91 && rollSpeed <= 100) {
+            dlow = this.getRandomInteger(18, 25);
+            dhigh = this.getRandomInteger(26, 35);
             speed = 1;
-            crit = (this.getRandomInteger(13, 19)) / 100;
-            fail = (this.getRandomInteger(6, 10)) / 100;
+            crit = (this.getRandomInteger(2, 25)) / 100;
+            fail = (this.getRandomInteger(0, 20)) / 100;
             color = this.randomColor();
             icon = this.randomIcon();
         };
