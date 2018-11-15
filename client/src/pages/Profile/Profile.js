@@ -74,14 +74,14 @@ class Profile extends Component {
                     <div className="profile-main-bar">
                         <div className="profile-section">
                             <div className="profile-section-stat pf-font-size">fame:</div>
-                            <div className="profile-section-value pf-font-size">f{this.props.storeData.fame}</div>
+                            <div className="profile-section-value pf-font-size"><span><img alt="icon" src="./images/fame.svg" style={{ height: "25px", position: "relative", top: "2px", marginRight: "5px" }} />{this.props.storeData.fame}</span></div>
                         </div>
 
                         <div className="break-line"></div>
 
                         <div className="profile-section">
                             <div className="profile-section-stat pf-font-size">hp:</div>
-                            <div className="profile-section-value pf-font-size">h{this.props.storeData.hp}</div>
+                            <div className="profile-section-value pf-font-size"><span><img alt="icon" src="./images/heart.svg" style={{ height: "25px", position: "relative", top: "2px", marginRight: "5px" }} />{this.props.storeData.hp}</span></div>
                         </div>
 
                         <div className="break-line"></div>
@@ -115,7 +115,7 @@ class Profile extends Component {
                                         />
                                     </div>
                                     <div style={{ flex: 1 }}>
-                                        <button onClick={() => this.changePicture()} style={{ marginRight: "4px" }}>go</button>
+                                        <button className="profile-submit" onClick={() => this.changePicture()} >go</button>
                                     </div>
                                 </div>
                             </div>
@@ -126,18 +126,18 @@ class Profile extends Component {
                     <div className="profile-buttons-bar">
                         <div className="profile-buttons-col">
                             <div className="profile-button">
-                                <div onClick={() => this.props.setPageName("Home")}>back</div>
+                                <div className="profile-button-text" onClick={() => this.props.setPageName("Home")}>back</div>
                             </div>
                             <div className="profile-button">
-                                <div onClick={() => this.props.setPageName("Credits")}>credits</div>
+                                <div className="profile-button-text" onClick={() => this.props.setPageName("Credits")}>credits</div>
                             </div>
                         </div>
                         <div className="profile-buttons-col">
                             <div className="profile-button">
-                                <div onClick={() => this.goToGh()}>github</div>
+                                <div className="profile-shop-text">shop</div>
                             </div>
                             <div className="profile-button">
-                                <div>log out</div>
+                                <div className="profile-button-text">log out</div>
                             </div>
                         </div>
 

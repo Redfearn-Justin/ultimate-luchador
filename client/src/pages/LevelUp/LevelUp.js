@@ -13,7 +13,8 @@ class LevelUp extends Component {
     state = {
         newLvl: 0,
         newTicketsMax: 0,
-        newHp: 0
+        newHp: 0,
+        hpGain: 0
     }
 
     componentDidMount = () => {
@@ -27,7 +28,8 @@ class LevelUp extends Component {
         this.setState({
             newLvl: newLvl,
             newTicketsMax: newTicketsMax,
-            newHp: newHp
+            newHp: newHp,
+            hpGain: hpGain
         });
 
         this.props.levelUp(0, newLvl, newHp, newTicketsMax, newRefresh);
@@ -55,10 +57,11 @@ class LevelUp extends Component {
                     <div className="results-text-bar results-victory-text">level up!</div>
 
                     <div className="levelup-stats-bar">
-                        <div className="levelup-stat">level {this.state.newLvl}</div>
-                        <div className="levelup-stat">hp: {this.state.newHp}</div>
-                        <div className="levelup-stat">tickets: {this.state.newTicketsMax}</div>
-                        <div className="levelup-stat">0</div>
+                        <div className="levelup-stat"><span><img alt="icon" src="./images/lvl.svg" style={{ height: "25px", position: "relative", top: "2px", marginRight: "5px" }} />{this.state.newLvl}</span></div>
+                        <div className="levelup-stat"><span><img alt="icon" src="./images/heart.svg" style={{ height: "25px", position: "relative", top: "2px", marginRight: "5px" }} />+{this.state.hpGain}</span></div>
+                        <div className="levelup-stat"><span><img alt="icon" src="./images/ticket.svg" style={{ height: "25px", position: "relative", top: "2px", marginRight: "5px" }}/>+1</span></div>
+                        <div className="levelup-stat" style={{ color: "blue" }}>+1 refill</div>
+                        <div className="levelup-stat" style={{ color: "blue" }}>+full tickets</div>
                     </div>
 
                     <div className="levelup-home-bar">

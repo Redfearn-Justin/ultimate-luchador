@@ -131,9 +131,12 @@ class Splash extends Component {
 
                 <div id="boxxx" className="box">
                     {/* <SplashTop /> */}
+                    <p className="title">ULTIMATE<br />LUCHADOR</p>
+
                     <div className="splash-lucha-image" >
                         <img src="./images/lucha.png" />
                     </div>
+                    
                     <div className="flex-buttons">
                         <div className="button loginButton" onClick={() => this.props.setPageName("Login")}>LOG IN</div>
                         <div className="button newAccountButton" onClick={() => this.props.setPageName("NewAccount")}>NEW ACCOUNT</div>

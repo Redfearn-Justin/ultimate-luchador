@@ -23,6 +23,12 @@ class Splash extends Component {
         });
     }
 
+    cheat = () => {
+        if (this.props.storeData.char_name === "testcharacter") {
+            this.props.setPageName("LevelUp");
+        }
+    }
+
     widthBar = (a, b) => {
         // var a = 0;
         // var b = 200;
@@ -123,8 +129,8 @@ class Splash extends Component {
 
                                     <div className="player-level-bar" style={{ textShadow: "1px 1px 3px rgb(49, 59, 175)" }}>
                                         <div className="player-exp" style={{ width: this.state.width + "%" }}></div>
-                                        <div className="player-exp-stats">{this.props.storeData.exp}/{this.expNeeded()} exp</div>
-                                        <div className="player-exp-lvl">{this.props.storeData.lvl}</div>
+                                        <div className="player-exp-stats">{this.props.storeData.exp}/{this.expNeeded()}<img alt="icon" src="./images/exp.svg" style={{ height: "15px", position: "relative", top: "2px", marginLeft: "3px" }} /></div>
+                                        <div className="player-exp-lvl"><span><img alt="icon" src="./images/lvl.svg" style={{ height: "14px", position: "relative", top: "2px", marginRight: "3px" }} />{this.props.storeData.lvl}</span></div>
                                     </div>
 
                                 </div>
@@ -146,9 +152,9 @@ class Splash extends Component {
                                     <span className="ability-span" style={{ color: this.props.storeData.ab1_color }}>{this.props.storeData.ab1_name}</span>
                                 </div>
                                 <div className="opponent-stats-bar stat-icons">
-                                    <div><span>{this.props.storeData.ab1_dlow}-{this.props.storeData.ab1_dhigh}<img alt="icon" src="./images/icon_sword.svg" style={{ height: "18px" }} /></span></div>
-                                    <div><span>{this.props.storeData.ab1_speed}/5<img alt="icon" src="./images/icon_speed.svg" style={{ height: "18px" }} /></span></div>
-                                    <div><span>{this.props.storeData.ab1_crit * 100}%<img alt="icon" src="./images/icon_crit.svg" style={{ height: "18px" }} /></span></div>
+                                    <div><span>{this.props.storeData.ab1_dlow}-{this.props.storeData.ab1_dhigh}<img alt="icon" src="./images/icon_sword.svg" style={{ height: "18px", marginLeft: "3px" }} /></span></div>
+                                    <div><span>{this.props.storeData.ab1_speed}/5<img alt="icon" src="./images/icon_speed.svg" style={{ height: "18px", marginLeft: "3px" }} /></span></div>
+                                    <div><span>{this.props.storeData.ab1_crit * 100}%<img alt="icon" src="./images/icon_crit.svg" style={{ height: "18px", marginLeft: "3px" }} /></span></div>
                                 </div>
                             </div>
                         </div>
@@ -167,9 +173,9 @@ class Splash extends Component {
                             <div className="opponent-stats">
                                 <div className="opponent-stats-bar"><span className="ability-span" style={{ color: this.props.storeData.ab2_color }}>{this.props.storeData.ab2_name}</span></div>
                                 <div className="opponent-stats-bar stat-icons">
-                                    <div><span>{this.props.storeData.ab2_dlow}-{this.props.storeData.ab2_dhigh}<img alt="icon" src="./images/icon_sword.svg" style={{ height: "18px" }} /></span></div>
-                                    <div><span>{this.props.storeData.ab2_speed}/5<img alt="icon" src="./images/icon_speed.svg" style={{ height: "18px" }} /></span></div>
-                                    <div><span>{this.props.storeData.ab2_crit * 100}%<img alt="icon" src="./images/icon_crit.svg" style={{ height: "18px" }} /></span></div>
+                                    <div><span>{this.props.storeData.ab2_dlow}-{this.props.storeData.ab2_dhigh}<img alt="icon" src="./images/icon_sword.svg" style={{ height: "18px", marginLeft: "3px" }} /></span></div>
+                                    <div><span>{this.props.storeData.ab2_speed}/5<img alt="icon" src="./images/icon_speed.svg" style={{ height: "18px", marginLeft: "3px" }} /></span></div>
+                                    <div><span>{this.props.storeData.ab2_crit * 100}%<img alt="icon" src="./images/icon_crit.svg" style={{ height: "18px", marginLeft: "3px" }} /></span></div>
                                 </div>
                             </div>
                         </div>
@@ -188,9 +194,9 @@ class Splash extends Component {
                             <div className="opponent-stats">
                                 <div className="opponent-stats-bar"><span className="ability-span" style={{ color: this.props.storeData.ab3_color }}>{this.props.storeData.ab3_name}</span></div>
                                 <div className="opponent-stats-bar stat-icons">
-                                    <div><span>{this.props.storeData.ab3_dlow}-{this.props.storeData.ab3_dhigh}<img alt="icon" src="./images/icon_sword.svg" style={{ height: "18px" }} /></span></div>
-                                    <div><span>{this.props.storeData.ab3_speed}/5<img alt="icon" src="./images/icon_speed.svg" style={{ height: "18px" }} /></span></div>
-                                    <div><span>{this.props.storeData.ab3_crit * 100}%<img alt="icon" src="./images/icon_crit.svg" style={{ height: "18px" }} /></span></div>
+                                    <div><span>{this.props.storeData.ab3_dlow}-{this.props.storeData.ab3_dhigh}<img alt="icon" src="./images/icon_sword.svg" style={{ height: "18px", marginLeft: "3px" }} /></span></div>
+                                    <div><span>{this.props.storeData.ab3_speed}/5<img alt="icon" src="./images/icon_speed.svg" style={{ height: "18px", marginLeft: "3px" }} /></span></div>
+                                    <div><span>{this.props.storeData.ab3_crit * 100}%<img alt="icon" src="./images/icon_crit.svg" style={{ height: "18px", marginLeft: "3px" }} /></span></div>
                                 </div>
                             </div>
                         </div>
@@ -201,7 +207,7 @@ class Splash extends Component {
                     <div className="fight-bar">
                         <div className="fight-buttons">
                             <div className="fight-buttons-click fight-button" onClick={() => this.initiateFight()}>Fight</div>
-                            <div className="boss-grey">Boss</div>
+                            <div className="boss-grey" onClick={() => this.cheat()}>Boss</div>
                             <div className="fight-buttons-click profile-red" onClick={() => this.props.setPageName("Profile")}>Profile</div>
                         </div>
 

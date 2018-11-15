@@ -3,7 +3,9 @@
 .credits-tech-bar,
 .credits-back-bar,
 .credits-back,
-.credits-back div {
+.credits-back div,
+.credits-tech-row,
+.credits-tech-col {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -12,18 +14,32 @@
 }
 
 .credits-text {
-    height: 12%;
+    height: 10%;
+    font-size: 3.5rem;
 }
 
 .credits-members-bar {
     width: 90%;
-    height: 30%;
+    height: 36%;
     font-size: 4.5rem;
 }
 
 .credits-member {
     flex: 1;
-    font-size: 1.5rem;
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.credits-member img {
+    transition: .3s;
+}
+
+.credits-member img:hover {
+    transform: scale(1.1);
+}
+
+.credits-member span {
+    margin-bottom: 6px;
 }
 
 .credits-tech-bar {
@@ -31,6 +47,17 @@
     height: 35%;
     background-color: #fff;
     border-radius: 6px;
+}
+
+.credits-tech-row {
+    flex-direction: row;
+    flex: 1;
+    width: 100%;
+}
+
+.credits-tech-col {
+    flex: 1;
+    height: 100%;
 }
 
 .credits-back-bar {
@@ -45,6 +72,10 @@
     flex-direction: row;
 }
 
+.credits-tech-col img {
+    height: 80px;
+}
+
 .credits-back div {
     border: 4px solid rgb(30, 38, 129);
     background-color: rgb(49, 59, 175);
@@ -52,8 +83,16 @@
     height: 60%;
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 410px) {
     .credits-text {
       font-size: 3.5rem;
+    }
+
+    .credits-member {
+        font-size: .9rem;
+    }
+    
+    .credits-tech-col img {
+        height: 65px;
     }
   }

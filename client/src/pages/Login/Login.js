@@ -196,12 +196,18 @@ class Login extends Component {
             <div className="container">
 
                 <div className="box">
-                    <SplashTop />
+                    {/* <SplashTop /> */}
+                    <p className="title">ULTIMATE<br />LUCHADOR</p>
+
+                    <div className="splash-lucha-image" >
+                        <img src="./images/lucha.png" />
+                    </div>
+
                     <div className="flex-input">
 
                         <div className="nav">
                             <button onClick={() => this.props.setPageName("Splash")}>back</button>
-                            <span className="text-black">log in</span>
+                            <span className="text-white">log in</span>
                             <button onClick={this.logIn}>log in</button>
                         </div>
 
@@ -215,7 +221,7 @@ class Login extends Component {
                                     name="email"
                                     onChange={this.hanldeInputChange}
                                     type="email"
-                                    placeholder="janedoe@hotmail.com"
+                                    placeholder="janedoe@gmail.com"
                                 />
                             </div>
                         </div>

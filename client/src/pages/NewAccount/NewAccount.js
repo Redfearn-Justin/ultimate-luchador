@@ -165,11 +165,17 @@ class NewAccount extends Component {
             <div className="container">
 
                 <div className="box">
-                    <SplashTop />
+                    {/* <SplashTop /> */}
+                    <p className="title">ULTIMATE<br />LUCHADOR</p>
+
+                    <div className="splash-lucha-image" >
+                        <img src="./images/lucha.png" />
+                    </div>
+
                     <div className="flex-input">
                         <div className="nav">
                             <button onClick={() => this.props.setPageName("Splash")}>back</button>
-                            <span className="text-black">new account</span>
+                            <span className="text-white">new account</span>
                             <button onClick={this.createAccount}>create</button>
                         </div>
                         <div className="input-bar">
@@ -215,6 +221,8 @@ class NewAccount extends Component {
                             </div>
                         </div>
                     </div>
+
+
                 </div>
 
             </div>

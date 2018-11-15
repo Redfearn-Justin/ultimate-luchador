@@ -1,6 +1,7 @@
 .player-bar,
 .fight-speed-buttons,
-.fight-speed-bar {
+.fight-speed-bar,
+.fight-loading {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -38,7 +39,7 @@
 }
 
 .fight-build-box p {
-    margin: 65px 0;
+    margin: 75px 0;
     padding: 0 10px;
     word-spacing: 4px;
     line-height: 25px;
@@ -126,15 +127,32 @@
     bottom: 4px;
     right: 6px;
     color: #fff;
-    font-size: .8rem;
+    font-size: .7rem;
+}
+
+.dmg-indicator {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    color: #fff;
+    font-size: .7rem;
 }
 
 .fight-icon-img {
     height: 40px;
+    position: relative;
+    right: 5px;
 }
 
 .fight-name {
     font-size: 1.5rem;
+}
+
+.fight-loading {
+    background-color: #FCF1E3;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
 }
 
 @media only screen and (max-width: 400px) {

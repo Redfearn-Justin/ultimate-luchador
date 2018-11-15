@@ -36,7 +36,7 @@ class NewAbility extends Component {
     };
 
     randomIcon = () => {
-        var randNumer = Math.floor(Math.random() * 20) + 1;
+        var randNumer = Math.floor(Math.random() * 40) + 1;
         var path = "./images/icon" + randNumer + ".svg";
         return path;
     };
@@ -118,8 +118,6 @@ class NewAbility extends Component {
     };
 
     changeAbility = (ability) => {
-        //change redux ability at position
-        //change db ability at position
         if (this.state.newName === "") {
             alert("Name the ability!");
         } else {
@@ -158,7 +156,6 @@ class NewAbility extends Component {
                     });
             }
         }
-
     };
 
     render() {
@@ -186,9 +183,9 @@ class NewAbility extends Component {
                                 />
                             </div>
                             <div className="newab-new-stats-stats-bar">
-                                <div className="newab-new-stats-dmg">{this.state.newDlow}-{this.state.newDhigh}<img alt="icon" src="./images/icon_sword.svg" /></div>
-                                <div className="newab-new-stats-speed">{this.state.newSpeed}/5<img alt="icon" src="./images/icon_speed.svg" /></div>
-                                <div className="newab-new-stats-crit">{this.state.newCrit * 100}%<img alt="icon" src="./images/icon_crit.svg" /></div>
+                                <div className="newab-new-stats-dmg"><span>{this.state.newDlow}-{this.state.newDhigh}<img alt="icon" src="./images/icon_sword.svg" /></span></div>
+                                <div className="newab-new-stats-speed"><span>{this.state.newSpeed}/5<img alt="icon" src="./images/icon_speed.svg" /></span></div>
+                                <div className="newab-new-stats-crit"><span>{this.state.newCrit * 100}%<img alt="icon" src="./images/icon_crit.svg" /></span></div>
                             </div>
                         </div>
                     </div>
@@ -210,9 +207,9 @@ class NewAbility extends Component {
                                         <span style={{ color: this.props.storeData.ab1_color }}>{this.props.storeData.ab1_name}</span>
                                     </div>
                                     <div className="newab-new-stats-stats-bar">
-                                        <div className="newab-new-stats-dmg">{this.props.storeData.ab1_dlow}-{this.props.storeData.ab1_dhigh}<img alt="icon" src="./images/icon_sword.svg" /></div>
-                                        <div className="newab-new-stats-speed">{this.props.storeData.ab1_speed}/5<img alt="icon" src="./images/icon_speed.svg" /></div>
-                                        <div className="newab-new-stats-crit">{this.props.storeData.ab1_crit * 100}%<img alt="icon" src="./images/icon_crit.svg" /></div>
+                                        <div className="newab-new-stats-dmg"><span>{this.props.storeData.ab1_dlow}-{this.props.storeData.ab1_dhigh}<img alt="icon" src="./images/icon_sword.svg" /></span></div>
+                                        <div className="newab-new-stats-speed"><span>{this.props.storeData.ab1_speed}/5<img alt="icon" src="./images/icon_speed.svg" /></span></div>
+                                        <div className="newab-new-stats-crit"><span>{this.props.storeData.ab1_crit * 100}%<img alt="icon" src="./images/icon_crit.svg" /></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -229,9 +226,9 @@ class NewAbility extends Component {
                                         <span style={{ color: this.props.storeData.ab2_color }}>{this.props.storeData.ab2_name}</span>
                                     </div>
                                     <div className="newab-new-stats-stats-bar">
-                                        <div className="newab-new-stats-dmg">{this.props.storeData.ab2_dlow}-{this.props.storeData.ab2_dhigh}<img alt="icon" src="./images/icon_sword.svg" /></div>
-                                        <div className="newab-new-stats-speed">{this.props.storeData.ab2_speed}/5<img alt="icon" src="./images/icon_speed.svg" /></div>
-                                        <div className="newab-new-stats-crit">{this.props.storeData.ab2_crit * 100}%<img alt="icon" src="./images/icon_crit.svg" /></div>
+                                        <div className="newab-new-stats-dmg"><span>{this.props.storeData.ab2_dlow}-{this.props.storeData.ab2_dhigh}<img alt="icon" src="./images/icon_sword.svg" /></span></div>
+                                        <div className="newab-new-stats-speed"><span>{this.props.storeData.ab2_speed}/5<img alt="icon" src="./images/icon_speed.svg" /></span></div>
+                                        <div className="newab-new-stats-crit"><span>{this.props.storeData.ab2_crit * 100}%<img alt="icon" src="./images/icon_crit.svg" /></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -248,9 +245,9 @@ class NewAbility extends Component {
                                         <span style={{ color: this.props.storeData.ab3_color }}>{this.props.storeData.ab3_name}</span>
                                     </div>
                                     <div className="newab-new-stats-stats-bar">
-                                        <div className="newab-new-stats-dmg">{this.props.storeData.ab3_dlow}-{this.props.storeData.ab3_dhigh}<img alt="icon" src="./images/icon_sword.svg" /></div>
-                                        <div className="newab-new-stats-speed">{this.props.storeData.ab3_speed}/5<img alt="icon" src="./images/icon_speed.svg" /></div>
-                                        <div className="newab-new-stats-crit">{this.props.storeData.ab3_crit * 100}%<img alt="icon" src="./images/icon_crit.svg" /></div>
+                                        <div className="newab-new-stats-dmg"><span>{this.props.storeData.ab3_dlow}-{this.props.storeData.ab3_dhigh}<img alt="icon" src="./images/icon_sword.svg" /></span></div>
+                                        <div className="newab-new-stats-speed"><span>{this.props.storeData.ab3_speed}/5<img alt="icon" src="./images/icon_speed.svg" /></span></div>
+                                        <div className="newab-new-stats-crit"><span>{this.props.storeData.ab3_crit * 100}%<img alt="icon" src="./images/icon_crit.svg" /></span></div>
                                     </div>
                                 </div>
                             </div>
