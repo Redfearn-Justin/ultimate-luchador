@@ -1,42 +1,45 @@
+//Imports
+//===========================================
 import React, { Component } from "react";
-
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
 import axios from "axios";
-import { auth }  from "../../firebase";
-
+import { auth } from "../../firebase";
 import "./Profile.css";
 
-
+//Class
+//==========================================
 class Profile extends Component {
 
     state = {
         imgInput: ""
-    }
+    };
 
     goToGh = () => {
+        // Goes to our Github repo
         window.open("https://github.com/gavbax99/ultimate-luchador");
-    }
+    };
 
     getWinP = (a, b) => {
-        var number = (a / (a + b)) * 100;
-        var calc = number.toFixed(2);
+        // Compares wins/losses to return the player's win%
+        let number = (a / (a + b)) * 100;
+        let calc = number.toFixed(2);
         return calc;
-    }
+    };
 
     changePicture = () => {
-        var link = this.state.imgInput;
-        var testJpg = link.endsWith(".jpg");
-        var testJpeg = link.endsWith(".jpeg");
-        var testPng = link.endsWith(".png");
+        // Changes a player's profile picture with a web link
+        let link = this.state.imgInput;
+        let testJpg = link.endsWith(".jpg");
+        let testJpeg = link.endsWith(".jpeg");
+        let testPng = link.endsWith(".png");
 
         if (testJpg || testJpeg || testPng) {
             this.props.changePicture(link);
 
             axios.put('/api/changePicture/', { profile_pic: link, id: this.props.storeData.id })
                 .then(response => {
-                    console.log(response);
                     this.setState({
                         imgInput: ""
                     });
@@ -49,23 +52,23 @@ class Profile extends Component {
             this.setState({
                 imgInput: ""
             });
-        }
-    }
+        };
+    };
 
     hanldeInputChange = event => {
-        //Apprehending value from input
+        // Apprehending value from input
         let value = event.target.value;
         const name = event.target.name;
 
+        // No longer than 500 characters
         value = value.substring(0, 500);
-
-        //now set the state of both values to user inputted
         this.setState({
             [name]: value
         });
     };
 
     signOut = () => {
+        // Signing the user out of Firebase
         const currentUser = auth.currentUser;
         const email = currentUser.email;
 
@@ -81,8 +84,10 @@ class Profile extends Component {
             <div className="container">
                 <div className="box fight-box">
 
+                    {/* FLEX ROW */}
                     <div className="results-text-bar results-defeat-text profile-text">profile</div>
 
+                    {/* FLEX ROW */}
                     <div className="profile-main-bar">
                         <div className="profile-section">
                             <div className="profile-section-stat pf-font-size">fame:</div>
@@ -135,6 +140,7 @@ class Profile extends Component {
                         </div>
                     </div>
 
+                    {/* FLEX ROW */}
                     <div className="profile-buttons-bar">
                         <div className="profile-buttons-col">
                             <div className="profile-button">
@@ -154,12 +160,11 @@ class Profile extends Component {
                         </div>
 
                     </div>
-
                 </div>
             </div >
         );
     };
-}
+};
 
 
 const mapStateToProps = state => ({ storeData: state });

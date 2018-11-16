@@ -2,7 +2,7 @@
 var connection = require("./config/connection.js");
 
 function updateTicket() {
-
+    // Every 10 minutes, give the player another ticket
     // updates columm in db with query
     connection.query(
         "UPDATE players SET tickets = tickets + 1 where tickets_max > tickets",
@@ -17,7 +17,6 @@ function updateTicket() {
 
             connection.end();
         });
-        
 };
 
 updateTicket();

@@ -180,9 +180,9 @@ const storeData = (state = defaultStore, action) => {
     }
 }
 
-const store = createStore(
-    storeData, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const store = createStore(storeData);
+//const store = createStore(storeData, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()); <- for development
 
-window.store = store;
+// window.store = store; <- for development
 export default store;
+

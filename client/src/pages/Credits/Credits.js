@@ -1,24 +1,29 @@
+//Imports
+//=================================================
 import React, { Component } from "react";
-
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
-
 import "./Credits.css";
 
+//Class
+//===============================================
 class Credits extends Component {
 
     goToGh = () => {
+        // Goes to our github repo
         window.open("https://github.com/gavbax99/ultimate-luchador");
-    }
+    };
 
     render() {
         return (
             <div className="container">
                 <div className="box fight-box">
 
+                    {/* FLEX ROW */}
                     <div className="results-text-bar results-defeat-text credits-text">credits</div>
 
+                    {/* FLEX ROW */}
                     <div className="credits-members-bar">
                         <div className="credits-member">
                             <span style={{ textShadow: "1px 1px #000", color: "rgb(82, 208, 247)" }}>Gavin Baxter - <span style={{ fontStyle: "italic" }}>Project Manager</span></span>
@@ -52,6 +57,7 @@ class Credits extends Component {
                         </div>
                     </div>
 
+                    {/* FLEX ROW */}
                     <div className="credits-tech-bar">
 
                         <div className="credits-tech-row">
@@ -67,6 +73,7 @@ class Credits extends Component {
 
                     </div>
 
+                    {/* FLEX ROW */}
                     <div className="credits-back-bar">
                         <div className="credits-back">
                             <div className="button" onClick={() => this.props.setPageName("Home")}>back</div>
@@ -78,7 +85,6 @@ class Credits extends Component {
             </div>
         );
     };
-
 };
 
 const mapStateToProps = state => ({ storeData: state });

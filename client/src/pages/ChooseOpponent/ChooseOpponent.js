@@ -1,12 +1,14 @@
+//Imports
+//=================================================
 import React, { Component } from "react";
-
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
 import axios from "axios";
-
 import "./ChooseOpponent.css";
 
+//Class
+//===============================================
 class ChooseOpponent extends Component {
 
     state = {
@@ -32,12 +34,13 @@ class ChooseOpponent extends Component {
         opp3wins: 0,
         opp3losses: 0,
         display: "none"
-    }
+    };
 
     componentDidMount = () => {
-        var fame = this.props.storeData.fame;
-        var fameLow;
-        var fameHigh;
+        // Grabs 3 random opponents within a +-15 range of the player's
+        let fame = this.props.storeData.fame;
+        let fameLow;
+        let fameHigh;
 
         if (fame < 15) {
             fameLow = 0;
@@ -47,7 +50,7 @@ class ChooseOpponent extends Component {
             fameHigh = this.props.storeData.fame + 15;
         }
 
-        axios.get('/api/selectOpponents/' + fameLow + '/' + fameHigh)
+        axios.get('/api/selectOpponents/' + fameLow + '/' + fameHigh + '/' + this.props.storeData.char_name)
             .then(response => {
                 const dataArray = response.data;
                 const index1 = Math.floor(Math.random() * dataArray.length);
@@ -89,6 +92,7 @@ class ChooseOpponent extends Component {
             <div className="container">
                 <div className="box opponent-box">
 
+                    {/* FLEX ROW */}
                     <div className="text-bar">
                         <div className="text-bar-row f2">choose your opponent</div>
                         <div className="text-bar-row">
@@ -99,6 +103,7 @@ class ChooseOpponent extends Component {
                         </div>
                     </div>
 
+                    {/* FLEX ROW */}
                     <div className="opponent-bar">
 
                         <div className="opponent" style={{ display: this.state.display }} onClick={() => this.props.chooseOpponent("Fight", this.state.opp1id)}>
@@ -145,6 +150,7 @@ class ChooseOpponent extends Component {
 
                     </div>
 
+                    {/* FLEX ROW */}
                     <div className="opponent-button-bar">
                         <div className="opponent-button-back" onClick={() => this.props.setPageName("Home")}>
                             <div>give up</div>
@@ -155,7 +161,6 @@ class ChooseOpponent extends Component {
             </div>
         );
     };
-
 };
 
 const mapStateToProps = state => ({ storeData: state });

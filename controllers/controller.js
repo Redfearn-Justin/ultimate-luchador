@@ -30,11 +30,12 @@ router.get("/api/selectLuchador/:uid", function (req, res) {
     );
 });
 
-router.get("/api/selectOpponents/:dlow/:dhigh", function (req, res) {
+router.get("/api/selectOpponents/:dlow/:dhigh/:char_name", function (req, res) {
     orm.selectOpponents(
         "players",
         req.params.dlow,
         req.params.dhigh,
+        req.params.char_name,
         function (result) {
             res.json(result);
         }

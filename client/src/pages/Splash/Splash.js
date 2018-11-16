@@ -6,9 +6,8 @@ import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
 import axios from "axios";
 import "./Splash.css";
-import firebase, { auth } from "../../firebase";
-import moment from "moment";
-
+import { auth } from "../../firebase";
+// import moment from "moment";
 
 //Class
 //==========================================
@@ -20,26 +19,24 @@ class Splash extends Component {
             user: null
         }
         this.componentDidMount.bind(this);
-    }
+    };
 
     componentDidMount = () => {
         auth.onAuthStateChanged(firebaseUser => {
             if (firebaseUser) {
-                // If the user is signed in:
-                let email = firebaseUser.email;
+                // === IF THE USER is already signed in to Firebase, we'll automatically log them in:
+                // let email = firebaseUser.email;
                 let uid = firebaseUser.uid;
-                // let uid = 100; // <--- for test purposes only
 
-                //current time
-                let mysqlTimestamp = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
-                //=========================================
+                // === FUNCTIONALITY for updating last_login
+                // let mysqlTimestamp = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
 
-                const userInfo = {
-                    email: email,
-                    uid: uid,
-                    LastLogIn: mysqlTimestamp
-                    // creationTime: creationTime, // <- don't know if need
-                };
+                // const userInfo = {
+                //     email: email,
+                //     uid: uid,
+                //     LastLogIn: mysqlTimestamp
+                //     // creationTime: creationTime, // <- don't know if need
+                // };
 
                 // === PUT REQUEST For time update
                 //   axios.put('api/updateLuchador', {token: uid, last_login: currentTime})
@@ -54,6 +51,7 @@ class Splash extends Component {
                 //       console.log(err);
                 //   });
 
+                // === Gather login data and store it to redux while changing the page to "home"
                 axios.get('/api/selectLuchador/' + uid)
                     .then(response => {
                         const id = response.data.id;
@@ -102,39 +100,38 @@ class Splash extends Component {
                     .catch(error => {
                         console.log(error);
                     });
-
             } else {
-                // User is signed out.
+                // If no user is signed in to Firebase
                 console.log("No user is signed in");
-            }
+            };
         });
     };
 
     render() {
         return (
             <div className="container">
-
                 <div id="boxxx" className="box">
 
+                    {/* FLEX ROW */}
                     <p className="title">ULTIMATE<br />LUCHADOR</p>
 
+                    {/* FLEX ROW */}
                     <div className="splash-lucha-image" >
-                        <img src="./images/lucha.png" />
+                        <img alt="luchador" src="./images/lucha.png" />
                     </div>
                     
+                    {/* FLEX ROW */}
                     <div className="flex-buttons">
                         <div className="button loginButton" onClick={() => this.props.setPageName("Login")}>LOG IN</div>
                         <div className="button newAccountButton" onClick={() => this.props.setPageName("NewAccount")}>NEW ACCOUNT</div>
                     </div>
+
                 </div>
             </div>
         );
     };
-
 };
 
 const mapStateToProps = state => ({ storeData: state });
 const mapDispatchToProps = dispatch => (bindActionCreators(actionCreators, dispatch));
 export default connect(mapStateToProps, mapDispatchToProps)(Splash);
-
-// style={{ backgroundImage: "./images/lucha.png", backgroundSize: "cover" }}
