@@ -9,9 +9,6 @@ var bodyParser = require("body-parser");
 // process.env.PORT required for other parties like Heroku that may want to use their own port
 var PORT = process.env.PORT || 3001;
 
-// Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static("public"));
-
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
@@ -28,6 +25,9 @@ if (process.env.NODE_ENV === "test") {
 var routes = require("./controllers/controller.js");
 // Connect the routes to express
 app.use(routes);
+
+// Serve static content for the app from the "public" directory in the application directory.
+app.use(express.static("client/build"));
 
 // Start our server so that it can begin listening to client requests.
 app.listen(PORT, function () {
