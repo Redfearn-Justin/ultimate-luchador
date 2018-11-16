@@ -57,6 +57,7 @@
 .newab-new-stats-text {
     flex: 1;
     width: 100%;
+    margin-top: 5px;
 }
 
 .newab-new-stats-text span {
@@ -74,10 +75,14 @@
     flex-direction: row;
     flex: 1;
     width: 100%;
+    margin-bottom: 3px;
 }
 
 .newab-new-stats-stats-bar img {
-    height: 15px;
+    height: 17px;
+    position: relative;
+    top: 2px;
+    margin-left: 3px;
 }
 
 .newab-new-stats-stats-bar div {
@@ -93,12 +98,8 @@
     border-radius: 4px;
 }
 
-.newab-new-pic img {
-    height: 40px;
-}
-
 .ability-icon-size {
-    height: 30px;
+    height: 40px;
 }
 
 /* Old ability bar */

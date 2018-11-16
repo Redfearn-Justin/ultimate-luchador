@@ -99,10 +99,6 @@
     font-size: 1.15rem;
 }
 
-.opponent-stats-bar img {
-    height: 15px;
-}
-
 .opponent-button-bar {
     flex-direction: row;
     width: 90%;
@@ -161,10 +157,6 @@
     .profile-picture-choose {
         width: 75px;
         height: 75px;
-    }
-
-    .opponent-pic {
-        margin-left: 10px;
     }
 
     .osb-span {

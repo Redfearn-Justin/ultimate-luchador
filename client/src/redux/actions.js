@@ -12,6 +12,8 @@ export const useTicket = (pageName, tickets) => ({type: 'USE_TICKET', pageName, 
 
 export const useRefresh = (refresh, tickets) => ({type: 'USE_REFRESH', refresh, tickets});
 
+export const changePicture = (picture) => ({type: 'CHANGE_PICTURE', picture});
+
 export const newAbility1 = (pageName, ab1_name, ab1_dlow, ab1_dhigh, ab1_speed, ab1_crit, ab1_fail, ab1_color, ab1_icon) => ({type: 'NEW_AB_1', pageName, ab1_name, ab1_dlow, ab1_dhigh, ab1_speed, ab1_crit, ab1_fail, ab1_color, ab1_icon});
 
 export const newAbility2 = (pageName, ab2_name, ab2_dlow, ab2_dhigh, ab2_speed, ab2_crit, ab2_fail, ab2_color, ab2_icon) => ({type: 'NEW_AB_2', pageName, ab2_name, ab2_dlow, ab2_dhigh, ab2_speed, ab2_crit, ab2_fail, ab2_color, ab2_icon});

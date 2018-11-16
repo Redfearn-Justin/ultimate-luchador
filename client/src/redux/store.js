@@ -82,6 +82,10 @@ const storeData = (state = defaultStore, action) => {
                 wins: action.wins,
                 losses: action.losses
             })
+        case 'CHANGE_PICTURE':
+            return Object.assign({}, state, {
+                profile_pic: action.picture
+            })
         case 'LEVEL_UP':
             return Object.assign({}, state, {
                 exp: action.exp,

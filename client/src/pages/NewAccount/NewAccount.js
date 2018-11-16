@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
 import "./NewAccount.css";
 import { auth, database } from "../../firebase";
-import SplashTop from "../../components/SplashTop"
 import axios from "axios";
 import moment from "moment";
 
@@ -90,15 +89,27 @@ class NewAccount extends Component {
 
                 //getting the current user according to firebase
                 const currentAccount = auth.currentUser;
+                let email = currentAccount.email;
                 let uid = currentAccount.uid;
                 let displayName = this.state.displayName.toLowerCase();
-                // var mysqlTimestamp = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+                var mysqlTimestamp = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
 
+                //Object to put user token and display name into firebase DB
+                const newUserInfo = {
+                    displayName: this.state.displayName.toLowerCase(),
+                    email: email,
+                    uid: uid,
+                }
+
+                //pushing user token and display name to firebase database
+                database.ref().push(newUserInfo);
 
                  //API Call
                 //=======================================================
                 axios.post('/api/createAccount', {
                     token: uid,
+                    created: mysqlTimestamp,
+                    last_login: mysqlTimestamp,
                     char_name: displayName
                 })
                 .then(response => {
@@ -121,23 +132,22 @@ class NewAccount extends Component {
                 if (errorCode === "auth/weak-password") {
 
                     alert("Please pick a stronger password.");
-
                     console.log(errorCode, errorMessage);
 
                 } else if (errorCode === "auth/email-already-in-use") {
 
                     alert("This email is already associated with an account. Please choose another email.");
-                
+        
                     console.log(errorCode, errorMessage);
 
                 } else if (errorCode === "auth/invalid-email") {
 
+                    alert("Invalid credentials, please try again.");
                     console.log(errorCode, errorMessage);
 
                 } else {
 
                     alert("An error occured. Please try again");
-
                     console.log(errorCode, errorMessage);
 
                 }
@@ -151,11 +161,17 @@ class NewAccount extends Component {
             <div className="container">
 
                 <div className="box">
-                    <SplashTop />
+                    {/* <SplashTop /> */}
+                    <p className="title">ULTIMATE<br />LUCHADOR</p>
+
+                    <div className="splash-lucha-image" >
+                        <img alt="background picture" src="./images/lucha.png" />
+                    </div>
+
                     <div className="flex-input">
                         <div className="nav">
                             <button onClick={() => this.props.setPageName("Splash")}>back</button>
-                            <span className="text-black">new account</span>
+                            <span className="text-white">new account</span>
                             <button onClick={this.createAccount}>create</button>
                         </div>
                         <div className="input-bar">
@@ -201,6 +217,8 @@ class NewAccount extends Component {
                             </div>
                         </div>
                     </div>
+
+
                 </div>
 
             </div>

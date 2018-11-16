@@ -4,10 +4,9 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
-import firebase, { auth } from "../../firebase";
+import { auth } from "../../firebase";
 import "./Login.css";
-import SplashTop from "../../components/SplashTop"
-import { throws } from "assert";
+// import { throws } from "assert";
 import axios from "axios";
 import moment from "moment";
 
@@ -15,11 +14,8 @@ import moment from "moment";
 //===============================================
 
 class Login extends Component {
-
     constructor(props) {
-
         super(props);
-
         this.state = {
             email: "",
             password: "",
@@ -27,23 +23,20 @@ class Login extends Component {
             isSignedIn: false,
             user: null
         }
-
         //will be needing 'setState' inside of function, hence the "bind"
         this.logIn = this.logIn.bind(this);
     }
 
-
     hanldeInputChange = event => {
-
         //Apprehending value from input
         let value = event.target.value;
         const name = event.target.name;
 
         //if the name is equal to "password", aka the password field
         if (name === "password") {
-
             value = value.substring(0, 15);
         }
+
         //now set the state of both values to user inputted
         this.setState({
             [name]: value
@@ -51,19 +44,13 @@ class Login extends Component {
     };
 
     logIn = () => {
-
         //if user did not input information
         if (!this.state.email || !this.state.password) {
-
             alert("Please fill out the Email and/or Password fields");
-
-        } else {
-
-            console.log("Successfully passed through first phase of log in");
+            return;
         }
 
         //actually sign in through firebase
-
         auth.signInWithEmailAndPassword(this.state.email, this.state.password)
             .then((result) => {
 
@@ -76,32 +63,13 @@ class Login extends Component {
                 });
 
                 //getting email and uid for registered user
-                //===========================================
                 const currentAccount = auth.currentUser;
-
                 let email = currentAccount.email;
-
-                // let uid = currentAccount.uid;
-                let uid = 100; // <- for test purposes only
-
-                //verifying uid and email are successfully passed through 
-                console.log(`${uid} - is the id for the following email account: ${email}`);
+                let uid = currentAccount.uid;
+                // let uid = 100; <- for test purposes only
 
                 //current time
                 let mysqlTimestamp = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
-                // let currentTime = new Date().toLocaleString();
-                //=========================================
-
-                const userInfo = {
-                    email: email,
-                    uid: uid,
-                    LastLogIn: mysqlTimestamp
-                };
-                console.log("Last log in time info: ", userInfo);
-
-
-
-                // AXIOS ========================================
 
                 // === AXIOS Call for time update
                 // axios.put('/api/updateTime', {
@@ -118,7 +86,7 @@ class Login extends Component {
                 // .catch(err => {
                 //     console.log(err);
                 // });
-                
+
                 axios.get('/api/selectLuchador/' + uid)
                     .then(response => {
                         const id = response.data.id;
@@ -170,51 +138,50 @@ class Login extends Component {
 
             })
             .catch(error => {
-
                 let errorCode = error.code;
                 let errorMessage = error.message;
 
                 if (errorCode === "auth/user-disabled") {
 
                     alert("The user associated with those credentials has been disabled. Please create a new account.");
-
                     console.log(errorCode, errorMessage);
 
                 } else if (errorCode === "auth/user-not-found") {
 
                     alert("There was no user found with those credentials. Please try to log in again, or create another account");
-
                     console.log(errorCode, errorMessage);
 
                 } else if (errorCode === "auth/wrong-password") {
 
                     alert("Incorrect password associated with the email account. Please try again.");
-
                     console.log(errorCode, errorMessage);
 
                 } else {
 
                     alert("An error has occured. Please try again");
-
                     console.log(errorCode, errorMessage);
+
                 };
-
             });
-
-    }
+    };
 
     render() {
 
         return (
             <div className="container">
-
                 <div className="box">
-                    <SplashTop />
+
+                    <p className="title">ULTIMATE<br />LUCHADOR</p>
+
+                    <div className="splash-lucha-image" >
+                        <img src="./images/lucha.png" />
+                    </div>
+
                     <div className="flex-input">
 
                         <div className="nav">
                             <button onClick={() => this.props.setPageName("Splash")}>back</button>
-                            <span className="text-black">log in</span>
+                            <span className="text-white">log in</span>
                             <button onClick={this.logIn}>log in</button>
                         </div>
 
@@ -228,7 +195,7 @@ class Login extends Component {
                                     name="email"
                                     onChange={this.hanldeInputChange}
                                     type="email"
-                                    placeholder="janedoe@hotmail.com"
+                                    placeholder="janedoe@gmail.com"
                                 />
                             </div>
                         </div>
@@ -250,13 +217,9 @@ class Login extends Component {
 
                     </div>
                 </div>
-
-
-
             </div>
         );
     };
-
 };
 
 const mapStateToProps = state => ({ storeData: state });

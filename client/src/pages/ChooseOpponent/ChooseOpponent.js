@@ -30,7 +30,8 @@ class ChooseOpponent extends Component {
         opp3fame: 0,
         opp3lvl: 0,
         opp3wins: 0,
-        opp3losses: 0
+        opp3losses: 0,
+        display: "none"
     }
 
     componentDidMount = () => {
@@ -74,7 +75,8 @@ class ChooseOpponent extends Component {
                     opp3fame: dataArray[index3].fame,
                     opp3lvl: dataArray[index3].lvl,
                     opp3wins: dataArray[index3].wins,
-                    opp3losses: dataArray[index3].losses
+                    opp3losses: dataArray[index3].losses,
+                    display: "flex"
                 });
             })
             .catch(error => {
@@ -90,50 +92,52 @@ class ChooseOpponent extends Component {
                     <div className="text-bar">
                         <div className="text-bar-row f2">choose your opponent</div>
                         <div className="text-bar-row">
-                            <div className="text-bar-col">my f: {this.props.storeData.fame}</div>
-                            <div className="text-bar-col">my l: {this.props.storeData.lvl}</div>
+                            <div className="text-bar-col"></div>
+                            <div className="text-bar-col"><span><img alt="icon" src="./images/fame.svg" style={{ height: "18px", position: "relative", top: "2px" }} /> {this.props.storeData.fame}</span></div>
+                            <div className="text-bar-col"><span><img alt="icon" src="./images/lvl.svg" style={{ height: "18px", position: "relative", top: "2px" }} /> {this.props.storeData.lvl}</span></div>
+                            <div className="text-bar-col"></div>
                         </div>
                     </div>
 
                     <div className="opponent-bar">
 
-                        <div className="opponent" onClick={() => this.props.chooseOpponent("Fight", this.state.opp1id)}>
+                        <div className="opponent" style={{ display: this.state.display }} onClick={() => this.props.chooseOpponent("Fight", this.state.opp1id)}>
                             <div className="profile-pic opponent-pic">
                                 <div className="profile-picture profile-picture-choose" style={{ backgroundImage: "url(" + this.state.opp1pic + ")", backgroundSize: "cover" }}></div>
                             </div>
                             <div className="opponent-stats">
                                 <div className="opponent-stats-bar"><span className="osb-span">{this.state.opp1name}</span></div>
                                 <div className="opponent-stats-bar">
-                                    <div>{this.state.opp1fame}</div>
-                                    <div>{this.state.opp1lvl}</div>
+                                    <div><span><img alt="icon" src="./images/fame.svg" style={{ height: "18px", position: "relative", top: "2px" }} />{this.state.opp1fame}</span></div>
+                                    <div><span><img alt="icon" src="./images/lvl.svg" style={{ height: "18px", position: "relative", top: "2px" }} />{this.state.opp1lvl}</span></div>
                                     <div><span><span style={{ color: "rgb(0, 194, 42)" }}>{this.state.opp1wins}</span> - <span style={{ color: "red" }}>{this.state.opp1losses}</span></span></div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="opponent" onClick={() => this.props.chooseOpponent("Fight", this.state.opp2id)}>
+                        <div className="opponent" style={{ display: this.state.display }} onClick={() => this.props.chooseOpponent("Fight", this.state.opp2id)}>
                             <div className="profile-pic opponent-pic">
                                 <div className="profile-picture profile-picture-choose" style={{ backgroundImage: "url(" + this.state.opp2pic + ")", backgroundSize: "cover" }}></div>
                             </div>
                             <div className="opponent-stats">
                                 <div className="opponent-stats-bar"><span className="osb-span">{this.state.opp2name}</span></div>
                                 <div className="opponent-stats-bar">
-                                    <div>{this.state.opp2fame}</div>
-                                    <div>{this.state.opp2lvl}</div>
+                                    <div><span><img alt="icon" src="./images/fame.svg" style={{ height: "18px", position: "relative", top: "2px" }} />{this.state.opp2fame}</span></div>
+                                    <div><span><img alt="icon" src="./images/lvl.svg" style={{ height: "18px", position: "relative", top: "2px" }} />{this.state.opp2lvl}</span></div>
                                     <div><span><span style={{ color: "rgb(0, 194, 42)" }}>{this.state.opp2wins}</span> - <span style={{ color: "red" }}>{this.state.opp2losses}</span></span></div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="opponent" onClick={() => this.props.chooseOpponent("Fight", this.state.opp3id)}>
+                        <div className="opponent" style={{ display: this.state.display }} onClick={() => this.props.chooseOpponent("Fight", this.state.opp3id)}>
                             <div className="profile-pic opponent-pic">
                                 <div className="profile-picture profile-picture-choose" style={{ backgroundImage: "url(" + this.state.opp3pic + ")", backgroundSize: "cover" }}></div>
                             </div>
                             <div className="opponent-stats">
                                 <div className="opponent-stats-bar"><span className="osb-span">{this.state.opp3name}</span></div>
                                 <div className="opponent-stats-bar">
-                                    <div>{this.state.opp3fame}</div>
-                                    <div>{this.state.opp3lvl}</div>
+                                    <div><span><img alt="icon" src="./images/fame.svg" style={{ height: "18px", position: "relative", top: "2px" }} />{this.state.opp3fame}</span></div>
+                                    <div><span><img alt="icon" src="./images/lvl.svg" style={{ height: "18px", position: "relative", top: "2px" }} />{this.state.opp3lvl}</span></div>
                                     <div><span><span style={{ color: "rgb(0, 194, 42)" }}>{this.state.opp3wins}</span> - <span style={{ color: "red" }}>{this.state.opp3losses}</span></span></div>
                                 </div>
                             </div>

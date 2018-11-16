@@ -6,7 +6,11 @@
 .profile-button div,
 .profile-button,
 .profile-section-stat,
-.profile-section-value {
+.profile-section-value,
+.profile-pic-row,
+.profile-upload-row,
+.profile-uploader,
+.profile-uploader div {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -29,31 +33,58 @@
     flex-direction: row;
     flex: 1;
     width: 100%;
-    border: 1px solid red;
 }
 
 .profile-section-stat {
     flex: 1.5;
     height: 100%;
-    border: 1px solid blue;
 }
 
 .profile-section-value {
     flex: 1;
     height: 100%;
-    border: 1px solid blue;
 }
 
-.pf-font-size {
-    font-size: 2.3rem;
+.pf-font-size,
+.pfw-font-size {
+    font-size: 2.1rem;
 }
 
 .profile-uploader {
+    flex-direction: row;
+    width: 100%;
     flex: 1;
 }
 
+.profile-desc-text {
+    font-size: .8rem;
+    flex: .7;
+}
+
 .fpic {
-    flex: 1.5;
+    flex: 2;
+}
+
+.profile-pic-row {
+    flex: 1;
+    height: 100%;
+    margin-left: 6px;
+}
+
+.profile-upload-row {
+    flex: 2.5;
+    height: 100%;
+    margin-right: 6px;
+}
+
+.profile-change-text {
+    font-size: 1.5rem;
+    color: rgb(253, 48, 55);
+    text-shadow: 3px 3px 0px rgb(110, 0, 0),
+    -1px -1px 0px rgb(110, 0, 0),
+    1px -1px 0px rgb(110, 0, 0),
+    -1px 1px 0px rgb(110, 0, 0),
+    1px 1px 0px rgb(110, 0, 0);
 }
 
 .profile-buttons-bar {
@@ -67,7 +98,7 @@
     height: 100%;
 }
 
-.profile-button div {
+.profile-button-text {
     margin: 5px 0;
     width: 90%;
     height: 68%;
@@ -80,13 +111,45 @@
     background-color: rgb(49, 59, 175);
 }
 
-.profile-button div:hover {
+.profile-button-text:hover {
     transform: scale(1.05);
+}
+
+.profile-shop-text {
+    margin: 5px 0;
+    width: 90%;
+    height: 68%;
+    border-radius: 80px;
+    font-size: 1.2rem;
+    border: 4px solid rgb(98, 98, 98);
+    background-color: rgb(138, 138, 138);
+    color: rgb(98, 98, 98);
 }
 
 .profile-button {
     flex: 1;
     width: 100%;
+}
+
+.profile-submit {
+    cursor: pointer;
+    border: 2px solid darkred;
+    margin-right: 4px;
+    background-color: red;
+    border-radius: 4px;
+    font-family: test;
+    color: #fff;
+    height: 28px;
+}
+
+@media only screen and (max-width: 500px) {
+    .pfw-font-size {
+        font-size: 1.6rem;
+    }
+
+    .profile-change-text {
+        font-size: 1.2rem;
+    }
 }
 
 @media only screen and (max-width: 380px) {
@@ -96,6 +159,10 @@
 
     .profile-text {
         font-size: 3.8rem;
+    }
+
+    .pf-font-size {
+        font-size: 1.8rem;
     }
 }
 
