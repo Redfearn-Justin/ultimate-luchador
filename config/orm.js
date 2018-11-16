@@ -45,6 +45,8 @@ var orm = {
         });
     },
 
+    // Gather all info from player's login info
+    //====================================
     selectLuchador: (tableName, token, cb) => {
         var queryString = "SELECT * FROM " + tableName + " WHERE ?";
         connection.query(queryString, {token: token}, function (err, res) {
@@ -53,14 +55,18 @@ var orm = {
         });
     },
 
-    selectOpponents: (tableName, dlow, dhigh, cb) => {
-        var queryString = "SELECT char_name, id, lvl, fame, wins, losses, profile_pic FROM " + tableName + " WHERE fame BETWEEN " + dlow + " and " +dhigh;
+    // Gather some info from 3 random opponents
+    //====================================
+    selectOpponents: (tableName, dlow, dhigh, char_name, cb) => {
+        var queryString = `SELECT char_name, id, lvl, fame, wins, losses, profile_pic FROM ${tableName} WHERE fame BETWEEN ${dlow} and ${dhigh} AND char_name != "${char_name}"`;
         connection.query(queryString, function (err, res) {
             if (err) throw err;
             cb(res);
         });
     },
 
+    // Gather all info from selected opponent
+    //====================================
     selectSingleOpponent: (tableName, id, cb) => {
         var queryString = "SELECT * FROM " + tableName + " WHERE id = " + id;
         connection.query(queryString, function (err, res) {
@@ -69,6 +75,8 @@ var orm = {
         });
     },
 
+    // Changing exp and fame after a fight
+    //====================================
     updateExpFame: (tableName, fame, exp, wins, losses, id, cb) => {
         var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
         connection.query(queryString, {fame: fame, exp: exp, wins: wins, losses: losses}, function (err, res) {
@@ -77,6 +85,8 @@ var orm = {
         });
     },
 
+    // Changing stats upon levelup
+    //====================================
     levelUp: (tableName, lvl, hp, exp, tickets_max, refresh, id, cb) => {
         var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
         connection.query(queryString, {lvl: lvl, hp: hp, exp: exp, tickets: tickets_max, tickets_max: tickets_max, refresh: refresh}, function (err, res) {
@@ -85,6 +95,8 @@ var orm = {
         });
     },
 
+    // Clicking "fight" uses a ticket
+    //====================================
     useTicket: (tableName, tickets, id, cb) => {
         var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
         connection.query(queryString, {tickets: tickets}, function (err, res) {
@@ -93,6 +105,8 @@ var orm = {
         });
     },
 
+    // Using refresh to refresh ticket count
+    //====================================
     useRefresh: (tableName, refresh, tickets, id, cb) => {
         var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
         connection.query(queryString, {refresh: refresh, tickets: tickets}, function (err, res) {
@@ -101,6 +115,8 @@ var orm = {
         });
     },
 
+    // Changing picture
+    //====================================
     changePicture: (tableName, profile_pic, id, cb) => {
         var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
         connection.query(queryString, {profile_pic: profile_pic}, function (err, res) {
@@ -109,6 +125,8 @@ var orm = {
         });
     },
 
+    // Changing ability 1
+    //====================================
     newAbility1: (tableName, ab1_name, ab1_dlow, ab1_dhigh, ab1_speed, ab1_crit, ab1_color, ab1_icon, id, cb) => {
         var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
         connection.query(queryString, {ab1_name: ab1_name, ab1_dlow: ab1_dlow, ab1_dhigh: ab1_dhigh, ab1_speed: ab1_speed, ab1_crit: ab1_crit, ab1_color: ab1_color, ab1_icon: ab1_icon}, function (err, res) {
@@ -117,6 +135,8 @@ var orm = {
         });
     },
 
+    // Changing ability 2
+    //====================================
     newAbility2: (tableName, ab2_name, ab2_dlow, ab2_dhigh, ab2_speed, ab2_crit, ab2_color, ab2_icon, id, cb) => {
         var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
         connection.query(queryString, {ab2_name: ab2_name, ab2_dlow: ab2_dlow, ab2_dhigh: ab2_dhigh, ab2_speed: ab2_speed, ab2_crit: ab2_crit, ab2_color: ab2_color, ab2_icon: ab2_icon}, function (err, res) {
@@ -125,6 +145,8 @@ var orm = {
         });
     },
 
+    // Changing ability 3
+    //====================================
     newAbility3: (tableName, ab3_name, ab3_dlow, ab3_dhigh, ab3_speed, ab3_crit, ab3_color, ab3_icon, id, cb) => {
         var queryString = "UPDATE " + tableName + " SET ? WHERE id = " + id;
         connection.query(queryString, {ab3_name: ab3_name, ab3_dlow: ab3_dlow, ab3_dhigh: ab3_dhigh, ab3_speed: ab3_speed, ab3_crit: ab3_crit, ab3_color: ab3_color, ab3_icon: ab3_icon}, function (err, res) {

@@ -1,59 +1,56 @@
+//Imports
+//=================================================
 import React, { Component } from "react";
-
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
-
 import axios from "axios";
-
 import "./Home.css";
 
+//Class
+//===============================================
 class Splash extends Component {
 
     state = {
         width: 0
-    }
+    };
 
     componentDidMount = () => {
-        var passExpNeeded = this.expNeeded();
-        var percent = this.widthBar(this.props.storeData.exp, passExpNeeded);
+        // Load the player's experience bar
+        let passExpNeeded = this.expNeeded();
+        let percent = this.widthBar(this.props.storeData.exp, passExpNeeded);
 
         this.setState({
             width: percent
         });
-    }
+    };
 
     cheat = () => {
+        // For demo purposes
         if (this.props.storeData.char_name === "gavin") {
             this.props.setPageName("LevelUp");
-        }
-    }
+        };
+    };
 
     widthBar = (a, b) => {
-        var sol = Math.floor((a / b) * 100);
+        // Load the player's experience bar's width
+        let sol = Math.floor((a / b) * 100);
         return sol;
-    }
+    };
 
     expNeeded = () => {
+        // EXP needed to level up for each level
         const levels = [
             0,
             100,
-            200,
-            300,
-            400,
             500,
-            600,
             700,
-            800,
             900,
-            1000,
-            1250,
+            1100,
+            1300,
             1500,
-            1750,
             2000,
-            2250,
             2500,
-            2750,
             3000,
             3500,
             4000,
@@ -63,24 +60,32 @@ class Splash extends Component {
             8000,
             9000,
             10000,
-            11000,
             12000,
-            13000,
             14000,
-            15000
+            16000,
+            18000,
+            20000,
+            25000,
+            30000,
+            35000,
+            40000,
+            50000,
+            60000,
+            70000,
+            80000
         ]
         return levels[this.props.storeData.lvl]
     }
 
     initiateFight = () => {
+        // Clicking "fight" initiates a fight if you have tickets
         if (this.props.storeData.tickets > 0) {
-            var minusTicket = this.props.storeData.tickets -= 1;
-            
+            let minusTicket = this.props.storeData.tickets -= 1;
+
             this.props.useTicket("ChooseOpponent", minusTicket);
 
-            axios.put('/api/useTicket/', {tickets: minusTicket, id: this.props.storeData.id})
+            axios.put('/api/useTicket/', { tickets: minusTicket, id: this.props.storeData.id })
                 .then(response => {
-                    console.log(response);
                 })
                 .catch(error => {
                     console.log(error);
@@ -89,15 +94,15 @@ class Splash extends Component {
     };
 
     refreshTickets = () => {
+        // Clicking "refresh" refreshed the player's current ticket count
         if (this.props.storeData.refresh > 0) {
-            var minusRefresh = this.props.storeData.refresh -= 1;
-            var newTickets = this.props.storeData.tickets_max;
+            let minusRefresh = this.props.storeData.refresh -= 1;
+            let newTickets = this.props.storeData.tickets_max;
 
             this.props.useRefresh(minusRefresh, newTickets);
 
-            axios.put('/api/useRefresh/', {refresh: minusRefresh, tickets: newTickets, id: this.props.storeData.id})
+            axios.put('/api/useRefresh/', { refresh: minusRefresh, tickets: newTickets, id: this.props.storeData.id })
                 .then(response => {
-                    console.log(response);
                 })
                 .catch(error => {
                     console.log(error);
@@ -110,10 +115,12 @@ class Splash extends Component {
             <div className="container">
                 <div className="box home-box">
 
+                    {/* FLEX ROW */}
                     <div className="nav-bar">
                         <span>ultimate luchador</span>
                     </div>
 
+                    {/* FLEX ROW */}
                     <div className="profile-bar">
 
                         {/* PROFILE PICTURE */}
@@ -201,7 +208,7 @@ class Splash extends Component {
 
                     </div> {/* profile bar end */}
 
-
+                    {/* FLEX ROW */}
                     <div className="fight-bar">
                         <div className="fight-buttons">
                             <div className="fight-buttons-click fight-button" onClick={() => this.initiateFight()}>Fight</div>
@@ -227,7 +234,6 @@ class Splash extends Component {
             </div>
         );
     };
-
 };
 
 const mapStateToProps = state => ({ storeData: state });

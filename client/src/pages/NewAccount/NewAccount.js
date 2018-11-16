@@ -11,90 +11,72 @@ import moment from "moment";
 
 //class
 //==================================================
-
 class NewAccount extends Component {
 
     constructor(props) {
-
         super(props);
-
         this.state = {
             displayName: "",
             email: "",
             password: "",
             user: null
         }
-
-        //will be needing 'setState' inside of function, hence the "bind"
         this.createAccount = this.createAccount.bind(this);
-    }
+    };
 
 
     hanldeInputChange = event => {
-
         //Apprehending value from input
         let value = event.target.value;
         const name = event.target.name;
 
         //if the name is equal to "password", aka the password field
         if (name === "password") {
-
             value = value.substring(0, 15);
-        }
-        //now set the state of both values to user inputted
+        };
         this.setState({
             [name]: value
         });
-
-    }
+    };
 
     createAccount = () => {
+        // Creating a new account (Firebase and MySQL effected)
+        let regexDisplayName = RegExp('^[A-Za-z0-9]+$');
 
-        var regexDisplayName = RegExp('^[A-Za-z0-9]+$');
-
-        //if user did not input information
+        // If the user did not input information
         if (!this.state.email || !this.state.password || !this.state.displayName) {
-
             alert("Please completely fill out the fields before proceeding");
             return;
-
-        } 
+        }
         else if (this.state.displayName.length < 7 || this.state.displayName.length > 18) {
             alert("Username must be in between 7-16 characters!");
             return;
-
         }
         else if (this.state.password.length < 7 || this.state.password.length > 20) {
             alert("Password must be between 7-20 characters!");
-            return; 
+            return;
         }
-
         else if (regexDisplayName.test(this.state.displayName) === false) {
             alert("No spaces or special characters!");
-            return; 
-        }
-        else {
+            return;
+        };
 
-            console.log("Successfully passed through first phase of creating account");
-        }
-
-        //actually sign in through firebase
+        // Actually sign in through firebase
         auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then((result) => {
-
-                //getting the result.user object
+                // Getting the result.user object
                 const newUser = result.user
 
                 this.setState({ user: newUser });
 
-                //getting the current user according to firebase
+                // Getting the current user according to firebase
                 const currentAccount = auth.currentUser;
                 let email = currentAccount.email;
                 let uid = currentAccount.uid;
                 let displayName = this.state.displayName.toLowerCase();
-                var mysqlTimestamp = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+                let mysqlTimestamp = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
 
-                //Object to put user token and display name into firebase DB
+                // Object to put user token and display name into firebase DB
                 const newUserInfo = {
                     displayName: this.state.displayName.toLowerCase(),
                     email: email,
@@ -104,70 +86,56 @@ class NewAccount extends Component {
                 //pushing user token and display name to firebase database
                 database.ref().push(newUserInfo);
 
-                 //API Call
-                //=======================================================
+                //API Call to effect our MySQL db
                 axios.post('/api/createAccount', {
                     token: uid,
                     created: mysqlTimestamp,
                     last_login: mysqlTimestamp,
                     char_name: displayName
                 })
-                .then(response => {
-                    console.log(response);
-                    this.props.setPageName("Login");
-                })
-                .catch(err => {
-                    console.log(err);
-                });
+                    .then(response => {
+                        this.props.setPageName("Login");
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
 
             })
             .catch(error => {
 
                 // Error Handling
-                //==================================
-
                 let errorCode = error.code;
                 let errorMessage = error.message;
 
                 if (errorCode === "auth/weak-password") {
-
                     alert("Please pick a stronger password.");
                     console.log(errorCode, errorMessage);
-
                 } else if (errorCode === "auth/email-already-in-use") {
-
                     alert("This email is already associated with an account. Please choose another email.");
-        
                     console.log(errorCode, errorMessage);
-
                 } else if (errorCode === "auth/invalid-email") {
-
                     alert("Invalid credentials, please try again.");
                     console.log(errorCode, errorMessage);
-
                 } else {
-
                     alert("An error occured. Please try again");
                     console.log(errorCode, errorMessage);
-
-                }
+                };
             });
-
-    }
+    };
 
     render() {
-
         return (
             <div className="container">
-
                 <div className="box">
-                    {/* <SplashTop /> */}
+
+                    {/* FLEX ROW */}
                     <p className="title">ULTIMATE<br />LUCHADOR</p>
 
                     <div className="splash-lucha-image" >
-                        <img alt="background picture" src="./images/lucha.png" />
+                        <img alt="background" src="./images/lucha.png" />
                     </div>
 
+                    {/* FLEX ROW */}
                     <div className="flex-input">
                         <div className="nav">
                             <button onClick={() => this.props.setPageName("Splash")}>back</button>
@@ -216,15 +184,12 @@ class NewAccount extends Component {
                                 />
                             </div>
                         </div>
+
                     </div>
-
-
                 </div>
-
             </div>
         );
     };
-
 };
 
 const mapStateToProps = state => ({ storeData: state });

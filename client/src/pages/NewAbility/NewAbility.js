@@ -1,15 +1,17 @@
+//Imports
+//=====================================================
 import React, { Component } from "react";
-
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
 import axios from "axios";
-
 import "./NewAbility.css";
 
+//class
+//==================================================
 class NewAbility extends Component {
 
-// I3fjoum5S8Ty6G687wfRBbS3M5E2
+    // I3fjoum5S8Ty6G687wfRBbS3M5E2
 
     state = {
         newName: "",
@@ -20,26 +22,29 @@ class NewAbility extends Component {
         newFail: 0.4,
         newColor: "#",
         newIcon: "X"
-    }
+    };
 
     randomColor = () => {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
+        // Returns a random color
+        let letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
             color += letters[Math.floor(Math.random() * 16)];
         }
         return color;
     };
 
     getRandomInteger = (min, max) => {
+        // Returns a random integer between min - max
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min)) + min;
     };
 
     randomIcon = () => {
-        var randNumer = Math.floor(Math.random() * 40) + 1;
-        var path = "./images/icon" + randNumer + ".svg";
+        // Returns the path to a random attack icon
+        let randNumer = Math.floor(Math.random() * 40) + 1;
+        let path = "./images/icon" + randNumer + ".svg";
         return path;
     };
 
@@ -49,22 +54,21 @@ class NewAbility extends Component {
         const name = event.target.name;
 
         value = value.substring(0, 25);
-
-        //now set the state of both values to user inputted
         this.setState({
             [name]: value
         });
     };
 
     componentDidMount = () => {
-        var rollSpeed = Math.floor(Math.random() * 100) + 1;
-        var dlow;
-        var dhigh;
-        var speed;
-        var crit;
-        var fail;
-        var color;
-        var icon;
+        // Roll for a new ability
+        let rollSpeed = Math.floor(Math.random() * 100) + 1;
+        let dlow;
+        let dhigh;
+        let speed;
+        let crit;
+        let fail;
+        let color;
+        let icon;
 
         if (rollSpeed >= 1 && rollSpeed <= 33) {
             dlow = this.getRandomInteger(4, 9);
@@ -120,6 +124,7 @@ class NewAbility extends Component {
     };
 
     changeAbility = (ability) => {
+        // Replacing a current ability with the new incoming ability
         if (this.state.newName === "") {
             alert("Name the ability!");
         } else {
@@ -165,10 +170,10 @@ class NewAbility extends Component {
             <div className="container">
                 <div className="box fight-box">
 
-                    {/* Text bar */}
+                    {/* FLEX ROW */}
                     <div className="results-text-bar results-defeat-text newab-text">new ability</div>
 
-                    {/* New ability bar */}
+                    {/* FLEX ROW */}
                     <div className="newab-new-ability-bar">
                         <div className="newab-new-pic-bar">
                             <div className="newab-new-pic" style={{ backgroundColor: this.state.newColor }}><img className="ability-icon-size" alt="icon" src={this.state.newIcon} /></div>
@@ -192,7 +197,7 @@ class NewAbility extends Component {
                         </div>
                     </div>
 
-                    {/* Old ability bar */}
+                    {/* FLEX ROW */}
                     <div className="newab-old-ability-bar">
                         <div className="newab-old-ability-text results-defeat-text">replace an ability:</div>
                         <div className="newab-old-ability-abilities">
@@ -257,7 +262,7 @@ class NewAbility extends Component {
                         </div>
                     </div>
 
-                    {/* No replacement button bar */}
+                    {/* FLEX ROW */}
                     <div className="newab-no-ability-bar">
                         <div className="button" onClick={() => this.props.setPageName("Home")}>don't replace</div>
                     </div>
@@ -266,7 +271,6 @@ class NewAbility extends Component {
             </div>
         );
     };
-
 };
 
 const mapStateToProps = state => ({ storeData: state });

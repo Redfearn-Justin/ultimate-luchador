@@ -1,14 +1,15 @@
+//Imports
+//=================================================
 import React, { Component } from "react";
-
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as actionCreators from '../../redux/actions';
 import axios from "axios";
-
 import FightText from "../../components/FightText";
-
 import "./Fight.css";
 
+//Class
+//===============================================
 class Fight extends Component {
 
     state = {
@@ -59,6 +60,7 @@ class Fight extends Component {
     };
 
     componentDidMount = () => {
+        // Grab all of the info from the player's opponent
         const fetchId = this.props.storeData.inactiveId;
 
         axios.get('/api/selectSingleOpponent/' + fetchId)
@@ -112,14 +114,16 @@ class Fight extends Component {
     };
 
     getRandomInteger = (min, max) => {
+        // Returns a random integer between min - max
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min)) + min;
     };
 
     setupRaffle = () => {
-        var iaHolder = [];
-        var aaHolder = [];
+        // Builds the "fight raffle" from which random abilities will be picked
+        let iaHolder = [];
+        let aaHolder = [];
 
         for (let i = 0; i < this.state.ab1_speed; i++) {
             iaHolder.push("1");
@@ -146,9 +150,10 @@ class Fight extends Component {
         });
 
         this.chooseAttack();
-    }
+    };
 
     chooseAttack = () => {
+        // Chooses who attacks first
         const flip = Math.floor(Math.random() * 2) + 1
 
         if (flip === 1) {
@@ -158,44 +163,48 @@ class Fight extends Component {
         } else {
             alert("shit is bugged yo")
         }
-    }
+    };
 
     commPreface = () => {
-        var array = ["the force is strong with this one...", "woah!", "holy moley guacamole,", "ka pow!!", "watch out,", "here comes the boom!", "ready or not", "this could get ulgy,", "incoming!!", "coming in hot -", "cover your eyes, folks,", "holy shit!", "look out!", "woah, is that..?!", "I can't believe what I'm seeing", "okay, so", "well then", "I couldn't care less, but", "the smelly", "the heroic", "the oddly shaped", "the mean", "the effectionate lover", "the underdog", "holy cow!", "did you see that, chuck?!", "chuck, look!", "folks if you look closely"];
-        var comm = array[Math.floor(Math.random()*array.length)];
+        // COMMENTATOR TEXT: preface
+        let array = ["the force is strong with this one...", "woah!", "holy moley guacamole,", "ka pow!!", "watch out,", "here comes the boom!", "ready or not", "this could get ulgy,", "incoming!!", "coming in hot -", "cover your eyes, folks,", "holy shit!", "look out!", "woah, is that..?!", "I can't believe what I'm seeing", "okay, so", "well then", "I couldn't care less, but", "the smelly", "the heroic", "the oddly shaped", "the mean", "the effectionate lover", "the underdog", "holy cow!", "did you see that, chuck?!", "chuck, look!", "folks if you look closely"];
+        let comm = array[Math.floor(Math.random()*array.length)];
         return comm;
-    }
+    };
 
     commDescription = () => {
-        var array = ["used the attack", "used the move", "used", "pummeled their opponent with", "shook the floor with", "exploded the nips of the audience with a", "shit the bed with their signiture move,", "broke every record with a", "swept the floor with a", "took their opponent to church with the", "let their opponent have it with", "silenced the audience with", "aligned the planets with the", "cleaned their opponent's clock with a", "made their opponent see stars with", "woke the dead with the", "committed a hate crime with", "used their favorite move", "came flying in with a", "smashed even innocent bystanders with a", "plowed ur granny with the", "brought peace to the middle east with the", "popped their opponent with", "pulled the classic", "threw the ol'", "gave 'em the ol'", "pulled out all the stops with the", "knocked the living crap out of 'em with a", "went to the moon and back for that hit with the", "just went out doing the most with a", "just broke their opponent's ankles with", "successfully smashed with", "looked like a fool out there with the", "with the delivery using", "swang with a", "hit with the", "pummeled bootie with the", "smacked ass with a"];
-        var comm = array[Math.floor(Math.random()*array.length)];
+        // COMMENTATOR TEXT: attack description
+        let array = ["used the attack", "used the move", "used", "pummeled their opponent with", "shook the floor with", "exploded the nips of the audience with a", "shit the bed with their signiture move,", "broke every record with a", "swept the floor with a", "took their opponent to church with the", "let their opponent have it with", "silenced the audience with", "aligned the planets with the", "cleaned their opponent's clock with a", "made their opponent see stars with", "woke the dead with the", "committed a hate crime with", "used their favorite move", "came flying in with a", "smashed even innocent bystanders with a", "plowed ur granny with the", "brought peace to the middle east with the", "popped their opponent with", "pulled the classic", "threw the ol'", "gave 'em the ol'", "pulled out all the stops with the", "knocked the living crap out of 'em with a", "went to the moon and back for that hit with the", "just went out doing the most with a", "just broke their opponent's ankles with", "successfully smashed with", "looked like a fool out there with the", "with the delivery using", "swang with a", "hit with the", "pummeled bootie with the", "smacked ass with a"];
+        let comm = array[Math.floor(Math.random()*array.length)];
         return comm;
-    }
+    };
 
     commQuip = () => {
-        var array = ["DO YOU BELIEVE IN MIRACLES!? YES!", "Well butter my bottom and call me a biscuit!", "Ladies and gentlemen, you just witnessed history.", "Ouchtown, population you, bro!", "Ladies and gentlemen, I have been to the Great Wall of China, I have seen the Pyramids of Egypt, But never in all my years as a sportscaster have I witnessed something as improbable, as impossible, as what we've witnessed here today!", "Cotton McKnight and Pepper Brooks approve approve of this.", "How in the world did they bang it out like that?!", "Pepper needs new shorts!", "What did we just witness?! the only logical explanation is divine intervention.", "I've seen my grandma hit harder, chuck.", "that move stirred something deep in my loins, chuck.", "chuck!! did that just happen?!", "that move will have his orifices leaking for a week!", "did his shoe just come off, chuck?", "is that what I think it is?! oh, nevermind.", "I'm gonna need new underwear after that one!", "I heard he learned that move in 'nam, chuck."];
-        var comm = array[Math.floor(Math.random()*array.length)];
+        // COMMENTATOR TEXT: random quips
+        let array = ["DO YOU BELIEVE IN MIRACLES!? YES!", "Well butter my bottom and call me a biscuit!", "Ladies and gentlemen, you just witnessed history.", "Ouchtown, population you, bro!", "Ladies and gentlemen, I have been to the Great Wall of China, I have seen the Pyramids of Egypt, But never in all my years as a sportscaster have I witnessed something as improbable, as impossible, as what we've witnessed here today!", "Cotton McKnight and Pepper Brooks approve approve of this.", "How in the world did they bang it out like that?!", "Pepper needs new shorts!", "What did we just witness?! the only logical explanation is divine intervention.", "I've seen my grandma hit harder, chuck.", "that move stirred something deep in my loins, chuck.", "chuck!! did that just happen?!", "that move will have his orifices leaking for a week!", "did his shoe just come off, chuck?", "is that what I think it is?! oh, nevermind.", "I'm gonna need new underwear after that one!", "I heard he learned that move in 'nam, chuck."];
+        let comm = array[Math.floor(Math.random()*array.length)];
         return comm;
-    }
+    };
 
     inactiveAttack = () => {
-        var randAttack = this.state.inact_attacks[Math.floor(Math.random() * this.state.inact_attacks.length)];
+        // Logic for the opponent to attack
+        let randAttack = this.state.inact_attacks[Math.floor(Math.random() * this.state.inact_attacks.length)];
 
-        var diceRoll = Math.floor(Math.random() * 100) + 1;
-        var diceQuip = Math.floor(Math.random() * 100) + 1;
+        let diceRoll = Math.floor(Math.random() * 100) + 1;
+        let diceQuip = Math.floor(Math.random() * 100) + 1;
 
-        var atkName = "";
-        var atkColor = "";
-        var atkDamage = 0;
-        var atkCrit = "";
-        var atkFail = "";
-        var commPreface = this.commPreface();
-        var commDescription = this.commDescription();
-        var commQuip = "";
+        let atkName = "";
+        let atkColor = "";
+        let atkDamage = 0;
+        let atkCrit = "";
+        let atkFail = "";
+        let commPreface = this.commPreface();
+        let commDescription = this.commDescription();
+        let commQuip = "";
 
         if (diceQuip >= 90) {
             commQuip = this.commQuip();
-        }
+        };
 
         if (randAttack === "1") {
             atkDamage = this.getRandomInteger(this.state.ab1_dlow, this.state.ab1_dhigh);
@@ -208,7 +217,7 @@ class Fight extends Component {
             } else if (diceRoll <= this.state.ab1_fail * 100) {
                 atkDamage -= Math.floor(atkDamage * 0.5);
                 atkFail = "slip! ";
-            }
+            };
 
         } else if (randAttack === "2") {
             atkDamage = this.getRandomInteger(this.state.ab2_dlow, this.state.ab2_dhigh);
@@ -221,7 +230,7 @@ class Fight extends Component {
             } else if (diceRoll <= this.state.ab1_fail * 100) {
                 atkDamage -= Math.floor(atkDamage * 0.5);
                 atkFail = "slip! ";
-            }
+            };
 
         } else if (randAttack === "3") {
             atkDamage = this.getRandomInteger(this.state.ab3_dlow, this.state.ab3_dhigh);
@@ -234,14 +243,15 @@ class Fight extends Component {
             } else if (diceRoll <= this.state.ab1_fail * 100) {
                 atkDamage -= Math.floor(atkDamage * 0.5);
                 atkFail = "slip! ";
-            }
-        }
+            };
+        };
 
-        var newDamage = this.state.act_hp - atkDamage;
+        let newDamage = this.state.act_hp - atkDamage;
+        let dr = Math.floor(Math.random() * 7) + 1;
+        let newArrayId = this.state.arrayId;
+        let newArrayPlusOne = newArrayId += 1;
 
-        var dr = Math.floor(Math.random() * 7) + 1;
-
-        var pObject = {
+        let pObject = {
             who: "hp remaining",
             results_color: "rgb(0, 194, 42)",
             text_shadow: "rgb(253, 48, 55)",
@@ -257,40 +267,40 @@ class Fight extends Component {
             commPreface: commPreface,
             commDescription: commDescription,
             commQuip: commQuip
-        }
+        };
 
         this.setState({
             act_hp: newDamage,
             divArray: [...this.state.divArray, { obj: pObject }],
-            arrayId: this.state.arrayId += 1
+            arrayId: newArrayPlusOne
         })
 
         if (this.state.act_hp <= 0) {
             this.fightEnd("defeat", "results-defeat-text");
         } else {
             this.activeAttack();
-        }
-
-    }
+        };
+    };
 
     activeAttack = () => {
-        var randAttack = this.state.act_attacks[Math.floor(Math.random() * this.state.act_attacks.length)];
+        // Logic for the opponent to attack
+        let randAttack = this.state.act_attacks[Math.floor(Math.random() * this.state.act_attacks.length)];
 
-        var diceRoll = Math.floor(Math.random() * 100) + 1;
-        var diceQuip = Math.floor(Math.random() * 100) + 1;
+        let diceRoll = Math.floor(Math.random() * 100) + 1;
+        let diceQuip = Math.floor(Math.random() * 100) + 1;
 
-        var atkName = "";
-        var atkColor = "";
-        var atkDamage = 0;
-        var atkCrit = "";
-        var atkFail = "";
-        var commPreface = this.commPreface();
-        var commDescription = this.commDescription();
-        var commQuip = "";
+        let atkName = "";
+        let atkColor = "";
+        let atkDamage = 0;
+        let atkCrit = "";
+        let atkFail = "";
+        let commPreface = this.commPreface();
+        let commDescription = this.commDescription();
+        let commQuip = "";
 
         if (diceQuip >= 90) {
             commQuip = this.commQuip();
-        }
+        };
 
         if (randAttack === "1") {
             atkDamage = this.getRandomInteger(this.props.storeData.ab1_dlow, this.props.storeData.ab1_dhigh);
@@ -303,7 +313,7 @@ class Fight extends Component {
             } else if (diceRoll <= this.state.ab1_fail * 100) {
                 atkDamage -= Math.floor(atkDamage * 0.5);
                 atkFail = "slip! ";
-            }
+            };
 
         } else if (randAttack === "2") {
             atkDamage = this.getRandomInteger(this.props.storeData.ab2_dlow, this.props.storeData.ab2_dhigh);
@@ -316,7 +326,7 @@ class Fight extends Component {
             } else if (diceRoll <= this.state.ab1_fail * 100) {
                 atkDamage -= Math.floor(atkDamage * 0.5);
                 atkFail = "slip! ";
-            }
+            };
 
         } else if (randAttack === "3") {
             atkDamage = this.getRandomInteger(this.props.storeData.ab3_dlow, this.props.storeData.ab3_dhigh);
@@ -329,14 +339,15 @@ class Fight extends Component {
             } else if (diceRoll <= this.state.ab1_fail * 100) {
                 atkDamage -= Math.floor(atkDamage * 0.5);
                 atkFail = "slip! ";
-            }
-        }
+            };
+        };
 
-        var newDamage = this.state.inact_hp - atkDamage;
+        let newDamage = this.state.inact_hp - atkDamage;
+        let dr = Math.floor(Math.random() * 7) + 1;
+        let newArrayId = this.state.arrayId;
+        let newArrayPlusOne = newArrayId += 1;
 
-        var dr = Math.floor(Math.random() * 7) + 1;
-
-        var pObject = {
+        let pObject = {
             who: "left to deal",
             results_color: "rgb(253, 48, 55)",
             text_shadow: "rgb(0, 194, 42)",
@@ -352,71 +363,73 @@ class Fight extends Component {
             commPreface: commPreface,
             commDescription: commDescription,
             commQuip: commQuip
-        }
+        };
 
         this.setState({
             inact_hp: newDamage,
             divArray: [...this.state.divArray, { obj: pObject }],
-            arrayId: this.state.arrayId += 1
+            arrayId: newArrayPlusOne
         })
 
         if (this.state.inact_hp <= 0) {
             this.fightEnd("victory", "results-victory-text");
         } else {
             this.inactiveAttack();
-        }
-
-    }
+        };
+    };
 
     setTransition = () => {
-        var offsetHeight = document.getElementById("fight-build-box-id").offsetHeight;
-        var passTrans = "";
+        // Depending on how long the fight is, set the scroll speed appropriatly
+        let offsetHeight = document.getElementById("fight-build-box-id").offsetHeight;
+        let passTrans = "";
 
         if (this.state.newTrans === "0s linear") {
             if (offsetHeight <= 1200) {
-                passTrans = "40s linear"
+                passTrans = "38s linear"
             } else if (offsetHeight > 1200 && offsetHeight <= 1500) {
-                passTrans = "45s linear"
+                passTrans = "42s linear"
             } else if (offsetHeight > 1500 && offsetHeight <= 1800) {
-                passTrans = "50s linear"
+                passTrans = "47s linear"
             } else if (offsetHeight > 1800 && offsetHeight <= 2100) {
-                passTrans = "55s linear"
+                passTrans = "50s linear"
             } else if (offsetHeight > 2100 && offsetHeight <= 2400) {
-                passTrans = "60s linear"
+                passTrans = "55s linear"
             } else if (offsetHeight > 2400 && offsetHeight <= 2700) {
-                passTrans = "65s linear"
+                passTrans = "60s linear"
             } else if (offsetHeight > 2700 && offsetHeight <= 3000) {
-                passTrans = "70s linear"
+                passTrans = "65s linear"
             } else if (offsetHeight > 3000 && offsetHeight <= 3300) {
-                passTrans = "75s linear"
+                passTrans = "70s linear"
             } else if (offsetHeight > 3300 && offsetHeight <= 3600) {
-                passTrans = "80s linear"
+                passTrans = "75s linear"
             } else if (offsetHeight > 3600 && offsetHeight <= 3900) {
-                passTrans = "85s linear"
+                passTrans = "78s linear"
             } else if (offsetHeight > 3900 && offsetHeight <= 4200) {
-                passTrans = "90s linear"
+                passTrans = "80s linear"
             } else if (offsetHeight > 4200 && offsetHeight <= 4500) {
-                passTrans = "95s linear"
+                passTrans = "85s linear"
             } else if (offsetHeight > 4500) {
-                passTrans = "100s linear"
-            }
+                passTrans = "90s linear"
+            };
 
             this.setState({
                 newTrans: passTrans,
             })
             this.setBottom();
-        }
-    }
+        };
+    };
 
     setBottom = () => {
+        // Setting the bottom of the scroll box in a seperate step to activate scrolling
         this.setState({
             newBottom: "0px",
         })
-    }
+    };
 
     fightEnd = (outcome, textCss) => {
-        var offsetHeight = document.getElementById("fight-build-box-id").offsetHeight;
-        var initPosition = offsetHeight - 250;
+        // When the fight ends, build the scroll box appropriately
+        let offsetHeight = document.getElementById("fight-build-box-id").offsetHeight;
+        let initPosition = offsetHeight - 270;
 
         this.setState({
             outcome: outcome,
@@ -431,6 +444,7 @@ class Fight extends Component {
             <div className="container">
                 <div className="box fight-box">
 
+                    {/* FLEX ROW */}
                     <div className="player-bar">
 
                         <div className="profile-pic opponent-pic">
@@ -465,12 +479,17 @@ class Fight extends Component {
 
                     </div>
 
+                    {/* FLEX ROW */}
                     <div className="fighting-bar">
 
                         <div className="fight-loading" style={{ display: this.state.display }}><span style={{ position: "relative", top: "40%", fontSize: "2rem" }}>Loading</span></div>
 
                         <div id="fight-build-box-id" className="fight-build-box" style={{ position: "absolute", bottom: this.state.newBottom, transition: this.state.newTrans }}>
-                            <p className="fight-finish-text" style={{ marginBottom: "140px" }}>fight!</p>
+                            <p style={{ marginBottom: "140px" }}>
+                            <span className="fight-finish-text" >fight!</span>
+                            <span style={{ display: "block" }}><span style={{ textShadow: "1px 1px #000", fontStyle: "italic", color: "rgb(0, 194, 42)", marginRight: "3px" }}>{this.props.storeData.char_name}</span><img alt="icon" src="./images/heart.svg" style={{ height: "16px", position: "relative", top: "3px", margin: "0px 5px" }} />{this.props.storeData.hp}</span>
+                            <span style={{ display: "block" }}><span style={{ textShadow: "1px 1px #000", fontStyle: "italic", color: "rgb(253, 48, 55)", marginRight: "3px" }}>{this.state.char_name}</span><img alt="icon" src="./images/heart.svg" style={{ height: "16px", position: "relative", top: "3px", margin: "0px 5px" }} />{this.state.inact_hp_base}</span>
+                            </p>
                             {this.state.divArray.map(p => (
                                 <FightText
                                     id={p.obj.id}
@@ -507,11 +526,10 @@ class Fight extends Component {
                             <div className="fight-speed-bar">
                                 <div className="fight-finish" onClick={() => this.props.fightResults("FightResults", this.state.outcome, this.state.textCss, this.state.id)}>finish</div>
                             </div>
-
                         </div>
-
                     </div>
 
+                    {/* FLEX ROW */}
                     <div className="player-bar">
 
                         <div className="profile-pic opponent-pic">
@@ -545,12 +563,10 @@ class Fight extends Component {
                         </div>
 
                     </div>
-
                 </div>
             </div>
         );
     };
-
 };
 
 const mapStateToProps = state => ({ storeData: state });
